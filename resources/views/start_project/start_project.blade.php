@@ -44,7 +44,8 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index.html">
-				<img src="homepage__/img/logo-default.png" alt="logo" class="logo-default"/>
+				{{--<img src="homepage__/img/logo-default.png" alt="logo" class="logo-default"/>--}}
+				<h3 class="logo-default" style="color: #edecec;"><b> PMS-AACR </b></h3>
 			</a>
 			<div class="menu-toggler sidebar-toggler fa fa-bars">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->

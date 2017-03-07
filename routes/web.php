@@ -30,3 +30,7 @@ Route::get('/check_home', function() {
 Route::get('/check_start', function() {
     return view('start_project.start_project');
 });
+
+Route::get('/project_info', function() {
+    return view('Dashboard.project_info');
+});
