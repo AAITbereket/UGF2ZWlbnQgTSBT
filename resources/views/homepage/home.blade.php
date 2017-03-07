@@ -16,21 +16,21 @@
 <meta content="" name="author"/>
 
 	<!--materialize ui-->
-<link href="materialize/css/materialize.css" rel="stylesheet" type="text/css"/>
+<link href="homepage__/materialize/css/materialize.css" rel="stylesheet" type="text/css"/>
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="homepage__/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+<link href="homepage__/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+<link href="homepage__/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="homepage__/css/uniform.default.css" rel="stylesheet" type="text/css">
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME STYLES -->
-<link href="css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
-<link href="css/plugins.css" rel="stylesheet" type="text/css"/>
-<link href="css/layout.css" rel="stylesheet" type="text/css"/>
-<link id="style_color" href="css/grey.css" rel="stylesheet" type="text/css"/>
-<link href="css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="homepage__/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="homepage__/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="homepage__/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="homepage__/css/grey.css" rel="stylesheet" type="text/css"/>
+<link href="homepage__/css/custom.css" rel="stylesheet" type="text/css"/>
 
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
@@ -44,9 +44,9 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="index.html">
-			<img src="img/logo-default.png" alt="logo" class="logo-default"/>
+			<img src="homepage__/img/logo-default.png" alt="logo" class="logo-default"/>
 			</a>
-			<div class="menu-toggler sidebar-toggler">
+			<div class="menu-toggler sidebar-toggler fa fa-bars">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
 			</div>
 		</div>
@@ -84,20 +84,20 @@
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" class="img-circle" src="img/avatar3_small.jpg"/>
+						<img alt="" class="img-circle" src="homepage__/img/avatar3_small.jpg"/>
 						<span class="username username-hide-on-mobile">
-						Nick </span>
+						Ruth </span>
 						<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
 								<a href="extra_profile.html">
-								<i class="icon-user"></i> My Profile </a>
+								<i class="fa fa-user"></i> My Profile </a>
 							</li>
 							
 							<li>
 								<a href="login.html">
-								<i class="icon-key"></i> Log Out </a>
+								<i class="fa fa-key"></i> Log Out </a>
 							</li>
 						</ul>
 					</li>
@@ -132,14 +132,14 @@
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="start ">
 						<a href="index.html">
-						<i class="icon-home"></i>
+						<i class="fa fa-home"></i>
 						<span class="title">Dashboard</span>
 						</a>
 					</li>
 
 					<li class="start ">
 						<a href="index.html">
-							<i class="icon-home"></i>
+							<i class="fa fa-home"></i>
 							<span class="title">Dashboard</span>
 						</a>
 					</li>
@@ -168,7 +168,7 @@
 					<div class="col-md-12" >
 						<div class="col-md-3"></div>
 						<div class="col-md-2">
-							<button class="btn waves-effect waves-light" type="submit" name="action"> <i class="fa-plus-circle"></i> Start a project </button>
+							<button class="btn waves-effect waves-light" type="submit" name="action"> <i class="fa fa-plus-circle"></i> Start a project </button>
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
@@ -224,12 +224,12 @@
 											<ul class="dropdown-menu dropdown-menu-default">
 												<li>
 													<a href="extra_profile.html">
-														<i class="icon-user"></i> Edit </a>
+														<i class="fa fa-user"></i> Edit </a>
 												</li>
 
 												<li>
 													<a href="login.html">
-														<i class="icon-key"></i> Delete </a>
+														<i class="fa fa-key"></i> Delete </a>
 												</li>
 											</ul>
 										</li>
@@ -247,12 +247,12 @@
 											<ul class="dropdown-menu dropdown-menu-default">
 												<li>
 													<a href="extra_profile.html">
-														<i class="icon-user"></i> Edit </a>
+														<i class="fa fa-user"></i> Edit </a>
 												</li>
 
 												<li>
 													<a href="login.html">
-														<i class="icon-key"></i> Delete </a>
+														<i class="fa fa-key"></i> Delete </a>
 												</li>
 											</ul>
 										</li>
@@ -279,7 +279,7 @@
 			 2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
 		</div>
 		<div class="scroll-to-top">
-			<i class="icon-arrow-up"></i>
+			<i class="fa fa-arrow-up"></i>
 		</div>
 	</div>
 	<!-- END FOOTER -->
@@ -289,22 +289,21 @@
 <!--[if lt IE 9]>
 
 <!--materialize JS-->
-<script src="materialize/js/materialize.js"></script>
 
-<script src="respond.min.js"></script>
-<script src="excanvas.min.js"></script> 
+
 <![endif]-->
-<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="homepage__/js/jquery.min.js" type="text/javascript"></script>
+<script src="homepage__/materialize/js/materialize.js"></script>
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="js/jquery.uniform.min.js" type="text/javascript"></script>
-<script src="js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="homepage__/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="homepage__/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="homepage__/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="homepage__/js/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="homepage__/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
-<script src="js/metronic.js" type="text/javascript"></script>
-<script src="js/layout.js" type="text/javascript"></script>
-<script src="js/demo.js" type="text/javascript"></script>
+<script src="homepage__/js/metronic.js" type="text/javascript"></script>
+<script src="homepage__/js/layout.js" type="text/javascript"></script>
+<script src="homepage__/js/demo.js" type="text/javascript"></script>
 <script>
       jQuery(document).ready(function() {    
          Metronic.init(); // init metronic core components

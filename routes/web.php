@@ -22,3 +22,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/login_custom', function() {
     return view('login.login');
 });
+
+Route::get('/check_home', function() {
+    return view('homepage.home');
+});
+
+Route::get('/check_start', function() {
+    return view('start_project.start_project');
+});
