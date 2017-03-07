@@ -194,17 +194,22 @@
                         </blockquote>
                         <div class="col-md-6">
                             <img class="img-circle" src="homepage__/img/avatar3_small.jpg">
+                            <form method="post" enctype="multipart/form-data" id="image_submit">
+                                <input class="" type="file"/>
+                                <button type="submit" class="btn"> Change Image </button>
+                            </form>
                         </div>
                         <div class="col-md-6">
                             <h4> <b>Company Name :</b> <span>Lorem ipsum </span></h4>
                             <h4> <b>Inspect By :</b> <span> ProjectName </span></h4>
                             <h4> <b>Checker :</b> <span> 123456 </span></h4>
                             <h4> <b>Supervisor :</b> <span> 123456 </span></h4>
+
                         </div>
                     </div>
 
                 </div>
-                <br/><hr/>
+                
                 <div class="row">
                     <div class=" col-md-12" >
                         <blockquote>
@@ -218,7 +223,65 @@
                         </div>
 
                         <div class="col-md-offset-3 col-md-2" >
-                            <button class="btn"> Edit </button>
+
+                            <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Edit </button>
+
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal">
+                                <div class="modal-content">
+                                    <div class="row">
+                                        <form class="col s12">
+                                            <div class="row modal-form-row">
+                                                <div class="col s4">
+                                                    <label for="image_url">Client Name</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                                <div class="col s4">
+                                                    <label for="image_url">Project Name</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                                <div class="col s4">
+                                                    <label for="image_url">Project Number</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <label for="image_url">Company Name</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                                <div class="col s3">
+                                                    <label for="image_url">Inspect By</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                                <div class="col s3">
+                                                    <label for="image_url">Checker </label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                                <div class="col s3">
+                                                    <label for="image_url">Superviser </label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                            <div class="row">
+                                                <div class="col s6">
+                                                    <label for="image_url">Date</label>
+                                                    <input id="image_url" type="date" class="datepicker">
+                                                </div>
+                                                <div class="col s6">
+                                                    <label for="image_url">Inspect By</label>
+                                                    <input id="image_url" type="text" class="validate">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn right"> Submit </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
                     </div>
@@ -253,7 +316,7 @@
 
 <![endif]-->
 <script src="homepage__/js/jquery.min.js" type="text/javascript"></script>
-<script src="homepage__/materialize/js/materialize.js"></script>
+
 <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="homepage__/js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="homepage__/js/bootstrap.min.js" type="text/javascript"></script>
@@ -264,12 +327,24 @@
 <script src="homepage__/js/metronic.js" type="text/javascript"></script>
 <script src="homepage__/js/layout.js" type="text/javascript"></script>
 <script src="homepage__/js/demo.js" type="text/javascript"></script>
+<script src="homepage__/materialize/js/materialize.js"></script>
 <script>
     jQuery(document).ready(function() {
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
         Demo.init(); // init demo features
     });
+
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 40 // Creates a dropdown of 15 years to control year
+    });
+
 </script>
 <!-- END JAVASCRIPTS -->
 </body>
