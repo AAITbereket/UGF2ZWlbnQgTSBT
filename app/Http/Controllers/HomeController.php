@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('start_project.start_project');
+        return view('homepage.home');
     }
 }
