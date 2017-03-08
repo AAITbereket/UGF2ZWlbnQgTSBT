@@ -203,7 +203,7 @@
                             <img class="img-circle" src="homepage__/img/avatar3_small.jpg">
                             <form method="post" enctype="multipart/form-data" id="image_submit">
                                 <input class="" type="file"/>
-                                <button type="submit" class="btn"> Change Image </button>
+                                <button type="submit" class="btn"> Change Logo </button>
                             </form>
                         </div>
                         <div class="col-md-6">
@@ -243,14 +243,15 @@
                                                     <label for="image_url">Client Name</label>
                                                     <input id="image_url" type="text" class="validate">
                                                 </div>
+                                                <div class="col s2"> </div>
                                                 <div class="col s4">
                                                     <label for="image_url">Project Name</label>
                                                     <input id="image_url" type="text" class="validate">
                                                 </div>
-                                                <div class="col s4">
-                                                    <label for="image_url">Project Number</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
+                                                {{--<div class="col s4">--}}
+                                                    {{--<label for="image_url">Project Number</label>--}}
+                                                    {{--<input id="image_url" type="text" class="validate">--}}
+                                                {{--</div>--}}
                                             </div>
                                             <hr/>
                                             <div class="row">

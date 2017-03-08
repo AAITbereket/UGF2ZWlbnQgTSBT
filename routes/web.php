@@ -35,5 +35,5 @@ Route::get('/check_home', function() {
 
 
 Route::get('/project_info', function() {
-    return view('Dashboard.project_info');
+    return view('Dashboard.project_info_view');
 });
