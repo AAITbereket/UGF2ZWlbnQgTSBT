@@ -153,12 +153,12 @@
 				<!-- BEGIN PAGE CONTENT-->
 				<div class="row">
 					<div class="col-md-12" style="text-align: center">
-						 <!--<h1> Welcome to Addis Ababa Roads Pavement Management System </h1>-->
-						<h1> Lorem ipsum dolor simet el </h1>
+						 <h2> Welcome to Addis Ababa City Roads Pavement Management System </h2>
+						{{--<h1> Lorem ipsum dolor simet el </h1>--}}
 					</div>
 				</div>
 				<div class="row">
-					<br/><br/>
+					<br/><br/><br/>
 					<div class="col-md-12" >
 						<div class="col-md-3"></div>
 						<div class="col-md-2">

@@ -34,6 +34,12 @@
 
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
+    <style>
+         .modal-content input {
+            font-size: 14px;
+        }
+    </style>
+
 </head>
 
 <body class="page-boxed page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo">
