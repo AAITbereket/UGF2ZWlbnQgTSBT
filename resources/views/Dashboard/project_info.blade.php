@@ -8,7 +8,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Metronic | Page Layouts - Blank Page</title>
+    <title>PMS-AACR</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -93,18 +93,19 @@
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle" src="homepage__/img/avatar3_small.jpg"/>
 						<span class="username username-hide-on-mobile">
-						Ruth </span>
+						{{ Auth::user()->name }} </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="extra_profile.html">
-                                    <i class="fa fa-user"></i> My Profile </a>
-                            </li>
-
-                            <li>
-                                <a href="login.html">
+                                <a href="{{ url('/logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                     <i class="fa fa-key"></i> Log Out </a>
+
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
                         </ul>
                     </li>
@@ -164,7 +165,7 @@
                         </a>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/project_info">
                             <i class="fa fa-info-circle"></i>
                             <span class="title">Project info</span>
                         </a>

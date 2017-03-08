@@ -92,13 +92,14 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="extra_profile.html">
-								<i class="fa fa-user"></i> My Profile </a>
-							</li>
-							
-							<li>
-								<a href="login.html">
-								<i class="fa fa-key"></i> Log Out </a>
+								<a href="{{ url('/logout') }}"
+								   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+									<i class="fa fa-key"></i> Log Out </a>
+
+								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+								</form>
 							</li>
 						</ul>
 					</li>
@@ -162,7 +163,7 @@
 					<div class="col-md-12" >
 						<div class="col-md-3"></div>
 						<div class="col-md-2">
-							<button class="btn waves-effect waves-light" type="submit" name="action"> <i class="fa fa-plus-circle"></i> Start a project </button>
+							<a href="/start_project_"><button class="btn waves-effect waves-light" type="submit" name="action"> <i class="fa fa-plus-circle"></i>  Start a project  </button></a>
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-5">
