@@ -146,26 +146,24 @@
 							<span class="title">Dashboard</span>
 						</a>
 					</li>
-
-					<li class="start ">
-						<a href="index.html">
-							<i class="fa fa-cogs"></i>
-							<span class="title">System Analysis</span>
-						</a>
-					</li>
-					<li class="start ">
-						<a href="index.html">
-							<i class="fa fa-money"></i>
-							<span class="title">Cost</span>
-						</a>
-					</li>
-
-					<li class="start ">
-						<a href="index.html">
-							<i class="fa fa-bar-chart"></i>
-							<span class="title">Reports</span>
-						</a>
-					</li>
+					{{--<li class="start ">--}}
+						{{--<a href="index.html">--}}
+							{{--<i class="fa fa-cogs"></i>--}}
+							{{--<span class="title">System Analysis</span>--}}
+						{{--</a>--}}
+					{{--</li>--}}
+					{{--<li class="start ">--}}
+						{{--<a href="index.html">--}}
+							{{--<i class="fa fa-money"></i>--}}
+							{{--<span class="title">Cost</span>--}}
+						{{--</a>--}}
+					{{--</li>--}}
+					{{--<li class="start ">--}}
+						{{--<a href="index.html">--}}
+							{{--<i class="fa fa-bar-chart"></i>--}}
+							{{--<span class="title">Reports</span>--}}
+						{{--</a>--}}
+					{{--</li>--}}
 					<li class="start ">
 						<a href="/project_info">
 							<i class="fa fa-info-circle"></i>
@@ -189,188 +187,53 @@
 
 							<h3>  Starting new Project </h3> <br/><br/>
 
-							<ul class="collapsible" data-collapsible="accordion">
-
-								<li>
-									<div class="collapsible-header" style="background-color:#4d5b69cc; color:#FFF">
-										<blockquote>
-												New Inventory
-										</blockquote>
-									</div>
-									<div class="collapsible-body">
-										<h4> Be sure to fill the inputs correctly </h4>
-										<div class="card" id="new_inventory">
-
-											<div class="card-content">
-												<form action="?" method="GET" novalidate="novalidate"><ul class="stepper horizontal linear" id="horizontal">
-
-													<li class="step active">
-														<div class="step-title waves-effect waves-dark"></div>
+								<blockquote>
+										New inventory
+								</blockquote>
+									<div class="row">
+										<div class="col-md-12" id="new_inventory">
+											<div class="card portlet" style="padding: 10px">
+												<form action="#" method="POST">
 														<div class="step-content" style="left: 0%; display: block;">
 															<div class="row">
 																<br/>
-																<div class="input-field col s4">
-																	<h4>Inventory Name </h4>
-																	<input id="name" name="Inventory_name" class="validate valid" aria-required="true" aria-invalid="false" type="text" required>
-																	<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
-																</div>
-															</div>
-															<div class="step-actions">
-																<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction" onclick=" event.preventDefault() ;$('.stepper').nextStep();">CONTINUE</button>
+																<div class="col-md-8">
+																	<div class="row">
+																		<div class="input-field col s6">
+																			<h4>Project Name </h4>
+																			<input id="name" name="Project_name" class="validate valid" aria-required="true" aria-invalid="false" type="text" required>
+																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
+																		</div>
+																	</div>
 
+																	<div class="row">
+																		<div class="input-field col s4">
+																			<h4>From </h4>
+																			<input id="name" name="From" class="validate valid" aria-required="true" aria-invalid="false" type="text" required>
+																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
+																		</div>
+																		<div class="input-field col s4">
+																			<h4> To </h4>
+																			<input id="name" name="To" class="validate valid" aria-required="true" aria-invalid="false" type="text" required>
+																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
+																		</div>
+																		<div class="input-field col s4">
+																			<h4> Total Distance </h4>
+																			<input id="name" name="Total_Distance" class="validate valid" aria-required="true" aria-invalid="false" type="text">
+																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
+																		</div>
+																	</div>
+																</div>
+																<div class="col-md-3">
+																	<br/><br/><br/><br/><br/><br/>
+																	<input type="submit" class="btn right btn-large" value="Create Project"/>
+																</div>
 															</div>
 														</div>
-													</li>
-													<li class="step">
-														<div data-step-label="" class="step-title waves-effect waves-dark"></div>
-														<div class="step-content" style="left: 0%; display: none;">
-															<div class="row">
-																<div class="input-field col s3">
-																	<h4>From</h4>
-																	<input id="From" name="From" class="validate valid" required aria-required="true" aria-invalid="false" type="text">
-																	<!--<label for="From" class="active">Inventory Name</label>-->
-																</div>
-																<div class="col s1"> </div>
-																<div class="input-field col s3">
-																	<h4>To</h4>
-																	<input id="To" name="To" class="validate valid" required aria-required="true" aria-invalid="false" type="text">
-																	<!--<label for="To" class="active">Inventory Name</label>-->
-																</div>
-
-															</div>
-															<div class="row">
-																<div class="input-field col s4">
-																	<h4>Surface </h4>
-																	<select class="browser-default" name="Surface">
-																		<option value="" disabled selected></option>
-																		<option value="Asphalt_Concrete">Asphalt Concrete</option>
-																		<option value="Port_land_cement">Port land cement</option>
-																	</select>
-																</div>
-																<div class="col s4">
-																	<h4>Length</h4>
-																	<input  name="Length" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-																</div>
-																<div class="col s4">
-																	<h4>Carriadge Width</h4>
-																	<input name="Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-																</div>
-
-															</div>
-															<div class="step-actions">
-																<button class="waves-effect waves-dark btn blue next-step" onclick=" event.preventDefault() ;$('.stepper').nextStep();">CONTINUE</button>
-																<button class="waves-effect waves-dark btn-flat previous-step"onclick=" event.preventDefault() ;$('.stepper').prevStep();">BACK</button>
-															</div>
-														</div>
-													</li>
-													<li class="step">
-														<div class="step-title waves-effect waves-dark"></div>
-														<div class="step-content" style="left: 0%; display: none;">
-															<div class="row">
-																<div class="input-field col s6">
-																	<h4>Street type </h4>
-																	<select class="browser-default" name="street_type">
-																		<option value="" disabled selected></option>
-																		<option value="1">RR</option>
-																		<option value="2">PAS</option>
-																		<option value="3">SAS</option>
-																		<option value="2">C</option>
-																		<option value="3">L</option>
-																	</select>
-																</div>
-																<div class="input-field col s6">
-																	<h4>Direction </h4>
-																	<select class="browser-default">
-																		<option value="" disabled selected></option>
-																		<option value="East_bound">East bound</option>
-																		<option value="West_bound">West bound</option>
-																	</select>
-																</div>
-															</div>
-															<br/><br/>
-															<div class="row">
-																<div class="input-field col s4">
-																	<h4>Number of Lane</h4>
-																	<input name="No_of_Lane" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-																</div>
-
-																<div class="col s2"> </div>
-
-																<div class="input-field col s6">
-																	<h4>Carriage way type </h4>
-																	<select class="browser-default" name="Carriage_way_type">
-																		<option value="" disabled selected></option>
-																		<option value="Existing_asphalt">Existing asphalt</option>
-																		<option value="Gravel">Gravel</option>
-																		<option value="New_Asphalt">New Asphalt</option>
-																		<option value="New_Cobel">New Cobel</option>
-																		<option value="Care_Stone">Care Stone</option>
-																		<option value="Under_construction">Under construction</option>
-																		<option value="Planned">Planned</option>
-																		<option value="Earth">Earth</option>
-																	</select>
-																</div>
-
-															</div>
-															<div class="step-actions">
-																<button class="waves-effect waves-dark btn blue next-step" data-feedback="someFunction" onclick=" event.preventDefault() ;$('.stepper').nextStep();">CONTINUE</button>
-																<button class="waves-effect waves-dark btn-flat previous-step"onclick=" event.preventDefault() ;$('.stepper').prevStep();">BACK</button>
-															</div>
-														</div>
-													</li>
-													<li class="step">
-														<div class="step-title waves-effect waves-dark"></div>
-														<div class="step-content" style="left: 0%; display: none; ">
-															<h4>Finished! </h4>
-															<div class="step-actions">
-
-																<button class="waves-effect waves-dark btn blue" type="submit">SUBMIT</button>
-																<button class="waves-effect waves-dark btn-flat previous-step"onclick=" event.preventDefault() ;$('.stepper').prevStep();">BACK</button>
-															</div>
-														</div>
-													</li>
-												</ul></form>
+												</form>
 											</div>
 										</div >
 									</div>
-
-								</li>
-
-								<li>
-									<div class="collapsible-header active" style="background-color:#4d5b69cc; color:#FFF">
-										<blockquote >
-											Import Inventory
-										</blockquote>
-									</div>
-
-									<div id="import_inventory" class="collapsible-body">
-										<h4> Import inventory from existing file </h4>
-
-										<div class="card row">
-											<div class="card-content col-md-9">
-
-												<form action="#" class="col-md-6">
-													<div class="file-field input-field">
-														<div class="btn blue">
-															<span>File</span>
-															<input type="file">
-														</div>
-														<div class="file-path-wrapper">
-															<input class="file-path validate" type="text">
-														</div>
-													</div>
-												</form>
-												<div class="col-md-4">
-													<br/>
-													<button type="submit" class="waves-effect waves-light btn blue"> Submit </button>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</li>
-
-							</ul>
 						</div>
 					</div>
 					<!-- END PAGE CONTENT-->

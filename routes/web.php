@@ -37,3 +37,7 @@ Route::get('/check_home', function() {
 Route::get('/project_info', function() {
     return view('Dashboard.project_info_view');
 });
+
+Route::get('/login____', function() {
+    return view('login.login');
+});

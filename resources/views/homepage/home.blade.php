@@ -159,16 +159,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<br/><br/><br/>
+					<br/><br/><br/><br/>
 					<div class="col-md-12" >
-						<div class="col-md-3"></div>
+						<div class="col-md-4"></div>
 						<div class="col-md-2">
 							<a href="/start_project_"><button class="btn waves-effect waves-light" type="submit" name="action"> <i class="fa fa-plus-circle"></i>  Start a project  </button></a>
 						</div>
 						<div class="col-md-1"></div>
-						<div class="col-md-5">
-							<button class="btn waves-effect waves-light grey lighten-2" type="submit" name="action">Read Guide </button>
-						</div>
 					</div>
 					<br/><br/><br/><br/>
 				</div>
