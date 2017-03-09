@@ -24,6 +24,10 @@ Route::get('/start_project_', function() {
     return view('start_project.start_project');
 });
 
+Route::get('/dashboard', function() {
+    return view('Dashboard.Dashboard_view');
+});
+
 
 Route::get('/login_custom', function() {
     return view('login.login');
