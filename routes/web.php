@@ -18,10 +18,15 @@ Route::post('/create_project', 'DashboardController@create_project');
 
 Route::post('/add_section', 'DashboardController@add_section');
 
+Route::post('/edit_section', 'DashboardController@edit_section');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/Open_section', 'DashboardController@Open_section');
+
+Route::post('/Delete_section', 'DashboardController@Delete_section');
+
+Route::get('/Section_dashboard', 'Section_controller@dashboard');
+
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 

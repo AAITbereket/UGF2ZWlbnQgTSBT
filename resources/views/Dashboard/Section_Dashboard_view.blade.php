@@ -1,12 +1,16 @@
 <?php
-
-    $Project_Name = $selected_project_->Project_Name;
-    $From = $selected_project_->From;
-    $To = $selected_project_->To;
-    $Distance = $selected_project_->Distance;
-
-    $Sections = $Pavement_section_;
-
+    $Section_Id = $Pavement_section_->Section_Id;
+    $Section_Name = $Pavement_section_->Section_Name;
+    $From = $Pavement_section_->From;
+    $To = $Pavement_section_->To;
+    $length = $Pavement_section_->Length;
+    $Surface = $Pavement_section_->Surface;
+    $Carriage_width = $Pavement_section_->Carriage_width;
+    $Number_of_lane = $Pavement_section_->Number_of_lane;
+    $Area = $Pavement_section_->Area;
+    $Street_type = $Pavement_section_->Street_type;
+    $Direction = $Pavement_section_->Direction;
+    $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 ?>
 
 <!DOCTYPE html>
@@ -160,9 +164,29 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="start ">
+                        <a href="index.html">
+                            <i class="fa fa-cogs"></i>
+                            <span class="title">System Analysis</span>
+                        </a>
+                    </li>
+                    <li class="start ">
+                        <a href="index.html">
+                            <i class="fa fa-money"></i>
+                            <span class="title">Cost</span>
+                        </a>
+                    </li>
+
+                    <li class="start ">
+                        <a href="index.html">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="title">Reports</span>
                         </a>
                     </li>
                     <li class="start ">
@@ -180,120 +204,63 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    Dashboard <small> reports and statics </small>
+                    Section : {{ $Section_Name }}
                 </h3>
-                <div class="page-bar">
-                </div>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
 
                 <div id="Main-Content">
                     <div class="row">
-                        <div class="col-md-12 card portlet" style="padding: 15px;">
-
-                            <div class="col-md-6">
-                                <h4><b>Project Name : </b> {{ $Project_Name }}</h4>
-                            </div>
-
-                            <div class="col-md-6">
-                                <h4><b> From: </b> {{ $From }} <b> To: </b> {{$To}} </h4>
-                            </div>
-
-                            <div class="col-md-6">
-                                <h4><b> Distance: </b> {{ $Distance }} meteres </h4>
-                            </div>
-
-                            <div class="col-md-6">
-                                <h4><b> Sections: </b>  {{$Sections->count()}} </h4>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="portlet light bordered col-md-8">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    Sections
+                        <h4>Basic Informations </h4>
+                        <div class="col-md-12 light portlet" style="padding: 10px;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h5><b > From: </b> {{ $From }} <br/>
+                                        <b> To: </b> {{$To}} </h5>
                                 </div>
-                                <div class="actions" id="append">
-
+                                <div class="col-md-2">
+                                    <h5><b> Length :</b> {{ $length  }} <small>meters</small>  </h5>
                                 </div>
-
+                                <div class="col-md-3">
+                                    <h5><b> Surface :</b> {{ $Surface  }}  </h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <h5><b> Area : </b> {{ $Area  }} <small>m2</small>  </h5>
+                                </div>
+                                <div class="col-md-2">
+                                      <h5>  <b> Street Type :</b> {{$Street_type}} </h5>
+                                </div>
                             </div>
-                            <div class="portlet-body">
-                                <div class="" style=" overflow: hidden; width: auto;">
-
-                                    <!--Content of databale I pasted -->
-
-                                    <table id="example" class="mdl-data-table" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Section Name</th>
-                                            <th>From</th>
-                                            <th>To</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                         @if(! empty($Sections[0]))
-                                            @foreach( $Sections as $section )
-                                                <tr>
-                                                    <td>AARR-00{{$section->Section_Id}}</td>
-                                                    <td>{{$section->Section_Name}}</td>
-                                                    <td>{{$section->From}}</td>
-                                                    <td>{{$section->To}}</td>
-                                                    <td>
-                                                        <button class="btn green" onclick="event.preventDefault();
-                                                     document.getElementById('{{"open".$section->Section_Id}}').submit();"> Open  </button>
-
-                                                        <form id="{{"open".$section->Section_Id}}" action="{{ url('/Open_section') }}" method="POST" style="display: none;">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="Section_Id_open" value="{{$section->Section_Id}}">
-                                                        </form>
-
-                                                        <button class="btn red btn-sm" onclick="event.preventDefault();
-                                                     document.getElementById('{{"delete".$section->Section_Id}}').submit();"> Delete  </button>
-
-                                                        <form id="{{"delete".$section->Section_Id}}" action="{{ url('/Delete_section') }}" method="POST" style="display: none;">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="Section_Id_open" value="{{$section->Section_Id}}">
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                        </tbody>
-                                    </table>
-
-                                    <!--End of databale i pasted-->
-
-
-
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5><b> Carriadge way type :</b> {{ $length }} <small>meters</small>  </h5>
                                 </div>
-
-                                <div>
-                                    <!--pop up form -->
+                                <div class="col-md-3">
+                                    <h5><b> Direction : </b> {{ $Direction }}  </h5>
+                                </div>
+                                <div class="col-md-5 right">
                                     <div>
-                                        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Add Section </button>
+                                        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Edit </button>
                                         <!-- Modal Structure -->
                                         <div id="modal1" class="modal">
                                             <div class="modal-content">
                                                 <div class="row">
-                                                    <form class="col s12 ajax" id="add_section" type="POST" action="{{ url('/add_section') }}">
+                                                    <form class="col s12 ajax" id="edit_section" type="POST" action="{{ url('/edit_section') }}">
                                                         {{csrf_field()}}
+                                                        <input name="Section_Id" value="{{$Section_Id}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="hidden">
+
                                                         <div class="row modal-form-row">
                                                             <div class="col s4">
                                                                 <label for="image_url"> <b>Section Name</b> </label>
-                                                                <input name="Section_name" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
+                                                                <input name="Section_name" value="{{$Section_Name}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">From </label>
-                                                                <input name="Sec_From" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
+                                                                <input name="Sec_From" value="{{$From }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">To </label>
-                                                                <input name="Sec_To" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
+                                                                <input name="Sec_To" value="{{$To }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
                                                             </div>
                                                         </div>
                                                         <hr/>
@@ -301,21 +268,22 @@
                                                             <div class="col s3">
                                                                 <label for="image_url">Surface </label>
                                                                 <select class="browser-default" name="Surface" required>
-                                                                    <option value="Asphalt_Concrete" selected>Asphalt Concrete</option>
+                                                                    <option  value="{{$Surface}}" selected > {{$Surface }} </option>
+                                                                    <option value="Asphalt_Concrete">Asphalt Concrete</option>
                                                                     <option value="Port_land_cement">Port land cement</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col s3">
                                                                 <label>Length (m) </label>
-                                                                <input id="length" value="{{0}}" name="Length" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
+                                                                <input id="length" value="{{$length}}" name="Length" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url">Carriadge Width (m)</label>
-                                                                <input id="C_width" value="{{0}}" name="Carriadge_Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
+                                                                <input id="C_width" value="{{$Carriage_width}}" name="Carriadge_Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url"> Area </label>
-                                                                <input id="Area" name="Area" value="{{0}}" class="validate valid" required aria-required="true" aria-invalid="false" type="text" readonly>
+                                                                <input id="Area" name="Area" value="{{$Area}}" class="validate valid" required aria-required="true" aria-invalid="false" type="text" readonly>
                                                             </div>
                                                         </div>
                                                         <hr/>
@@ -323,7 +291,7 @@
                                                             <div class="col s3">
                                                                 <label for="image_url"> Street Type </label>
                                                                 <select class="browser-default" name="street_type" required>
-                                                                    <option value="" disabled selected></option>
+                                                                    <option value="{{$Street_type }}" selected> {{$Street_type }} </option>
                                                                     <option value="RR">RR</option>
                                                                     <option value="PAS">PAS</option>
                                                                     <option value="SAS">SAS</option>
@@ -334,7 +302,7 @@
                                                             <div class="col s3">
                                                                 <label for="image_url">Direction</label>
                                                                 <select class="browser-default" name="Direction" required>
-                                                                    <option value="" disabled selected></option>
+                                                                    <option value="{{$Direction }}" selected> {{$Direction}} </option>
                                                                     <option value="East_bound">East bound</option>
                                                                     <option value="West_bound">West bound</option>
                                                                 </select>
@@ -342,7 +310,7 @@
                                                             <div class="col s3">
                                                                 <label for="image_url">Carriage way type</label>
                                                                 <select class="browser-default" name="Carriage_way_type" required>
-                                                                    <option value="" disabled selected></option>
+                                                                    <option value="{{$Carriage_way_type}}" selected> {{$Carriage_way_type}}</option>
                                                                     <option value="Existing_asphalt">Existing asphalt</option>
                                                                     <option value="Gravel">Gravel</option>
                                                                     <option value="New_Asphalt">New Asphalt</option>
@@ -355,20 +323,27 @@
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url"> Number of Lane </label>
-                                                                <input name="No_of_Lane" value="{{0}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
+                                                                <input name="No_of_Lane" value="{{$Number_of_lane }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn right"> Submit </button>
+                                                        <input type="submit" class="btn right" value="Submit">
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+                                </div>
+                                <div class="col-md-1">
 
                                 </div>
-
                             </div>
+
                         </div>
+                    </div>
+
+                    <div class="row">
+
                     </div>
 
                 </div>
@@ -449,12 +424,12 @@
 
             $('#modal1').modal('close');
 
-            var registerForm = $("#add_section");
+            var registerForm = $("#edit_section");
             var formData = registerForm.serialize();
 
             $.ajax({
                 type     : "POST",
-                url      : '/add_section',
+                url      : '/edit_section',
                 data     : formData,
                 success  : function(data) {
                     console.log(data);
@@ -463,19 +438,6 @@
                 }
             });
         });
-
-        $('#length').change(function() {
-
-            $('#Area').val( $('#length').val() * $('#C_width').val() );
-
-        });
-
-        $('#C_width').change(function() {
-
-            $('#Area').val( $('#length').val() * $('#C_width').val());
-
-        });
-
 
 
     });

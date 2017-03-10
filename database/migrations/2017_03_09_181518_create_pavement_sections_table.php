@@ -20,10 +20,11 @@ class CreatePavementSectionsTable extends Migration
             $table->string('From');
             $table->string('To');
             $table->string('Surface');
-            $table->string('Length');
-            $table->string('Carriage_width');
+            $table->integer('Length');
+            $table->integer('Carriage_width');
+            $table->integer('Area');
             $table->string('Street_type');
-            $table->text('Direction');
+            $table->string('Direction');
             $table->string('Carriage_way_type');
             $table->string('Number_of_lane');
             $table->timestamps();

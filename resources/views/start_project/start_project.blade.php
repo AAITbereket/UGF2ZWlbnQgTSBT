@@ -219,7 +219,7 @@
 																		</div>
 																		<div class="input-field col s4">
 																			<h4> Total Distance (m) </h4>
-																			<input id="name" name="Total_Distance" class="validate valid" aria-required="true" aria-invalid="false" type="text">
+																			<input id="name" name="Total_Distance" class="validate valid" aria-required="true" aria-invalid="false" type="number">
 																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
 																		</div>
 																	</div>

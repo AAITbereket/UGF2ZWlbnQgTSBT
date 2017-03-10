@@ -139,29 +139,9 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/dashboard">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="start ">
-                        <a href="index.html">
-                            <i class="fa fa-cogs"></i>
-                            <span class="title">System Analysis</span>
-                        </a>
-                    </li>
-                    <li class="start ">
-                        <a href="index.html">
-                            <i class="fa fa-money"></i>
-                            <span class="title">Cost</span>
-                        </a>
-                    </li>
-
-                    <li class="start ">
-                        <a href="index.html">
-                            <i class="fa fa-bar-chart"></i>
-                            <span class="title">Reports</span>
                         </a>
                     </li>
                     <li class="start ">
