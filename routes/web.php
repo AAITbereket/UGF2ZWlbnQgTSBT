@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/start_project_', 'DashboardController@start_Project');
+
+Route::get('/dashboard', 'DashboardController@dashboard');
+
+Route::post('/create_project', 'DashboardController@create_project');
+
+Route::post('/add_section', 'DashboardController@add_section');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,15 +26,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-// 
-Route::get('/start_project_', function() {
-    return view('start_project.start_project');
-});
-
-Route::get('/dashboard', function() {
-    return view('Dashboard.Dashboard_view');
-});
 
 
 Route::get('/login_custom', function() {

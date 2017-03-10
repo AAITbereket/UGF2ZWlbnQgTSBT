@@ -193,7 +193,8 @@
 									<div class="row">
 										<div class="col-md-12" id="new_inventory">
 											<div class="card portlet" style="padding: 10px">
-												<form action="#" method="POST">
+												<form action="{{url('/create_project')}}" method="POST">
+													{{csrf_field()}}
 														<div class="step-content" style="left: 0%; display: block;">
 															<div class="row">
 																<br/>
@@ -205,7 +206,6 @@
 																			<!--<label for="name" class="active"> <h5>Inventory Name</h5></label>-->
 																		</div>
 																	</div>
-
 																	<div class="row">
 																		<div class="input-field col s4">
 																			<h4>From </h4>

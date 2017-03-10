@@ -18,7 +18,7 @@ class CreatePavementSectionsTable extends Migration
             $table->string('Section_Name');
             $table->string('Project_Id'); // user who created the project
             $table->string('From');
-            $table->text('To');
+            $table->string('To');
             $table->string('Surface');
             $table->string('Length');
             $table->string('Carriage_width');

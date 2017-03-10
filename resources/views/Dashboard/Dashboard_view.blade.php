@@ -1,3 +1,14 @@
+<?php
+
+    $Project_Name = $selected_project_->Project_Name;
+    $From = $selected_project_->From;
+    $To = $selected_project_->To;
+    $Distance = $selected_project_->Distance;
+
+//    $Sections = $Pavement_section_;
+
+?>
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -201,15 +212,15 @@
                         <div class="col-md-12 card portlet" style="padding: 15px;">
 
                             <div class="col-md-6">
-                                <h4><b>Project Name : </b> Lorem ipsum</h4>
+                                <h4><b>Project Name : </b> {{ $Project_Name }}</h4>
                             </div>
 
                             <div class="col-md-6">
-                                <h4><b> From: </b> Megnanga  <b> To: </b> 6 Killo</h4>
+                                <h4><b> From: </b> {{ $From }} <b> To: </b> {{$To}} </h4>
                             </div>
 
                             <div class="col-md-6">
-                                <h4><b> Distance: </b> 36,000 Km</h4>
+                                <h4><b> Distance: </b> {{ $Distance }} </h4>
                             </div>
 
                             <div class="col-md-6">
@@ -246,20 +257,20 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
+                                            <td>001</td>
+                                            <td>Section-03</td>
+                                            <td>6kill</td>
+                                            <td>menelik</td>
                                             <td>
                                                 <button class="btn green"> Open  </button>
                                                 <button class="btn red btn-sm"> Delete  </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
+                                            <td>002</td>
+                                            <td>Section</td>
+                                            <td>Megnagna</td>
+                                            <td>Ayat</td>
                                             <td>
                                                 <button class="btn green"> Open  </button>
                                                 <button class="btn red btn-sm"> Delete  </button>
@@ -302,26 +313,27 @@
                                         <div id="modal1" class="modal">
                                             <div class="modal-content">
                                                 <div class="row">
-                                                    <form class="col s12" type="get">
+                                                    <form class="col s12 ajax" id="add_section" type="POST" action="{{ url('/add_section') }}">
+                                                        {{csrf_field()}}
                                                         <div class="row modal-form-row">
                                                             <div class="col s4">
                                                                 <label for="image_url"> <b>Section Name</b> </label>
-                                                                <input id="image_url" name="Section_name" type="text" class="validate">
+                                                                <input id="image_url" name="Section_name" type="text" class="validate" required>
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">From </label>
-                                                                <input id="image_url" name="From" type="text" class="validate">
+                                                                <input id="image_url" name="Sec_From" type="text" class="validate" required>
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">To </label>
-                                                                <input id="image_url" name="To" type="text" class="validate">
+                                                                <input id="image_url" name="Sec_To" type="text" class="validate" required>
                                                             </div>
                                                         </div>
                                                         <hr/>
                                                         <div class="row">
                                                             <div class="col s3">
                                                                 <label for="image_url">Surface </label>
-                                                                <select class="browser-default" name="Surface">
+                                                                <select class="browser-default" name="Surface" required>
                                                                     <option value="" disabled selected></option>
                                                                     <option value="Asphalt_Concrete">Asphalt Concrete</option>
                                                                     <option value="Port_land_cement">Port land cement</option>
@@ -333,7 +345,7 @@
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url">Carriadge Width </label>
-                                                                <input name="Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
+                                                                <input name="Carriadge_Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url"> Number of Lane </label>
@@ -344,7 +356,7 @@
                                                         <div class="row">
                                                             <div class="col s4">
                                                                 <label for="image_url"> Street Type </label>
-                                                                <select class="browser-default" name="street_type">
+                                                                <select class="browser-default" name="street_type" required>
                                                                     <option value="" disabled selected></option>
                                                                     <option value="1">RR</option>
                                                                     <option value="2">PAS</option>
@@ -355,7 +367,7 @@
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">Direction</label>
-                                                                <select class="browser-default">
+                                                                <select class="browser-default" name="Direction" required>
                                                                     <option value="" disabled selected></option>
                                                                     <option value="East_bound">East bound</option>
                                                                     <option value="West_bound">West bound</option>
@@ -363,7 +375,7 @@
                                                             </div>
                                                             <div class="col s4">
                                                                 <label for="image_url">Carriage way type</label>
-                                                                <select class="browser-default" name="Carriage_way_type">
+                                                                <select class="browser-default" name="Carriage_way_type" required>
                                                                     <option value="" disabled selected></option>
                                                                     <option value="Existing_asphalt">Existing asphalt</option>
                                                                     <option value="Gravel">Gravel</option>
@@ -460,6 +472,28 @@
         $('#example_filter').appendTo('#append');
 
         $('.modal').modal();
+
+
+        $('form.ajax').submit(function(e){
+            e.preventDefault();
+
+            $('#modal1').modal('close');
+
+            var registerForm = $("#add_section");
+            var formData = registerForm.serialize();
+
+            $.ajax({
+                type     : "POST",
+                url      : '/add_section',
+                data     : formData,
+                success  : function(data) {
+                    console.log(data);
+                    Materialize.toast('Successfully Added', 4000, 'blue darken-4');
+                }
+            });
+        });
+
+
     });
 </script>
 <!-- END JAVASCRIPTS -->
