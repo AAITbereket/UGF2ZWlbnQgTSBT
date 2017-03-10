@@ -28,6 +28,11 @@ Route::get('/Section_dashboard', 'Section_controller@dashboard');
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/add_condition_index', 'Section_controller@add_condition_index');
+
+Route::post('/add_condition_index_post', 'Section_controller@add_condition_index_post');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

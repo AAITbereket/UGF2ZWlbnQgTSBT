@@ -38,8 +38,38 @@ class Section_controller extends Controller
             return redirect('/start_project_');
         }
 
-
-        return view('Dashboard.Section_Dashboard_view');
     }
 
+    public function add_condition_index()
+    {
+        if (! Auth::check())
+        {
+            return redirect('/');
+        }
+
+
+        if(! Session::has('Section_Id') )
+        {
+            return redirect('/dashboard');
+        }
+
+        $Session_Section_Id = Session::get('Section_Id');
+
+        $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
+
+        if($Pavement_section->count() )
+        {
+            $Pavement_section_ = $Pavement_section[0];
+            return view('System_Analysis.Add_condition_index_view', compact('Pavement_section_'));
+        }
+        else{
+            return redirect('/start_project_');
+        }
+    }
+    
+    public function add_condition_index_post(Request $request)
+    {
+        echo $request;
+    }
+    
 }
