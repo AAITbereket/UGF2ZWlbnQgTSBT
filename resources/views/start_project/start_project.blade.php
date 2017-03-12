@@ -146,24 +146,6 @@
 							<span class="title">Dashboard</span>
 						</a>
 					</li>
-					{{--<li class="start ">--}}
-						{{--<a href="index.html">--}}
-							{{--<i class="fa fa-cogs"></i>--}}
-							{{--<span class="title">System Analysis</span>--}}
-						{{--</a>--}}
-					{{--</li>--}}
-					{{--<li class="start ">--}}
-						{{--<a href="index.html">--}}
-							{{--<i class="fa fa-money"></i>--}}
-							{{--<span class="title">Cost</span>--}}
-						{{--</a>--}}
-					{{--</li>--}}
-					{{--<li class="start ">--}}
-						{{--<a href="index.html">--}}
-							{{--<i class="fa fa-bar-chart"></i>--}}
-							{{--<span class="title">Reports</span>--}}
-						{{--</a>--}}
-					{{--</li>--}}
 					<li class="start ">
 						<a href="/project_info">
 							<i class="fa fa-info-circle"></i>
@@ -184,12 +166,7 @@
 					<!-- BEGIN PAGE CONTENT-->
 					<div class="row">
 						<div class="col-md-12">
-
-							<h3>  Starting new Project </h3> <br/><br/>
-
-								<blockquote>
-										New inventory
-								</blockquote>
+							<h3>  Starting new Project </h3> <br/>
 									<div class="row">
 										<div class="col-md-12" id="new_inventory">
 											<div class="card portlet" style="padding: 10px">
@@ -197,7 +174,6 @@
 													{{csrf_field()}}
 														<div class="step-content" style="left: 0%; display: block;">
 															<div class="row">
-																<br/>
 																<div class="col-md-8">
 																	<div class="row">
 																		<div class="input-field col s6">

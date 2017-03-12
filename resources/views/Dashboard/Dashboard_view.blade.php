@@ -268,8 +268,6 @@
 
                                     <!--End of databale i pasted-->
 
-
-
                                 </div>
 
                                 <div>

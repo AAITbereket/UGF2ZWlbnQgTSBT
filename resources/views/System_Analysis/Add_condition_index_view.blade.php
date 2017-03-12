@@ -234,8 +234,11 @@
                         </div>
                     </div>
 
-                    <form method="POST" action="{{url('/add_condition_index_post') }}" >
+                    <form method="POST" action="{{url('/add_condition_index_post') }}" class="validate" >
                     {{csrf_field()}}
+                        <input type="hidden" value="{{uniqid()}}" name="Inspection_Id">
+
+                        <input type="hidden" value="{{$Section_Id}}" name="Section_Id">
 
                         {{--Begining of first row form--}}
                         <div class="row">
@@ -703,7 +706,11 @@
                         {{--End of fifth row form--}}
 
                         <div class="row">
-                            <div>
+                            <div class="col-md-4">
+                                    <label><b>Inspection Date</b></label>
+                                    <input id="myDate" name="Inspection_date" type="date" style="font-size: 15px;" class="datepicker validate" required>
+                            </div>
+                            <div class="col-md-6">
                                 <button type="submit" class="btn right"> Submit </button>
                             </div>
                         </div>
@@ -803,6 +810,13 @@
 
 
     });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 40 // Creates a dropdown of 15 years to control year
+    });
+
+
 </script>
 <!-- END JAVASCRIPTS -->
 </body>

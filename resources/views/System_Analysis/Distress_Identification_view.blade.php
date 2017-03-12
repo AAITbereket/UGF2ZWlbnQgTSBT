@@ -1,4 +1,5 @@
 <?php
+
     $Section_Id = $Pavement_section_->Section_Id;
     $Section_Name = $Pavement_section_->Section_Name;
     $From = $Pavement_section_->From;
@@ -11,6 +12,8 @@
     $Street_type = $Pavement_section_->Street_type;
     $Direction = $Pavement_section_->Direction;
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
+
+    $condition_indices = $condition_indices_;
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +38,7 @@
     <link href="homepage__/css/material.min.css" rel="stylesheet" type="text/css"/>
     <link href="homepage__/materialize/css/dataTables.material.min.css" rel="stylesheet" type="text/css"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+
     <link href="homepage__/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -62,6 +65,8 @@
          .modal-content input {
              font-size: 14px;
          }
+
+         .modal { width: 40% !important ; height: 35% !important ; }
 
     </style>
 
@@ -164,14 +169,14 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/dashboard">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="start ">
-                        <a href="/add_condition_index">
+                        <a href="index.html">
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
@@ -204,145 +209,149 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    Section : {{ $Section_Name }}
+                    {{ $Section_Name }}- Distress Identification
                 </h3>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
 
                 <div id="Main-Content">
                     <div class="row">
-                        <h4>Basic Informations </h4>
-                        <div class="col-md-12 light portlet" style="padding: 10px;">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <h5><b > From: </b> {{ $From }} <br/>
-                                        <b> To: </b> {{$To}} </h5>
-                                </div>
-                                <div class="col-md-2">
-                                    <h5><b> Length :</b> {{ $length  }} <small>meters</small>  </h5>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5><b> Surface :</b> {{ $Surface  }}  </h5>
-                                </div>
-                                <div class="col-md-2">
-                                    <h5><b> Area : </b> {{ $Area  }} <small>m2</small>  </h5>
-                                </div>
-                                <div class="col-md-2">
-                                      <h5>  <b> Street Type :</b> {{$Street_type}} </h5>
-                                </div>
-                            </div>
+                        <div class="col-md-12 portlet" style="background-color:#c0c6c21a;">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h5><b> Carriadge way type :</b> {{ $length }} <small>meters</small>  </h5>
+                                    <h4><b > From: </b> {{ $From }}
+                                        <b> To: </b> {{$To}} </h4>
                                 </div>
                                 <div class="col-md-3">
-                                    <h5><b> Direction : </b> {{ $Direction }}  </h5>
+                                    <h4><b> Surface :</b> {{ $Surface  }}  </h4>
                                 </div>
-                                <div class="col-md-5 right">
-                                    <div>
-                                        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Edit </button>
-                                        <!-- Modal Structure -->
-                                        <div id="modal1" class="modal">
-                                            <div class="modal-content">
-                                                <div class="row">
-                                                    <form class="col s12 ajax" id="edit_section" type="POST" action="{{ url('/edit_section') }}">
-                                                        {{csrf_field()}}
-                                                        <input name="Section_Id" value="{{$Section_Id}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="hidden">
-
-                                                        <div class="row modal-form-row">
-                                                            <div class="col s4">
-                                                                <label for="image_url"> <b>Section Name</b> </label>
-                                                                <input name="Section_name" value="{{$Section_Name}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-                                                            </div>
-                                                            <div class="col s4">
-                                                                <label for="image_url">From </label>
-                                                                <input name="Sec_From" value="{{$From }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-                                                            </div>
-                                                            <div class="col s4">
-                                                                <label for="image_url">To </label>
-                                                                <input name="Sec_To" value="{{$To }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <hr/>
-                                                        <div class="row">
-                                                            <div class="col s3">
-                                                                <label for="image_url">Surface </label>
-                                                                <select class="browser-default" name="Surface" required>
-                                                                    <option  value="{{$Surface}}" selected > {{$Surface }} </option>
-                                                                    <option value="Asphalt_Concrete">Asphalt Concrete</option>
-                                                                    <option value="Port_land_cement">Port land cement</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label>Length (m) </label>
-                                                                <input id="length" value="{{$length}}" name="Length" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label for="image_url">Carriadge Width (m)</label>
-                                                                <input id="C_width" value="{{$Carriage_width}}" name="Carriadge_Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label for="image_url"> Area </label>
-                                                                <input id="Area" name="Area" value="{{$Area}}" class="validate valid" required aria-required="true" aria-invalid="false" type="text" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <hr/>
-                                                        <div class="row">
-                                                            <div class="col s3">
-                                                                <label for="image_url"> Street Type </label>
-                                                                <select class="browser-default" name="street_type" required>
-                                                                    <option value="{{$Street_type }}" selected> {{$Street_type }} </option>
-                                                                    <option value="RR">RR</option>
-                                                                    <option value="PAS">PAS</option>
-                                                                    <option value="SAS">SAS</option>
-                                                                    <option value="C">C</option>
-                                                                    <option value="L">L</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label for="image_url">Direction</label>
-                                                                <select class="browser-default" name="Direction" required>
-                                                                    <option value="{{$Direction }}" selected> {{$Direction}} </option>
-                                                                    <option value="East_bound">East bound</option>
-                                                                    <option value="West_bound">West bound</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label for="image_url">Carriage way type</label>
-                                                                <select class="browser-default" name="Carriage_way_type" required>
-                                                                    <option value="{{$Carriage_way_type}}" selected> {{$Carriage_way_type}}</option>
-                                                                    <option value="Existing_asphalt">Existing asphalt</option>
-                                                                    <option value="Gravel">Gravel</option>
-                                                                    <option value="New_Asphalt">New Asphalt</option>
-                                                                    <option value="New_Cobel">New Cobel</option>
-                                                                    <option value="Care_Stone">Care Stone</option>
-                                                                    <option value="Under_construction">Under construction</option>
-                                                                    <option value="Planned">Planned</option>
-                                                                    <option value="Earth">Earth</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col s3">
-                                                                <label for="image_url"> Number of Lane </label>
-                                                                <input name="No_of_Lane" value="{{$Number_of_lane }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
-                                                            </div>
-                                                        </div>
-                                                        <input type="submit" class="btn right" value="Submit">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                <div class="col-md-2">
+                                    <h4><b> Area : </b> {{ $Area  }} <small>m2</small>  </h4>
                                 </div>
-                                <div class="col-md-1">
-
+                                <div class="col-md-3">
+                                    <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="portlet light bordered col-md-7">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    Sections
+                                </div>
+                                <div class="actions" id="append">
+                                </div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <div class="" style=" overflow: hidden; width: auto;">
+
+                                    <!--Content of databale I pasted -->
+
+                                    <table id="example" class="mdl-data-table" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Distress Type</th>
+                                            <th>Severity</th>
+                                            <th>Quantity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(! empty($condition_indices[0]))
+                                            @foreach( $condition_indices as $condition_index )
+                                                <tr>
+                                                    <td>{{$condition_index->Distress_type}}</td>
+                                                    <td>{{$condition_index->Severity}}</td>
+                                                    <td>{{$condition_index->Quantity}}</td>
+                                                    <td>
+                                                        <button class="btn green" onclick="
+                                                                event.preventDefault();
+
+                                                                $('input[name=Condition_Index_id]').val('{{ $condition_index->Condition_Index_id}}');
+
+                                                                var registerForm = $('{{"#open".$condition_index->Condition_Index_id}}');
+                                                                var formData = registerForm.serialize();
+
+                                                                $.ajax({
+                                                                    type     : 'POST',
+                                                                    url      : '/open_distress_pictures',
+                                                                    data     : formData,
+                                                                    success  : function(data) {
+                                                                        console.log(data);
+                                                                            Materialize.toast('Successfully Added', 4000, 'blue darken-4');
+                                                                        }
+                                                                    });
+                                                                "> Open  </button>
+
+                                                        <form id="{{"open".$condition_index->Condition_Index_id}}" action="{{ url('/open_distress_pictures') }}" method="POST" style="display: none;">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="Condition_Index_id" value="{{$condition_index->Condition_Index_id}}">
+                                                        </form>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        </tbody>
+                                    </table>
+
+                                    <!--End of databale i pasted-->
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portlet light bordered col-md-5">
+
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    Distress Images
+                                </div>
+                            </div>
+
+                            <div class="portlet-body">
+
+                                <div>
+
+                                </div>
+
+                                <div class="right">
+
+                                    <div>
+                                        <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Add Image </button>
+                                        <!-- Modal Structure -->
+                                        <div id="modal1" class="modal">
+                                            <div class="modal-content">
+                                                <div class="row">
+                                                    <form class="col s12 ajax" id="add_picture" enctype="multipart/form-data" type="POST" action="{{ url('/add_distress_pictures') }}">
+                                                        {{csrf_field()}}
+                                                        <input type="hidden" name="Condition_Index_id" id="Condition_Index_id">
+                                                        <div class="row modal-form-row">
+                                                            <div class="col s4">
+                                                                <label>Image Name </label>
+                                                                {{--<input name="Image_Name" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">--}}
+                                                            </div>
+                                                            <div class="col s4">
+                                                                <label > </label>
+                                                                <input name="Photo_url" class="validate valid" required="" aria-required="true" aria-invalid="false" accept="image/*" type="file">
+                                                            </div>
+                                                        </div>
+                                                        <hr/>
+                                                        <button type="submit" class="btn right"> Add </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -414,9 +423,11 @@
 
         $('#example_length').hide();
         $('.mdl-grid').first().hide();
-        $('#example_filter').appendTo('#append');
 
-        $('.modal').modal();
+
+        $('.modal').modal({
+            size: 'small'
+        });
 
 
         $('form.ajax').submit(function(e){
@@ -424,22 +435,27 @@
 
             $('#modal1').modal('close');
 
-            var registerForm = $("#edit_section");
-            var formData = registerForm.serialize();
+            var registerForm = $("#add_picture");
+//            var formData = new FormData(registerForm);
 
             $.ajax({
                 type     : "POST",
-                url      : '/edit_section',
-                data     : formData,
+                url      : '/add_distress_pictures',
+                data     : new FormData(registerForm),
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
                 success  : function(data) {
+                    alert('check');
                     console.log(data);
                     Materialize.toast('Successfully Added', 4000, 'blue darken-4');
-                    window.location.reload(true);
+
                 }
             });
         });
 
-
+        $('#example_filter').appendTo('#append');
     });
 </script>
 <!-- END JAVASCRIPTS -->

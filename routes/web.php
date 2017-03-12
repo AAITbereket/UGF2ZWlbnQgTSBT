@@ -32,6 +32,11 @@ Route::get('/add_condition_index', 'Section_controller@add_condition_index');
 
 Route::post('/add_condition_index_post', 'Section_controller@add_condition_index_post');
 
+Route::get('/distress_Identification', 'Section_controller@distress_Identification');
+
+Route::post('/open_distress_pictures', 'Section_controller@open_distress_pictures');
+
+Route::post('/add_distress_pictures', 'Section_controller@add_distress_pictures');
 
 Auth::routes();
 

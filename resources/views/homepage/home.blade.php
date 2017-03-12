@@ -8,7 +8,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>Metronic | Page Layouts - Blank Page</title>
+<title>PMS-AACR</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -133,7 +133,7 @@
 				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="start ">
-						<a href="index.html">
+						<a href="#">
 							<i class="fa fa-home"></i>
 							<span class="title">Dashboard</span>
 						</a>
@@ -159,7 +159,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<br/><br/><br/><br/>
+					<br/><br/>
 					<div class="col-md-12" >
 						<div class="col-md-4"></div>
 						<div class="col-md-2">
@@ -172,28 +172,9 @@
 				<hr/>
 				<div id="recent projects">
 					<div class="row">
-						<blockquote class="col-md-4">
+						<h4 class="col-md-4">
 							Existing projects
-						</blockquote>
-
-						<div class="col-md-3">
-
-						</div>
-
-						<!--<div class="col-md-4">-->
-							<!--<form action="#">-->
-								<!--<div class="file-field input-field">-->
-									<!--<div class="btn">-->
-										<!--<span>File</span>-->
-										<!--<input type="file">-->
-									<!--</div>-->
-									<!--<div class="file-path-wrapper">-->
-										<!--<input class="file-path validate" type="text" placeholder="Import from file">-->
-									<!--</div>-->
-								<!--</div>-->
-							<!--</form>-->
-
-						<!--</div>-->
+						</h4>
 					</div>
 
 					<div class="row">
@@ -209,29 +190,6 @@
 									<td class="col-md-4"> Megengna to Ayat </td>
 									<td class="col-md-3"> Sub title </td>
 									<td class="col-md-5">
-										<li class="dropdown dropdown-user" style="list-style: none;">
-											<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-												<i class="fa fa-angle-down"></i>
-											</a>
-											<ul class="dropdown-menu dropdown-menu-default">
-												<li>
-													<a href="extra_profile.html">
-														<i class="fa fa-user"></i> Edit </a>
-												</li>
-
-												<li>
-													<a href="login.html">
-														<i class="fa fa-key"></i> Delete </a>
-												</li>
-											</ul>
-										</li>
-									</td>
-								</tr>
-
-								<tr class="row">
-									<td class="col-md-4"> 6kilo to Goro </td>
-									<td class="col-md-6"> title </td>
-									<td class="col-md-2">
 										<li class="dropdown dropdown-user" style="list-style: none;">
 											<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 												<i class="fa fa-angle-down"></i>
