@@ -27,9 +27,11 @@ Route::get('/', 'HomeController@index');
 
 
 //## ---- Dashboard Controller routes begin
-//Route::get('/start_project_', 'DashboardController@start_Project');
+Route::get('/start_project_', 'DashboardController@start_Project');
 
 Route::get('/dashboard', 'DashboardController@dashboard');
+
+Route::post('/Change_project', 'DashboardController@Change_project');
 
 Route::post('/create_project', 'DashboardController@create_project');
 
@@ -44,6 +46,8 @@ Route::post('/Delete_section', 'DashboardController@Delete_section');
 
 // ### -- Section Controller -- begin
 Route::get('/Section_dashboard', 'Section_controller@dashboard');
+
+Route::post('/Change_section', 'Section_controller@Change_section');
 
 Route::get('/add_condition_index', 'Section_controller@add_condition_index');
 

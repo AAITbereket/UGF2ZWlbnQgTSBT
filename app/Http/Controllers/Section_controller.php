@@ -42,6 +42,15 @@ class Section_controller extends Controller
 
     }
 
+    public function Change_section(Request $request)
+    {
+        $Section_Id = $request->Section_Id;
+
+        Session::forget('Section_Id');
+
+        return redirect('/dashboard');
+    }
+
     public function add_condition_index()
     {
         if (! Auth::check())

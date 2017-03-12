@@ -238,7 +238,7 @@
                                 <div class="col-md-3">
                                     <h5><b> Direction : </b> {{ $Direction }}  </h5>
                                 </div>
-                                <div class="col-md-5 right">
+                                <div class="col-md-4 right">
                                     <div>
                                         <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Edit </button>
                                         <!-- Modal Structure -->
@@ -334,8 +334,15 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2 right">
+                                    <a href="{{ url('/Change_project') }}"
+                                       onclick="event.preventDefault();document.getElementById('change_section').submit();">
+                                        <i class="fa fa-pencil-square-o"></i> Change Section </a>
 
+                                    <form id="change_section" action="{{ url('/Change_section') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="Section_Id" value="{{$Section_Id}}">
+                                    </form>
                                 </div>
                             </div>
 

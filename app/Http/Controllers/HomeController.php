@@ -47,9 +47,7 @@ class HomeController extends Controller
 
     public function index()
     {
-
         return view('welcome');
-
     }
 
     public function Open_project(Request $request)
@@ -80,4 +78,13 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
+    public function Change_project(Request $request)
+    {
+        $Project_Id = $request->Project_Id;
+
+        Session::forget('Project_Id');
+
+        return redirect('/home');
+    }
+    
 }

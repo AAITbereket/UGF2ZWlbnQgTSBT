@@ -1,5 +1,6 @@
 <?php
 
+    $Project_Id = $selected_project_->Project_Id;
     $Project_Name = $selected_project_->Project_Name;
     $From = $selected_project_->From;
     $To = $selected_project_->To;
@@ -179,9 +180,13 @@
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <h3 class="page-title">
-                    Dashboard <small> reports and statics </small>
-                </h3>
+                <div class="pate-title">
+                    <h3>
+                        Dashboard <small> reports and statics </small>
+                    </h3>
+
+                </div>
+
                 <div class="page-bar">
                 </div>
                 <!-- END PAGE HEADER-->
@@ -191,22 +196,32 @@
                     <div class="row">
                         <div class="col-md-12 card portlet" style="padding: 15px;">
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h4><b>Project Name : </b> {{ $Project_Name }}</h4>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h4><b> From: </b> {{ $From }} <b> To: </b> {{$To}} </h4>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h4><b> Distance: </b> {{ $Distance }} meteres </h4>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <h4><b> Sections: </b>  {{$Sections->count()}} </h4>
                             </div>
 
+                            <div class="col-md-2 right">
+                                <a href="{{ url('/Change_project') }}"
+                                   onclick="event.preventDefault();document.getElementById('change_project').submit();">
+                                    <i class="fa fa-pencil-square-o"></i> Change Project </a>
+
+                                <form id="change_project" action="{{ url('/Change_project') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="Project_Id" value="{{$Project_Id}}">
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
