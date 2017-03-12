@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         if(! Session::has('Project_Id') )
             {
-                return redirect('/start_project_');
+                return redirect('/start_project');
             }
 
         $Session_Project_Id = Session::get('Project_Id');
@@ -64,11 +64,6 @@ class DashboardController extends Controller
         $Project_Id = DB::table('projects')->where('Project_Name', "$request->Project_name")->orderBy('Project_Id','desc')->pluck('Project_Id');
     
         $Session_project_Id =  $Project_Id[0];
-
-//        $New_pavement_section = new Pavement_section();
-//
-//        $New_pavement_section->Project_Id = $Session_project_Id;
-//        $New_pavement_section->save();
 
         Session::forget('Project_Id');
 

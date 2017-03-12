@@ -10,7 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/start_project_', 'DashboardController@start_Project');
+
+// ## --- HomeContoller routes begin
+
+Route::get('/home', 'HomeController@start_project');
+
+Route::get('/start_project', 'HomeController@start_project');
+
+Route::post('/Open_project', 'HomeController@Open_project');
+
+Route::post('/Delete_project', 'HomeController@Delete_project');
+
+Route::get('/', 'HomeController@index');
+
+// ## -- HomeController end
+
+
+//## ---- Dashboard Controller routes begin
+//Route::get('/start_project_', 'DashboardController@start_Project');
 
 Route::get('/dashboard', 'DashboardController@dashboard');
 
@@ -23,10 +40,10 @@ Route::post('/edit_section', 'DashboardController@edit_section');
 Route::post('/Open_section', 'DashboardController@Open_section');
 
 Route::post('/Delete_section', 'DashboardController@Delete_section');
+//### --- Dashboard Contrller --end
 
+// ### -- Section Controller -- begin
 Route::get('/Section_dashboard', 'Section_controller@dashboard');
-
-Route::get('/', 'HomeController@index');
 
 Route::get('/add_condition_index', 'Section_controller@add_condition_index');
 
@@ -38,9 +55,9 @@ Route::post('/open_distress_pictures', 'Section_controller@open_distress_picture
 
 Route::post('/add_distress_pictures', 'Section_controller@add_distress_pictures');
 
-Auth::routes();
+// ### --- Section Controller -- end
 
-Route::get('/home', 'HomeController@index');
+Auth::routes();
 
 
 Route::get('/login_custom', function() {

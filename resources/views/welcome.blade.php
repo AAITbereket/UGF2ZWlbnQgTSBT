@@ -114,12 +114,22 @@
                             <div class="form-group">
                                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                                 <label class="control-label visible-ie8 visible-ie9"> Email </label>
-                                <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"/>
+                                <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
                             </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong style="color:#ff8e83;">{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
                             <div class="form-group">
                                 <label class="control-label visible-ie8 visible-ie9">Password</label>
-                                <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+                                <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" required>
                             </div>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success uppercase">Login</button>
                                 <a id="register" style="float: right;"> <h4>register</h4> </a>

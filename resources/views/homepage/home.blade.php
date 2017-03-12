@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -182,32 +188,54 @@
 							<table class="table container" border="4">
 								<thead class="thead-default">
 									<tr class="row">
-										<td> <h4> 2 projects </h4> </td>
+										@if(! empty($projects))
+											<td> <h4> {{$projects->count()}} projects </h4> </td>
+										@else
+											<td> <h4> 0 projects </h4> </td>
+										@endif
 									</tr>
 								</thead>
+								@if(! empty($projects))
+									@foreach( $projects as $project )
+										<tr class="row">
+											<td class="col-md-3"> {{$project->Project_Name}} </td>
+											<td class="col-md-3"> {{$project->From}} </td>
+											<td class="col-md-3"> {{$project->To}} </td>
+											<td class="col-md-3">
+												<li class="dropdown dropdown-user" style="list-style: none;">
+													<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+														<i class="fa fa-angle-down"></i>
+													</a>
+													<ul class="dropdown-menu dropdown-menu-default">
+														<li>
+															<a href="{{ url('/Open_project') }}"
+															   onclick="event.preventDefault();document.getElementById('{{"open".$project->Project_Id}}').submit();">
+																<i class="fa fa-key"></i> Open </a>
 
-								<tr class="row">
-									<td class="col-md-4"> Megengna to Ayat </td>
-									<td class="col-md-3"> Sub title </td>
-									<td class="col-md-5">
-										<li class="dropdown dropdown-user" style="list-style: none;">
-											<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-												<i class="fa fa-angle-down"></i>
-											</a>
-											<ul class="dropdown-menu dropdown-menu-default">
-												<li>
-													<a href="extra_profile.html">
-														<i class="fa fa-user"></i> Edit </a>
-												</li>
+															<form id="{{"open".$project->Project_Id}}" action="{{ url('/Open_project') }}" method="POST" style="display: none;">
+																{{ csrf_field() }}
+																<input type="hidden" name="Project_Id_open" value="{{$project->Project_Id}}">
+															</form>
 
-												<li>
-													<a href="login.html">
-														<i class="fa fa-key"></i> Delete </a>
+														</li>
+
+														<li>
+															<a href="{{ url('/Delete_project') }}"
+															   onclick="event.preventDefault();document.getElementById('{{"delete".$project->Project_Id}}').submit();">
+																<i class="fa fa-trash"></i> Delete </a>
+
+															<form id="{{"delete".$project->Project_Id}}" action="{{ url('/Delete_project') }}" method="POST" style="display: none;">
+																{{ csrf_field() }}
+																<input type="hidden" name="Project_Id_delete" value="{{$project->Project_Id}}">
+															</form>
+
+														</li>
+													</ul>
 												</li>
-											</ul>
-										</li>
-									</td>
-								</tr>
+											</td>
+										</tr>
+									@endforeach
+								@endif
 
 							</table>
 						</div>
