@@ -14,6 +14,8 @@
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 
     $condition_indices = $condition_indices_;
+
+    $Sum = $Quantities_sum;
 ?>
 
 <!DOCTYPE html>
@@ -209,7 +211,7 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    {{ $Section_Name }}- Distress Identification
+                    {{ $Section_Name }}- Density and Deduct values
                 </h3>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
@@ -231,16 +233,19 @@
                                 <div class="col-md-3">
                                     <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
                                 </div>
+                                <div class="col-md-3">
+                                    <h4><b> Total Quantity :</b> {{ $Sum  }} <small>m2</small>  </h4>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="portlet light bordered col-md-7">
+                        <div class="portlet light bordered col-md-12">
                             <div class="portlet-title">
-                                <div class="caption">
-                                    Distress Types
-                                </div>
+                                {{--<div class="caption">--}}
+                                    {{--Distress Types--}}
+                                {{--</div>--}}
                                 <div class="actions" id="append">
                                 </div>
 
@@ -256,7 +261,8 @@
                                             <th>Distress Type</th>
                                             <th>Severity</th>
                                             <th>Quantity</th>
-                                            <th>Action</th>
+                                            <th>Density</th>
+                                            <th>Deduct</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -266,35 +272,28 @@
                                                     <td>{{$condition_index->Distress_type}}</td>
                                                     <td>{{$condition_index->Severity}}</td>
                                                     <td>{{$condition_index->Quantity}}</td>
+                                                    <td>{{ $Density = $condition_index->Quantity / $Sum}}</td>
                                                     <td>
-                                                        <button class="btn green" onclick="
-                                                                event.preventDefault();
+                                                        @if($condition_index->Distress_type == "alligatory")
+                                                            @if($condition_index->Severity == "low")
+                                                                {{  ( -0.0134 * pow($Density, 2) ) + (0.8889 * $Density) }}
+                                                            @elseif($condition_index->Severity == "medium")
+                                                                {{  ( 0.0001 * pow($Density, 3) ) - (0.0265 * pow($Density,2) ) + (1.5976 * $Density) }}
+                                                            @elseif($condition_index->Severity == "high")
+                                                                {{  ( 0.003 * pow($Density, 3) ) - (0.0534 * pow($Density,2) ) + (2.9935 * $Density) + 3.2856 }}
+                                                            @endif
+                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                            @if($condition_index->Severity == "low")
+                                                                {{  ( pow(4,-0.5) * pow($Density, 3) ) - (0.007 * pow($Density,2) ) + (0.7716 * pow($Density,2) ) + (0.4838 * $Density) + 0.7716 }}
+                                                            @elseif($condition_index->Severity == "medium")
+                                                                {{  ( 0.0001 * pow($Density, 3) ) - (0.0265 * pow($Density,2) ) + (1.5976 * $Density) }}
+                                                            @elseif($condition_index->Severity == "high")
+                                                                {{  ( 0.003 * pow($Density, 3) ) - (0.0534 * pow($Density,2) ) + (2.9935 * $Density) + 3.2856 }}
+                                                            @endif
 
-                                                                $('input[name=Condition_Index_id]').val('{{ $condition_index->Condition_Index_id}}');
-
-                                                                var registerForm = $('{{"#open".$condition_index->Condition_Index_id}}');
-                                                                var formData = registerForm.serialize();
-
-                                                                $('#Add_image_pop_up').prop('disabled', false);
-
-                                                                $.ajax({
-                                                                    type     : 'POST',
-                                                                    url      : '/open_distress_pictures',
-                                                                    data     : formData,
-                                                                    success  : function(data) {
-                                                                            console.log(data);
-
-                                                                            Materialize.toast('Successfully Added', 4000, 'blue darken-4');
-                                                                        }
-                                                                    });
-                                                                "> Open  </button>
-
-                                                        <form id="{{"open".$condition_index->Condition_Index_id}}" action="{{ url('/open_distress_pictures') }}" method="POST" style="display: none;">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="Condition_Index_id" value="{{$condition_index->Condition_Index_id}}">
-                                                        </form>
-
+                                                        @endif
                                                     </td>
+
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -304,58 +303,20 @@
                                     <!--End of databale i pasted-->
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="portlet light bordered col-md-5">
+                                <div class="row">
 
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    Distress Images
-                                </div>
-                            </div>
+                                    <div class="col-md-3">
+                                        <h5><b> Total Deduct Value:</b> lorem </h5>
+                                    </div>
 
-                            <div class="portlet-body">
-
-                                <div class="scroller" id="Ajax_content_id">
-
-
-
-                                </div>
-
-                                <div class="right">
-
-                                    <div>
-                                        <button id="Add_image_pop_up" class="waves-effect waves-light btn modal-trigger" disabled data-target="modal1" href="#modal1"> Add Image </button>
-                                        <!-- Modal Structure -->
-                                        <div id="modal1" class="modal">
-                                            <div class="modal-content">
-                                                <div class="row">
-                                                    <form class="col s12 ajax" id="add_picture" enctype="multipart/form-data" type="POST" action="{{ url('/add_distress_pictures') }}">
-                                                        {{csrf_field()}}
-                                                        <input type="hidden" name="Condition_Index_id" id="Condition_Index_id" value="">
-                                                        <div class="row modal-form-row">
-                                                            <div class="col s4">
-                                                                <label>Image Name </label>
-                                                                <input name="Image_Name" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-                                                            </div>
-                                                            <div class="col s4">
-                                                                <label > </label>
-                                                                <input name="Photo_url" accept="image/*" type="file" required>
-                                                            </div>
-                                                        </div>
-                                                        <hr/>
-                                                        <button type="submit" class="btn right"> Add </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <h5><b> Total Deduct Value:</b> lorem </h5>
                                     </div>
 
                                 </div>
 
                             </div>
-
                         </div>
 
                     </div>

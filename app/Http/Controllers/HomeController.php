@@ -31,7 +31,6 @@ class HomeController extends Controller
 
         $projects = DB::table('projects')->where('Created_By', "$Current_user")->get();
 
-
         if ($projects->count())
         {
 //                print_r ($projects[1]);
@@ -47,6 +46,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        
+        
         return view('welcome');
     }
 
@@ -77,14 +78,6 @@ class HomeController extends Controller
 
         return redirect('/home');
     }
-
-    public function Change_project(Request $request)
-    {
-        $Project_Id = $request->Project_Id;
-
-        Session::forget('Project_Id');
-
-        return redirect('/home');
-    }
+    
     
 }

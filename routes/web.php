@@ -15,16 +15,15 @@
 
 Route::get('/home', 'HomeController@start_project');
 
-Route::get('/start_project', 'HomeController@start_project');
+//Route::get('/start_project', 'HomeController@start_project');
 
 Route::post('/Open_project', 'HomeController@Open_project');
 
 Route::post('/Delete_project', 'HomeController@Delete_project');
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@start_project');
 
 // ## -- HomeController end
-
 
 //## ---- Dashboard Controller routes begin
 Route::get('/start_project_', 'DashboardController@start_Project');
@@ -58,6 +57,8 @@ Route::get('/distress_Identification', 'Section_controller@distress_Identificati
 Route::post('/open_distress_pictures', 'Section_controller@open_distress_pictures');
 
 Route::post('/add_distress_pictures', 'Section_controller@add_distress_pictures');
+
+Route::get('/density_deduct_values', 'Section_controller@density_deduct_values');
 
 // ### --- Section Controller -- end
 

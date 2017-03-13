@@ -998,15 +998,17 @@ class Section_controller extends Controller
     public function open_distress_pictures(Request $request)
     {
         $Condition_Index_id = $request->Condition_Index_id;
-        
+
+        Session::put('Condition_Index_id',$Condition_Index_id);
+
         $Condition_pictures = DB::table('distress_pictures')->where('Condition_Index_id', "$Condition_Index_id")->get();
 
-        if($Condition_pictures->count() )
+        if($Condition_pictures->count())
         {
-            return json_encode($Condition_pictures); 
+            return $Condition_pictures;
         }
         else{
-            return null;
+            return 'No_picture';
         }
     }
     
@@ -1022,13 +1024,63 @@ class Section_controller extends Controller
             $New_distress_pictures->Condition_Index_id = $request->Condition_Index_id ;
 
             $Image__name = uniqid()."_".$request->Image_Name;
-            $Image_->move(public_path('/distress_images'), $Image__name);
+
+//            $Image_->move(public_path('distress_images'), $Image_->getClientOriginalName());
 
             $New_distress_pictures->Photo_URL = '/distress_images' . $Image__name;
+
             $New_distress_pictures->save();
 
             return "working";
         }
         return "not_working";
+    }
+
+    public function density_deduct_values()
+    {
+        if (! Auth::check()) {return redirect('/');}
+
+        if(! Session::has('Section_Id') )
+        {
+            return redirect('/dashboard');
+        }
+
+        if(! Session::has('Session_Inspection_Id') )
+        {
+            return redirect('/add_condition_index');
+        }
+
+        $Session_Section_Id = Session::get('Section_Id');
+
+        $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
+
+        $Session_Inspection_Id = Session::get('Session_Inspection_Id');
+
+        $Session_Inspection_Date = Session::get('Session_Inspection_Date');
+
+        $condition_indices = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->get();
+
+        $Quantities = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->pluck('Quantity');
+
+        $Quantities_sum = array_sum($Quantities->toArray());
+
+        if($condition_indices->count() )
+        {
+            $condition_indices_ = $condition_indices;
+        }
+        else{
+            return redirect('/add_condition_index');
+        }
+
+        if($Pavement_section->count() )
+        {
+            $Pavement_section_ = $Pavement_section[0];
+//            echo $condition_indices_;
+            return view('System_Analysis.Density_and_Deduct_value_view', compact('Quantities_sum' ,'Pavement_section_','condition_indices_','Session_Inspection_Date'));
+        }
+        else{
+            return redirect('/add_section');
+        }
+
     }
 }

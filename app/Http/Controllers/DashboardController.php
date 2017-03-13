@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         if(! Session::has('Project_Id') )
             {
-                return redirect('/start_project');
+                return redirect('/home');
             }
 
         $Session_Project_Id = Session::get('Project_Id');
@@ -161,6 +161,16 @@ class DashboardController extends Controller
         return redirect('/dashboard');
 
     }
+
+    public function Change_project(Request $request)
+    {
+        $Project_Id = $request->Project_Id;
+
+        Session::forget('Project_Id');
+
+        return redirect('/home');
+    }
+    
     
 }
 
