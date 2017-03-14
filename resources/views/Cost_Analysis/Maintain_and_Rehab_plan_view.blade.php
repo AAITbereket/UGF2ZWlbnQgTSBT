@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -17,7 +18,8 @@
 
     <!--materialize ui-->
     <link href="homepage__/materialize/css/materialize.css" rel="stylesheet" type="text/css"/>
-
+    <link href="homepage__/css/material.min.css" rel="stylesheet" type="text/css"/>
+    <link href="homepage__/materialize/css/dataTables.material.min.css" rel="stylesheet" type="text/css"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
     <link href="homepage__/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -38,6 +40,15 @@
          .modal-content input {
             font-size: 14px;
         }
+
+          .dataTables_filter label {
+              line-height: 0px;
+          }
+
+         .modal-content input {
+             font-size: 14px;
+         }
+
     </style>
 
 </head>
@@ -144,6 +155,26 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
+
+                    <li class="start ">
+                        <a href="/add_condition_index">
+                            <i class="fa fa-cogs"></i>
+                            <span class="title">System Analysis</span>
+                        </a>
+                    </li>
+                    <li class="start ">
+                        <a href="index.html">
+                            <i class="fa fa-money"></i>
+                            <span class="title">Cost</span>
+                        </a>
+                    </li>
+
+                    <li class="start ">
+                        <a href="index.html">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="title">Reports</span>
+                        </a>
+                    </li>
                     <li class="start ">
                         <a href="/project_info">
                             <i class="fa fa-info-circle"></i>
@@ -159,120 +190,101 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    Current Project information
+                    Maintenace and Rehabilitation Plan
                 </h3>
-                <div class="page-bar">
-                </div>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
-                <div class="row" >
 
-                    <div class="col-md-offset-1 col-md-4" >
-                        <blockquote>
-                            Project Info
-                        </blockquote>
-                        <h4> <b>Client Name :</b> <span>Lorem ipsum </span></h4>
-                        <h4> <b>Project Name :</b> <span> ProjectName </span></h4>
-                        <h4> <b>Project Number :</b> <span> 123456 </span></h4>
+                <div id="Main-Content">
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <ul class="collection">
+                                <li class="collection-item"><u> Pavement Work </u>  <div class="right"> <u>Unit</u> </div> </li>
+                                <li class="collection-item"> Asphalt Concrete pothole Maintenance <div class="right">  M<sup>3</sup> </div> </li>
+                                <li class="collection-item"> Asphalt Concrete Cold mix <div class="right">  M<sup>3</sup> </div> </li>
+                                <li class="collection-item"> Asphalt Concrete Overlay <div class="right">  M<sup>3</sup> </div> </li>
+                                <li class="collection-item"> Roadbed - Preparation <div class="right">  M<sup>2</sup> </div> </li>
+                                <li class="collection-item"> Tack Coat Application <div class="right">  M<sup>2</sup> </div> </li>
+                                <li class="collection-item"> Prime Coat Application  <div class="right">  M<sup>2</sup> </div> </li>
+                                <li class="collection-item"> Gravel Resurfacing(Natural Aggregate) <div class="right">  M<sup>3</sup> </div> </li>
+                                <li class="collection-item"> Asphalt mul for 2 <div class="right">  M<sup>2</sup> </div> </li>
+                                <li class="collection-item"> Compact the milled area <div class="right">  M<sup>2</sup> </div> </li>
+
+                                @if(! empty($maintan_rehab_plan))
+                                    @foreach($maintan_rehab_plan as $list_item)
+                                        @if($list_item->Type == "Pavement_work")
+                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
+                                        @endif
+                                    @endforeach
+                                @endif
+
+                                <li class="collection-item">
+                                    <form method="POST" action="{{url( '/new_rehabplan_pavement_work' )}}"> {{csrf_field()}}
+                                    <input style="width: 50%; font-size: 14px;" class="inline" type="text" name="pavement_work_new"> <input style="width: 15%; font-size: 14px;" class="inline" type="text" name="pavement_work_new_unit" placeholder="unit">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
+                                    </form>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <ul class="collection">
+                                <li class="collection-item"><u> Maintenance type </u> </li>
+                                <li class="collection-item"> Slurry Seal coat </li>
+                                <li class="collection-item"> Micro Surfacing </li>
+                                <li class="collection-item"> Crack Sealing </li>
+                                <li class="collection-item"> Patching </li>
+                                <li class="collection-item"> Thin Overlay </li>
+                                @if(! empty($maintan_rehab_plan))
+                                    @foreach($maintan_rehab_plan as $list_item)
+                                        @if($list_item->Type == "maintain_type")
+                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                <li class="collection-item">
+                                    <form method="POST" action="{{url( '/new_rehabplan_mantaince_type' )}}"> {{csrf_field()}}
+                                        <input style="width: 55%; font-size: 14px;" class="inline" type="text" name="maintance_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
+                                    </form>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <ul class="collection">
+                                <li class="collection-item"><u> Rehablitation Tretments </u> </li>
+                                <li class="collection-item"> Thick Overlay </li>
+                                <li class="collection-item"> Mill and Overlay </li>
+                                <li class="collection-item"> Remove and Replace </li>
+                                @if(! empty($maintan_rehab_plan))
+                                    @foreach($maintan_rehab_plan as $list_item)
+                                        @if($list_item->Type == "treatment_type")
+                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                <li class="collection-item">
+                                    <form method="POST" action="{{url( '/new_rehabplan_treatment_type' )}}"> {{csrf_field()}}
+                                        <input style="width: 35%; font-size: 14px;" class="inline" type="text" name="treatment_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
+                                    </form>
+                                </li>
+                            </ul>
+
+                        </div>
+
                     </div>
-                    <div class=" col-md-7" >
-                        <blockquote>
-                            Company Info
-                        </blockquote>
-                        <div class="col-md-6">
-                            <img class="img-circle" src="homepage__/img/avatar3_small.jpg">
-                            <form method="post" enctype="multipart/form-data" id="image_submit">
-                                <input class="" type="file"/>
-                                <button type="submit" class="btn"> Change Logo </button>
+
+                    <div class="row">
+                        <div class="content right">
+                            <form method="POST" action="{{url( '/reset_maintain_and_rehab_plan' )}}"> {{csrf_field()}}
+                                    <input type="submit" class="secondary-content btn btn-sm blue" value="Reset to defaults">
                             </form>
                         </div>
-                        <div class="col-md-6">
-                            <h4> <b>Company Name :</b> <span>Lorem ipsum </span></h4>
-                            <h4> <b>Inspect By :</b> <span> ProjectName </span></h4>
-                            <h4> <b>Checker :</b> <span> 123456 </span></h4>
-                            <h4> <b>Supervisor :</b> <span> 123456 </span></h4>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class=" col-md-12" >
-                        <blockquote>
-                            Model Information
-                        </blockquote>
-                        <div class="col-md-3">
-                            <h4> <b>Date : </b> <span> 2/2/2017 </span></h4>
-                        </div>
-                        <div class=" col-md-4" >
-                            <h4> <b> Issue number : </b> <span> 1332345676 </span></h4>
-                        </div>
-
-                        <div class="col-md-offset-3 col-md-2" >
-
-                            <button class="waves-effect waves-light btn modal-trigger" data-target="modal1" href="#modal1"> Edit </button>
-
-                            <!-- Modal Structure -->
-                            <div id="modal1" class="modal">
-                                <div class="modal-content">
-                                    <div class="row">
-                                        <form class="col s12">
-                                            <div class="row modal-form-row">
-                                                <div class="col s4">
-                                                    <label for="image_url">Client Name</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                                <div class="col s2"> </div>
-                                                <div class="col s4">
-                                                    <label for="image_url">Project Name</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                                {{--<div class="col s4">--}}
-                                                    {{--<label for="image_url">Project Number</label>--}}
-                                                    {{--<input id="image_url" type="text" class="validate">--}}
-                                                {{--</div>--}}
-                                            </div>
-                                            <hr/>
-                                            <div class="row">
-                                                <div class="col s3">
-                                                    <label for="image_url">Company Name</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                                <div class="col s3">
-                                                    <label for="image_url">Inspect By</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                                <div class="col s3">
-                                                    <label for="image_url">Checker </label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                                <div class="col s3">
-                                                    <label for="image_url">Superviser </label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                            </div>
-                                            <hr/>
-                                            <div class="row">
-                                                <div class="col s6">
-                                                    <label for="image_url">Date</label>
-                                                    <input id="image_url" type="date" class="datepicker">
-                                                </div>
-                                                <div class="col s6">
-                                                    <label for="image_url">Inspect By</label>
-                                                    <input id="image_url" type="text" class="validate">
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn right"> Submit </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
 
                     </div>
+
                 </div>
 
                 <!-- END PAGE CONTENT-->
@@ -287,7 +299,7 @@
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
         <div class="page-footer-inner">
-            2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            2017 &copy; pavement Management system 
         </div>
         <div class="scroll-to-top">
             <i class="fa fa-arrow-up"></i>
@@ -316,23 +328,70 @@
 <script src="homepage__/js/layout.js" type="text/javascript"></script>
 <script src="homepage__/js/demo.js" type="text/javascript"></script>
 <script src="homepage__/materialize/js/materialize.js"></script>
+<script src="homepage__/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="homepage__/js/dataTables.material.min.js" type="text/javascript"></script>
+
 <script>
+//    $(document).ready(function(){
+//        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+//    });
+
     jQuery(document).ready(function() {
         Metronic.init(); // init metronic core components
         Layout.init(); // init current layout
         Demo.init(); // init demo features
-    });
 
-    $(document).ready(function(){
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('#example').DataTable( {
+            "pageLength": 3,
+            columnDefs: [
+                {
+                    targets: [ 0, 1, 2 ],
+                    className: 'mdl-data-table__cell--non-numeric'
+                }
+            ]
+        } );
+
+        $('#example_length').hide();
+        $('.mdl-grid').first().hide();
+        $('#example_filter').appendTo('#append');
+
         $('.modal').modal();
-    });
 
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 40 // Creates a dropdown of 15 years to control year
-    });
 
+        $('form.ajax').submit(function(e){
+            e.preventDefault();
+
+            $('#modal1').modal('close');
+
+            var registerForm = $("#edit_section");
+            var formData = registerForm.serialize();
+
+            $.ajax({
+                type     : "POST",
+                url      : '/edit_section',
+                data     : formData,
+                success  : function(data) {
+                    console.log(data);
+                    Materialize.toast('Successfully Added', 4000, 'blue darken-4');
+                    window.location.reload(true);
+                }
+            });
+        });
+
+        $('#length').change(function() {
+
+            $('#Area').val( $('#length').val() * $('#C_width').val() );
+
+        });
+
+        $('#C_width').change(function() {
+
+            $('#Area').val( $('#length').val() * $('#C_width').val());
+
+        });
+
+
+    });
 </script>
 <!-- END JAVASCRIPTS -->
 </body>

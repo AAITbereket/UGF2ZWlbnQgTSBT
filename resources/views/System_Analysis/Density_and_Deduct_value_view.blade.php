@@ -272,7 +272,15 @@
                                                     <td>{{$condition_index->Distress_type}}</td>
                                                     <td>{{$condition_index->Severity}}</td>
                                                     <td>{{$condition_index->Quantity}}</td>
-                                                    <td>{{ round($Density = $condition_index->Quantity / $Sum, 3) }}</td>
+                                                    {{--<td>{{  $Sum }}</td>--}}
+                                                    <td> @if($condition_index->Distress_type == "raveling")
+                                                            {{ round($Density = ($condition_index->Quantity * 100) / $length,3) }}
+                                                         @else
+                                                            {{ round($Density = ($condition_index->Quantity * 100) / $Area,3) }}
+                                                         @endif
+
+                                                    % </td>
+                                                    {{--{{ $Density = 0.69 }}--}}
                                                     <td class="Deduct_values">
                                                         {{--for faigue or alligatory--}}
                                                         @if($condition_index->Distress_type == "alligatory")
@@ -410,7 +418,10 @@
                                     <div class="col-md-2">
                                         <h4><b>PCI:</b></h4>
                                     </div>
-                                    <div class="progress col-md-6" id="progress_bar_container">
+                                    <div class="inline col-md-3">
+                                        <h4 id="pci_status"> </h4>
+                                    </div>
+                                    <div class="progress col-md-5" id="progress_bar_container">
 
                                         <div id="Progress_bar" class="inline determinate" role="progressbar" aria-valuenow="40"
                                              aria-valuemin="0" aria-valuemax="100" style="width:40%">
@@ -567,40 +578,37 @@
         }
         else if (m == 2)
         {
-            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,2)) + (-0.0006 * Math.pow(sum,3)) + (-0.000004 * Math.pow(sum,4)) ;
+            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,1)) + (-0.0006 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
             console.log(Cdv);
         }
         else if (m == 3)
         {
-            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,2)) + (-0.0009 * Math.pow(sum,3)) + (-0.000002 * Math.pow(sum,4)) ;
+            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,1)) + (-0.0009 * Math.pow(sum,2)) + (-0.000002 * Math.pow(sum,3)) ;
         }
         else if (m == 4)
         {
-            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,2)) + (0.0002 * Math.pow(sum,3)) + (-0.000005 * Math.pow(sum,4)) ;
+            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,1)) + (0.0002 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
             console.log(Cdv);
         }
         else if (m == 5)
         {
-            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,2)) + (0.0003 * Math.pow(sum,3)) + (-0.000004 * Math.pow(sum,4)) ;
+            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,1)) + (0.0003 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
         }
         else if (m == 6)
         {
-            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,2)) + (0.0009 * Math.pow(sum,3)) + (-0.000005 * Math.pow(sum,4)) ;
-        }
-        else if (m == 7)
-        {
-            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,2)) + (0.0012 * Math.pow(sum,3)) + (-0.000008 * Math.pow(sum,4)) ;
+            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,1)) + (0.0009 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
         }
         else
         {
-            var Cdv =  "failed cause m is greater than 7";
+            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,1)) + (0.0012 * Math.pow(sum,2)) + (-0.000008 * Math.pow(sum,3)) ;
         }
 
 
-        $('#cdv').html(Cdv);
+        $('#cdv').html(Math.round(Cdv * 100) / 100);
 
         var pci = 100 - Cdv;
-//        $('#pci').html(pci);
+
+        pci = Math.round(pci * 100) / 100;
 
         if (85 < pci && pci < 100)
         {
@@ -608,6 +616,7 @@
             $('#Progress_bar').css('background-color', "#006400" );
             $('#Progress_bar').css('color', "#fff" );
             $('#Progress_bar').html(  pci + "% " + "Good");
+            $('#pci_status').html(  pci + "% " + "Good");
             $('#Progress_bar').css('width', pci + "%" );
 
         }
@@ -616,7 +625,8 @@
 
             $('#Progress_bar').css('background-color', "#90EE90" );
             $('#Progress_bar').css('color', "#000" );
-            $('#Progress_bar').html(  pci + "% " + "Satisfactory");
+            $('#pci_status').html(  pci + "% " + "Satisfactory");
+//            $('#pci_status').html(  pci + "% " + "Satisfactory");
             $('#Progress_bar').css('width', pci + "%" );
 
         }
@@ -624,35 +634,37 @@
         {
             $('#Progress_bar').css('background-color', "#ffff00" );
             $('#Progress_bar').css('color', "#000" );
-            $('#Progress_bar').html(  pci + "% " + "Fair");
+            $('#pci_status').html(  pci + "% " + "Fair");
+//            $('#pci_status').html(  pci + "% " + "Fair");
             $('#Progress_bar').css('width', pci + "%" );
         }
         else if(pci > 40)
         {
             $('#Progress_bar').css('background-color', "#ff7777" );
             $('#Progress_bar').css('color', "#000" );
-            $('#Progress_bar').html(  pci + "% " + "Poor");
+            $('#pci_status').html(  pci + "% " + "Poor");
             $('#Progress_bar').css('width', pci + "%" );
         }
         else if(pci > 25)
         {
             $('#Progress_bar').css('background-color', "#ff5454" );
             $('#Progress_bar').css('color', "#fff" );
-            $('#Progress_bar').html(  pci + "% " + "Very Poor");
+            $('#pci_status').html(  pci + "% " + "Very Poor");
             $('#Progress_bar').css('width', pci + "%" );
         }
         else if(pci > 10)
         {
             $('#Progress_bar').css('background-color', "#ff0000" );
             $('#Progress_bar').css('color', "#fff" );
-            $('#Progress_bar').html(  pci + "% " + "Serious");
+            $('#pci_status').html(  pci + "% " + "Serious");
             $('#Progress_bar').css('width', pci + "%" );
         }
         else
         {
-            $('#Progress_bar').hide();
-            $('#progress_bar_container').removeClass('progress')
-            $('#progress_bar_container').html( "<h4> Failed </h4>" );
+            $('#Progress_bar').css('background-color', "#666666" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "failed");
+            $('#Progress_bar').css('width', pci + "%" );
         }
 
 

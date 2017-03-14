@@ -62,6 +62,20 @@ Route::get('/density_deduct_values', 'Section_controller@density_deduct_values')
 
 // ### --- Section Controller -- end
 
+// ## --- Cost analysis and rehab controller
+
+Route::get('/Maintainance_and_Rehablitation_plan', 'Cost_Analysis_Controller@show_maintain_rehab_plan');
+
+Route::post('/new_rehabplan_pavement_work', 'Cost_Analysis_Controller@new_rehabplan_pavement_work');
+
+Route::post('/new_rehabplan_mantaince_type', 'Cost_Analysis_Controller@new_rehabplan_mantaince_type');
+
+Route::post('/new_rehabplan_treatment_type', 'Cost_Analysis_Controller@new_rehabplan_treatment_type');
+
+Route::post('/reset_maintain_and_rehab_plan', 'Cost_Analysis_Controller@reset_maintain_and_rehab_plan');
+// ## --- end of cost and rehab controller
+
+
 Auth::routes();
 
 

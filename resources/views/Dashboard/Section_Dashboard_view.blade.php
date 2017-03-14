@@ -154,7 +154,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse">
+            <div class="page-sidebar navbar-collapse" style="position: fixed;">
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                 <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -444,6 +444,18 @@
                     window.location.reload(true);
                 }
             });
+        });
+
+        $('#length').change(function() {
+
+            $('#Area').val( $('#length').val() * $('#C_width').val() );
+
+        });
+
+        $('#C_width').change(function() {
+
+            $('#Area').val( $('#length').val() * $('#C_width').val());
+
         });
 
 

@@ -884,7 +884,7 @@ class Section_controller extends Controller
             $New_section_condition->Section_Id = $request->Section_Id;
             $New_section_condition->Inspection_date = $request->Inspection_date;
             $New_section_condition->Inspection_Id = $request->Inspection_Id;
-            $New_section_condition->Distress_type = 'raveling_high';
+            $New_section_condition->Distress_type = 'raveling';
             $New_section_condition->Severity = 'high';
             $New_section_condition->Quantity = $request->raveling_high;
             $New_section_condition->save();
