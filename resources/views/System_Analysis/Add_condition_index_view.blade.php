@@ -154,7 +154,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse">
+            <div class="page-sidebar navbar-collapse" style="position: fixed;">
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                 <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -246,19 +246,19 @@
                                 <h5>1. Alligatory Cracking</h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="alligatory_low" type="text" class="">
+                                        <input name="alligatory_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="alligatory_medium" type="text" class="">
+                                        <input name="alligatory_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="alligatory_high" type="text" class="">
+                                        <input name="alligatory_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -268,19 +268,19 @@
                                 <h5>2. Bleeding </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bleeding_low" type="text" class="">
+                                        <input name="bleeding_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bleeding_medium" type="text" class="">
+                                        <input name="bleeding_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bleeding_high" type="text" class="">
+                                        <input name="bleeding_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -290,19 +290,19 @@
                                 <h5>3. Block Cracking </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="block_cracking_low" type="text" class="">
+                                        <input name="block_cracking_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="block_cracking_medium" type="text" class="">
+                                        <input name="block_cracking_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="block_cracking_high" type="text" class="">
+                                        <input name="block_cracking_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -312,19 +312,19 @@
                                 <h5>4. Bumps/ Sags </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bumps_sags_low" type="text" class="">
+                                        <input name="bumps_sags_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bumps_sags_medium" type="text" class="">
+                                        <input name="bumps_sags_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="bumps_sags_high" type="text" class="">
+                                        <input name="bumps_sags_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -339,19 +339,19 @@
                                 <h5>5. Corrugation </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="corrugation_low" type="text" class="">
+                                        <input name="corrugation_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="corrugation_medium" type="text" class="">
+                                        <input name="corrugation_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="corrugation_high" type="text" class="">
+                                        <input name="corrugation_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -361,19 +361,19 @@
                                 <h5>6. Depression </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="depression_low" type="text" class="">
+                                        <input name="depression_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="depression_medium" type="text" class="">
+                                        <input name="depression_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="depression_high" type="text" class="">
+                                        <input name="depression_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -383,19 +383,19 @@
                                 <h5>7. Edge Cracking </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="edge_cracking_low" type="text" class="">
+                                        <input name="edge_cracking_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="edge_cracking_medium" type="text" class="">
+                                        <input name="edge_cracking_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="edge_cracking_high" type="text" class="">
+                                        <input name="edge_cracking_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -405,19 +405,19 @@
                                 <h5> 8. Joint refelection cracking </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="joint_ref_cracking_low" type="text" class="">
+                                        <input name="joint_ref_cracking_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="joint_ref_cracking_medium" type="text" class="">
+                                        <input name="joint_ref_cracking_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="joint_ref_cracking_high" type="text" class="">
+                                        <input name="joint_ref_cracking_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -432,19 +432,19 @@
                                 <h5>9. Lane shoulder drop</h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="Lane_should_low" type="text" class="">
+                                        <input name="Lane_should_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="Lane_should_medium" type="text" class="">
+                                        <input name="Lane_should_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="Lane_should_high" type="text" class="">
+                                        <input name="Lane_should_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -454,19 +454,19 @@
                                 <h5> 10. Longtiudnal/ Traverse crack </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="longtd_crack_low" type="text" class="">
+                                        <input name="longtd_crack_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="longtd_crack_medium" type="text" class="">
+                                        <input name="longtd_crack_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="longtd_crack_high" type="text" class="">
+                                        <input name="longtd_crack_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -476,19 +476,19 @@
                                 <h5>11. Patch/UT cut </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_low" type="text" class="">
+                                        <input name="patch_cut_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_medium" type="text" class="">
+                                        <input name="patch_cut_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_high" type="text" class="">
+                                        <input name="patch_cut_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -498,19 +498,19 @@
                                 <h5>12. polished aggregate </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="polished_aggregate_low" type="text" class="">
+                                        <input name="polished_aggregate_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="polished_aggregate_medium" type="text" class="">
+                                        <input name="polished_aggregate_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="polished_aggregate_high" type="text" class="">
+                                        <input name="polished_aggregate_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -525,19 +525,19 @@
                                 <h5> 13. Pothole </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="pothole_low" type="text" class="">
+                                        <input name="pothole_low" type="number" min="0" step="0.01"  class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="pothole_medium" type="text" class="">
+                                        <input name="pothole_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="pothole_high" type="text" class="">
+                                        <input name="pothole_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -547,19 +547,19 @@
                                 <h5>14. Rutting </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="rutting_low" type="text" class="">
+                                        <input name="rutting_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="rutting_medium" type="text" class="">
+                                        <input name="rutting_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="rutting_high" type="text" class="">
+                                        <input name="rutting_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -569,19 +569,19 @@
                                 <h5>15. Railroad crossing </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="railroad_crossing_low" type="text" class="">
+                                        <input name="railroad_crossing_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="railroad_crossing_medium" type="text" class="">
+                                        <input name="railroad_crossing_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="railroad_crossing_high" type="text" class="">
+                                        <input name="railroad_crossing_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -591,19 +591,19 @@
                                 <h5>16. Shoving </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="shoving_low" type="text" class="">
+                                        <input name="shoving_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="shoving_medium" type="text" class="">
+                                        <input name="shoving_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="shoving_high" type="text" class="">
+                                        <input name="shoving_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -618,19 +618,19 @@
                                 <h5>17. Slippage cracking </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="slippage_crack_low" type="text" class="">
+                                        <input name="slippage_crack_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="slippage_crack_medium" type="text" class="">
+                                        <input name="slippage_crack_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="slippage_crack_high" type="text" class="">
+                                        <input name="slippage_crack_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -640,19 +640,19 @@
                                 <h5>18. Swell </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="swell_low" type="text" class="">
+                                        <input name="swell_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="swell_medium" type="text" class="">
+                                        <input name="swell_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="swell_high" type="text" class="">
+                                        <input name="swell_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -662,19 +662,19 @@
                                 <h5>19. Raveling </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="raveling_low" type="text" class="">
+                                        <input name="raveling_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="raveling_medium" type="text" class="">
+                                        <input name="raveling_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="raveling_high" type="text" class="">
+                                        <input name="raveling_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>
@@ -684,19 +684,19 @@
                                 <h5>20. Weathering </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="weathering_low" type="text" class="">
+                                        <input name="weathering_low" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="weathering_medium" type="text" class="">
+                                        <input name="weathering_medium" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="weathering_high" type="text" class="">
+                                        <input name="weathering_high" type="number" min="0" step="0.01" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>

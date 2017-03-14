@@ -66,7 +66,7 @@
              font-size: 14px;
          }
 
-         .modal { width: 40% !important ; height: 35% !important ; }
+         #modal1 { width: 40% !important ; height: 35% !important ; }
 
     </style>
 
@@ -159,7 +159,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse">
+            <div class="page-sidebar navbar-collapse" style="position: fixed;">
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                 <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -269,7 +269,7 @@
                                                     <td>
                                                         <button class="btn green" onclick="
                                                                 event.preventDefault();
-
+                                                                $('#Ajax_content_id').empty();
                                                                 $('input[name=Condition_Index_id]').val('{{ $condition_index->Condition_Index_id}}');
 
                                                                 var registerForm = $('{{"#open".$condition_index->Condition_Index_id}}');
@@ -284,7 +284,65 @@
                                                                     success  : function(data) {
                                                                             console.log(data);
 
-                                                                            Materialize.toast('Successfully Added', 4000, 'blue darken-4');
+                                                                            $.each(data, function() {
+
+                                                                                    var main_outer_div = createElement('div');
+                                                                                    main_outer_div.classList.add('row');
+                                                                                    main_outer_div.classList.add('z-depth-1');
+//                                                                                    main_outer_div.addClass('row');
+//                                                                                    main_outer_div.addClass('z-depth-1');
+//
+                                                                                    var Image_name_div = createElement('div');
+                                                                                    Image_name_div.classList.add('col-md-9');
+//                                                                                    $.(Image_name_div).addClass('col-md-9');
+                                                                                    Image_name_div.innerHTML = this.Photo_name;
+                                                                                    main_outer_div.appendChild(Image_name_div);
+
+                                                                                    var Image_container_div = createElement('div');
+                                                                                    Image_container_div.classList.add('col-md-3');
+//                                                                                    $.(Image_container_div).addClass('col-md-3');
+                                                                                    main_outer_div.appendChild(Image_container_div);
+//
+                                                                                    var button = createElement('button');
+                                                                                    button.classList.add('waves-effect');
+                                                                                    button.classList.add('waves-light');
+                                                                                    button.classList.add('btn');
+                                                                                    button.classList.add('green');
+                                                                                    button.classList.add('modal-trigger');
+//                                                                                    button.href = '#modal'+this.id;
+                                                                                    button.setAttribute('href', '#modal'+this.id);
+                                                                                    button.setAttribute('data-target', 'modal'+this.id);
+                                                                                    button.innerHTML = 'Show';
+                                                                                    Image_container_div.appendChild(button);
+
+                                                                                    var Image_modal = createElement('div');
+                                                                                    Image_modal.classList.add('modal');
+                                                                                    Image_modal.id = 'modal'+this.id;
+//                                                                                    $.(Image_modal).addClass('modal');
+//                                                                                    $.(Image_modal).attr(id, 'modal' + this.id);
+//                                                                                    $.(Image_modal).appendTo(Image_container_div);
+                                                                                      Image_container_div.appendChild(Image_modal);
+//
+                                                                                    var Image_modal_content = createElement('div');
+                                                                                    Image_modal_content.classList.add('modal-content');
+//                                                                                    $.(Image_modal_content).addClass('modal-content');
+                                                                                    Image_modal.appendChild(Image_modal_content);
+//
+                                                                                    var Image = createElement('img');
+                                                                                    Image.src = this.Photo_URL ;
+                                                                                    Image.style.maxWidth = '700px';
+                                                                                    Image.style.height = 'auto';
+                                                                                    Image_modal_content.appendChild(Image);
+//                                                                                    $.(Image_modal_content).appendChild(Image);
+
+                                                                                    $('#Ajax_content_id').append(main_outer_div);
+                                                                                });
+
+                                                                            Materialize.toast('Opened', 4000, 'blue darken-4');
+                                                                                $('.modal').modal({
+
+                                                                                });
+
                                                                         }
                                                                     });
                                                                 "> Open  </button>
@@ -317,9 +375,7 @@
 
                             <div class="portlet-body">
 
-                                <div class="scroller" id="Ajax_content_id">
-
-
+                                <div class="" id="Ajax_content_id">
 
                                 </div>
 

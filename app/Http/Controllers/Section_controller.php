@@ -1023,15 +1023,25 @@ class Section_controller extends Controller
             $New_distress_pictures->Photo_name = $request->Image_Name ;
             $New_distress_pictures->Condition_Index_id = $request->Condition_Index_id ;
 
-            $Image__name = uniqid()."_".$request->Image_Name;
+            $Image__name = uniqid()."_".$Image_->getClientOriginalName();
 
-//            $Image_->move(public_path('distress_images'), $Image_->getClientOriginalName());
+            $Image_->move(public_path('distress_images'), $Image__name);
 
-            $New_distress_pictures->Photo_URL = '/distress_images' . $Image__name;
+            $New_distress_pictures->Photo_URL = '/distress_images/' . $Image__name;
 
             $New_distress_pictures->save();
 
-            return "working";
+            $Condition_pictures = DB::table('distress_pictures')->where('Condition_Index_id', "$request->Condition_Index_id")->get();
+
+            if($Condition_pictures->count())
+            {
+                return $Condition_pictures;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
         return "not_working";
     }

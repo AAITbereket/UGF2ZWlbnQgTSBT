@@ -161,7 +161,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse">
+            <div class="page-sidebar navbar-collapse" style="position: fixed;">
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                 <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -251,7 +251,7 @@
 
                             </div>
                             <div class="portlet-body">
-                                <div class="" style=" overflow: hidden; width: auto;">
+                                <div class="scroller" style=" height:400px; overflow: hidden; width: auto;">
 
                                     <!--Content of databale I pasted -->
 
@@ -272,7 +272,7 @@
                                                     <td>{{$condition_index->Distress_type}}</td>
                                                     <td>{{$condition_index->Severity}}</td>
                                                     <td>{{$condition_index->Quantity}}</td>
-                                                    <td>{{ $Density = $condition_index->Quantity / $Sum}}</td>
+                                                    <td>{{ round($Density = $condition_index->Quantity / $Sum, 3) }}</td>
                                                     <td class="Deduct_values">
                                                         {{--for faigue or alligatory--}}
                                                         @if($condition_index->Distress_type == "alligatory")
@@ -285,7 +285,7 @@
                                                             @endif
 
                                                             {{--bleeding--}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "bleeding")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  1.8295 + ( -14.933 * pow($Density, 1) ) + ( 42.465 * pow($Density, 2) ) + ( -47.127 * pow($Density, 3) ) + ( 25.107 * pow($Density, 4) ) + ( -4.5804 * pow($Density, 5) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -295,7 +295,7 @@
                                                             @endif
 
                                                             {{--block_cracking--}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "block_cracking")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  -0.1016 + ( 2.3786 * pow($Density, 1) ) + ( 8.6496 * pow($Density, 2) ) + ( -3.7548 * pow($Density, 3) ) + (  1.164 * pow($Density, 4) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -305,7 +305,7 @@
                                                             @endif
 
                                                             {{--Edge cracking--}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "edge_cracking")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  3.1444 + ( 2.0074 * pow($Density, 1) ) + ( 1.1778 * pow($Density, 2) ) + ( 6.222 * pow($Density, 3) ) + ( 2.0139 * pow($Density, 4) ) + ( -3.3278 * pow($Density, 5) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -325,7 +325,7 @@
                                                             @endif
 
                                                             {{--Patching --}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "patch_cut")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  2.1419 + ( 5.324 * pow($Density, 1) ) + ( 6.6383 * pow($Density, 2) ) + ( 5.2832 * pow($Density, 3) ) + ( -4.5093 * pow($Density, 4) ) + ( 1.0189 * pow($Density, 5) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -335,7 +335,7 @@
                                                             @endif
 
                                                                 {{-- Rutting --}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "rutting")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  8.0082 + ( 14.038 * pow($Density, 1) ) + ( 5.0636 * pow($Density, 2) ) + ( -0.0406 * pow($Density, 3) ) + (  1.4484 * pow($Density, 4) + ( -0.9035 * pow($Density, 5) ) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -345,7 +345,7 @@
                                                             @endif
 
                                                             {{--Potholes--}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "pothole")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  57.481 + ( 41.042 * pow($Density, 1) ) + ( 3.0305 * pow($Density, 2) ) + ( -1.5721 * pow($Density, 3) ) + ( 0.1291 * pow($Density, 4) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -355,7 +355,7 @@
                                                             @endif
 
                                                                 {{--Raveling --}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "raveling")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  1.7828 + ( 0.5165 * pow($Density, 1) ) + ( -0.6228 * pow($Density, 2) ) + ( 3.191 * pow($Density, 3) ) + (  0.9732 * pow($Density, 4) ) + (  -1.2907 * pow($Density, 5) + (  0.2628 * pow($Density, 6) ) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -365,7 +365,7 @@
                                                             @endif
 
                                                             {{-- Shoving --}}
-                                                        @elseif($condition_index->Distress_type == "longtd_crack")
+                                                        @elseif($condition_index->Distress_type == "shoving")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  3.8756 + ( 10.363 * pow($Density, 1) ) + ( 2.7931 * pow($Density, 2) ) + ( 5.7746 * pow($Density, 3) ) + ( -2.6249 * pow($Density, 4) ) + ( 0 * pow($Density, 5) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -400,7 +400,7 @@
                                         <h5><b> m: </b> <div class="inline" id="m">  </div> </h5>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <h5><b> Corrected Deduct value: </b> <div class="inline" id="cdv">  </div> </h5>
                                     </div>
 
@@ -483,7 +483,7 @@
         Demo.init(); // init demo features
 
         $('#example').DataTable( {
-//            "pageLength": 3,
+            "pageLength": 60,
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],
@@ -553,7 +553,51 @@
 
         // Cdv is to be calculated here
 
-        var Cdv =  90;
+        m = Math.round(m);
+        console.log(m);
+//        m=2;
+
+        if (m == 0)
+        {
+            var Cdv =  95;
+        }
+        else if (m == 1)
+        {
+            var Cdv =  sum;
+        }
+        else if (m == 2)
+        {
+            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,2)) + (-0.0006 * Math.pow(sum,3)) + (-0.000004 * Math.pow(sum,4)) ;
+            console.log(Cdv);
+        }
+        else if (m == 3)
+        {
+            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,2)) + (-0.0009 * Math.pow(sum,3)) + (-0.000002 * Math.pow(sum,4)) ;
+        }
+        else if (m == 4)
+        {
+            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,2)) + (0.0002 * Math.pow(sum,3)) + (-0.000005 * Math.pow(sum,4)) ;
+            console.log(Cdv);
+        }
+        else if (m == 5)
+        {
+            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,2)) + (0.0003 * Math.pow(sum,3)) + (-0.000004 * Math.pow(sum,4)) ;
+        }
+        else if (m == 6)
+        {
+            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,2)) + (0.0009 * Math.pow(sum,3)) + (-0.000005 * Math.pow(sum,4)) ;
+        }
+        else if (m == 7)
+        {
+            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,2)) + (0.0012 * Math.pow(sum,3)) + (-0.000008 * Math.pow(sum,4)) ;
+        }
+        else
+        {
+            var Cdv =  "failed cause m is greater than 7";
+        }
+
+
+        $('#cdv').html(Cdv);
 
         var pci = 100 - Cdv;
 //        $('#pci').html(pci);
