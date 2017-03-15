@@ -250,10 +250,10 @@
                                                         <input name="Section_Id" value="{{$Section_Id}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="hidden">
 
                                                         <div class="row modal-form-row">
-                                                            <div class="col s4">
-                                                                <label for="image_url"> <b>Section Name</b> </label>
-                                                                <input name="Section_name" value="{{$Section_Name}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">
-                                                            </div>
+                                                            {{--<div class="col s4">--}}
+                                                                {{--<label for="image_url"> <b>Section Name</b> </label>--}}
+                                                                {{--<input name="Section_name" value="{{$Section_Name}}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">--}}
+                                                            {{--</div>--}}
                                                             <div class="col s4">
                                                                 <label for="image_url">From </label>
                                                                 <input name="Sec_From" value="{{$From }}" class="validate valid" required="" aria-required="true" aria-invalid="false" type="text">

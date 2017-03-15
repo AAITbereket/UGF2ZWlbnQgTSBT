@@ -80,6 +80,10 @@ Route::get('/Cost_Analysis_input_view', 'Cost_Analysis_Controller@Cost_Analysis_
 
 Route::get('/rehablitation_alternatives', 'Cost_Analysis_Controller@show_rehab_alternatives');
 
+Route::get('/Life_Cycle_Cost_Analysis', 'Cost_Analysis_Controller@show_Life_Cycle_Cost_Analysis');
+
+Route::post('/input_cost_analysis', 'Cost_Analysis_Controller@input_cost_analysis');
+
 // ## --- end of cost and rehab controller
 
 

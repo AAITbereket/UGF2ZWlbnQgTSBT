@@ -274,42 +274,52 @@
                                             <td>1</td>
                                             <td>Asphalt mill for 2" 50.8 mm </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab(); " > </td>
                                             <td id="Tcost1">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td> Compact the milled area </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
                                             <td id="Tcost2">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td> Tack Coat application above the compacted area </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
                                             <td id="Tcost3">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td> Asphalt Concrete overlay </td>
-                                            <td> {{$Sum_ = $Sum * 0.10744 }} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{$Sum_}}' * this.value;" > </td>
+                                            <td> {{ round($Sum_ = $Sum * 0.10744,2 ) }} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab();" > </td>
                                             <td id="Tcost4">  0  </td>
                                         </tr>
+                                        <script>
+                                            function Calculate_total_Cost_rehab() {
+                                                $('#Totalcostrehab').text(
+                                                        Number( $('#Tcost1').text() ) +
+                                                        Number( $('#Tcost2').text() ) +
+                                                        Number( $('#Tcost3').text() ) +
+                                                        Number( $('#Tcost4').text())
+                                                );
+                                            }
+                                        </script>
                                         <tr>
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td><b> Total Rehabilitation Cost </b></td>
-                                            <td id="Totalcost">  1111  </td>
+                                            <td id="Totalcostrehab">    </td>
                                         </tr>
 
                                         </tbody>
                                     </table>
 
-                                    <h3 class="page-title"> Mill and AC overlay overall the road section </h3>
+                                    <hr/>
                                     <br/>
 
                                     <table>
@@ -328,7 +338,7 @@
                                                 <td>1</td>
                                                 <td> Slurry seal </td>
                                                 <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
                                                 <td id="Tcost9">  0  </td>
                                             </tr>
 
@@ -337,7 +347,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td><b> Total Maintenance Cost </b></td>
-                                                <td id="Totalcost">  1111  </td>
+                                                <td id="TotalMaintCost">  0  </td>
                                             </tr>
 
                                         </tbody>

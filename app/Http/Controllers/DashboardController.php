@@ -93,7 +93,7 @@ class DashboardController extends Controller
         $Session_Project_Id = Session::get('Project_Id');
         
         $pavement_section = new Pavement_section();
-        $pavement_section->Section_Name = $request->Section_name;
+        $pavement_section->Section_Name = $request->Sec_From . ' to '. $request->Sec_To ;
         $pavement_section->Project_Id = $Session_Project_Id;
         $pavement_section->From = $request->Sec_From;
         $pavement_section->To = $request->Sec_To;
@@ -144,7 +144,7 @@ class DashboardController extends Controller
         $Section_Id = $request->Section_Id;
 
         $pavement_section = Pavement_section::find("$Section_Id");
-        $pavement_section->Section_Name = $request->Section_name;
+        $pavement_section->Section_Name = $request->Sec_From . ' to '. $request->Sec_To ;
         $pavement_section->Project_Id = $Session_Project_Id;
         $pavement_section->From = $request->Sec_From;
         $pavement_section->To = $request->Sec_To;

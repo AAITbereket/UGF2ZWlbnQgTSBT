@@ -13,9 +13,12 @@
     $Direction = $Pavement_section_->Direction;
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 
-    $condition_indices = $condition_indices_;
-
     $Sum = $Quantities_sum;
+
+    $Start_year = 2014;
+
+    $Maintenance_yrs = 2;
+    $Rehabilitation_yr = 6;
 ?>
 
 <!DOCTYPE html>
@@ -211,15 +214,19 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    {{ $Section_Name }}- Density and Deduct values
+                    {{ $Section_Name }}- Life Cycle Cost Analysis
                 </h3>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
 
                 <div id="Main-Content">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 0px;">
                         <div class="col-md-12 portlet" style="background-color:#c0c6c21a;">
                             <div class="row">
+                                <div class="col-md-3">
+                                    <h4><b > From: </b> {{ $From }}
+                                        <b> To: </b> {{$To}} </h4>
+                                </div>
                                 <div class="col-md-3">
                                     <h4><b> Surface :</b> {{ $Surface  }}  </h4>
                                 </div>
@@ -232,46 +239,129 @@
                                 <div class="col-md-3">
                                     <h4><b> Total Quantity :</b> {{ $Sum  }} <small>m2</small>  </h4>
                                 </div>
+                                <div class="col-md-3">
+                                    <h4><b> Maintenance years :</b>  {{$Maintenance_yrs}}  </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Rehabilitation :</b>  {{ $Rehabilitation_yr }} </h4>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="portlet bordered col-md-12">
+                            <div class="portlet-body">
+                                <div class="">
+                                    <h4> Net Prest Value </h4>
 
-                            <div class="portlet light bordered col-md-5 col-md-offset-4">
-                                <div class="portlet-title" style="">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Analysis year</th>
+                                            <th> Age(yrs) </th>
+                                            <th> Rehabilitation and Maintenance work </th>
+                                            <th> Cost </th>
+                                            <th> PWF </th>
+                                            <th> Present worth cost </th>
+                                        </tr>
+                                        </thead>
 
-                                    <form class="col-md-12" method="POST" action="{{ url( '/input_cost_analysis' ) }}">
-                                        {{csrf_field()}}
-                                        <div class="row">
-                                            <div class="col-md-6">  <br/> Initial Construction Cost  : </div>
-                                            <div class="col-md-6">  <input type="number" name="Intial_constru_cost" value="0" autofocus> </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">  <br/> Salvage value  : </div>
-                                            <div class="col-md-6">  <input class="form-control" type="number" name="salvage_value" value="0"> </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">  <br/> Discount rate  : </div>
-                                            <div class="col-md-6">  <input type="number" name="discount_rate" required> </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">  <br/> Analysis period  : </div>
-                                            <div class="col-md-6">  <input type="number" name="analysis_period" max="20" min="1" placeholder="0 - 20" required> </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">  <br/> Worked date  : </div>
-                                            <div class="col-md-6">  <input type="date" class="datepicker" name="worked_date"> </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 col-md-offset-3">  <input type="submit" class="btn green" value="submit" > </div>
-                                        </div>
-                                    </form>
+                                        <tbody>
+                                        <tr>
+                                            <td> {{ $Start_year }} </td>
+                                            <td> - </td>
+                                            <td> Initial Cost </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td> Initial cost </td>
+                                        </tr>
+                                        <tr>
+                                            <td> {{ $Start_year + $Maintenance_yrs }} </td>
+                                            <td> 0 </td>
+                                            <td> Asphalt Concrete Overlay(m3) </td>
+                                            <td> sum1 </td>
+                                            <td> 1 / (1 + discount_rate) </td>
+                                            <td> 1 * 2 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> {{ $Start_year + ($Maintenance_yrs * 2) }} </td>
+                                            <td> 0 + matenance year </td>
+                                            <td> Slurry Seal (m2) </td>
+                                            <td> sum2 </td>
+                                            <td> 1 / (1 + discount_rate) </td>
+                                            <td> 1 * 2 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> {{ $Start_year + ($Maintenance_yrs * 3) }} </td>
+                                            <td> 0 + (2 * matenance year) </td>
+                                            <td> Slurry Seal (m2) </td>
+                                            <td> sum2 </td>
+                                            <td> 1 / (1 + discount_rate) </td>
+                                            <td> 1 * 2 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td> Salvage value </td>
+                                            <td> 0 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td> Total present Worth Cost </td>
+                                            <td> Sum of total </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--End of databale i pasted-->
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="portlet bordered col-md-12">
+                            <div class="portlet-body">
+                                <div class="col-md-6">
+                                    <h4> Equivalent uniform annual cost </h4>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th> PWC </th>
+                                            <th> Capital Recover Factor </th>
+                                            <th> EUAC </th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td> total present worth cost </td>
+                                                <td>  </td>
+                                                <td> 1 * 2 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--End of databale i pasted-->
+                                </div>
+
+                                <div class="col-md-6">
+                                    <br/><br/><br/>
+                                    <div class="col-md-6">
+                                        <h3> <b> NPV :</b> sum3 birr </h3>
+                                    </div>
+                                    <div col-md-6>
+                                        <h3> <b> EUAC :</b> 1 * 2 birr </h3>
+                                    </div>
 
                                 </div>
 
                             </div>
-
                         </div>
 
                     </div>
@@ -382,11 +472,130 @@
             });
         });
 
+        $('#example_filter').appendTo('#append');
 
-        $('.datepicker').pickadate({
-            changeYear: true,
-            selectYears: 25 // Creates a dropdown of 15 years to control year
+        var valuesArray = new Array();
+
+        $('.Deduct_values').each(function () {
+            valuesArray.push( Number ($(this)[0].innerText ));
         });
+
+        console.log( valuesArray );
+        var max_Dv = Math.max.apply(Math, valuesArray);
+        m = 1 + ( (9/98) * (100 - max_Dv ) );
+        console.log(m);
+        $('#m').html(Math.round(m * 1000) / 1000);
+
+        var sum = 0;
+        $.each(valuesArray,function(){sum+=parseFloat(this) || 0;});
+        console.log(sum);
+        $('#tdv').html(Math.round(sum * 1000) / 1000);
+
+        // Cdv is to be calculated here
+
+        m = Math.round(m);
+        console.log(m);
+//        m=2;
+
+        if (m == 0)
+        {
+            var Cdv =  95;
+        }
+        else if (m == 1)
+        {
+            var Cdv =  sum;
+        }
+        else if (m == 2)
+        {
+            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,1)) + (-0.0006 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
+            console.log(Cdv);
+        }
+        else if (m == 3)
+        {
+            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,1)) + (-0.0009 * Math.pow(sum,2)) + (-0.000002 * Math.pow(sum,3)) ;
+        }
+        else if (m == 4)
+        {
+            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,1)) + (0.0002 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
+            console.log(Cdv);
+        }
+        else if (m == 5)
+        {
+            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,1)) + (0.0003 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
+        }
+        else if (m == 6)
+        {
+            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,1)) + (0.0009 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
+        }
+        else
+        {
+            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,1)) + (0.0012 * Math.pow(sum,2)) + (-0.000008 * Math.pow(sum,3)) ;
+        }
+
+
+        $('#cdv').html(Math.round(Cdv * 100) / 100);
+
+        var pci = 100 - Cdv;
+
+        pci = Math.round(pci * 100) / 100;
+
+        if (85 < pci && pci < 100)
+        {
+            // Good Dark green
+            $('#Progress_bar').css('background-color', "#006400" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#Progress_bar').html(  pci + "% " + "Good");
+            $('#pci_status').html(  pci + "% " + "Good");
+            $('#Progress_bar').css('width', pci + "%" );
+
+        }
+        else if( pci > 70)
+        {
+
+            $('#Progress_bar').css('background-color', "#90EE90" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Satisfactory");
+//            $('#pci_status').html(  pci + "% " + "Satisfactory");
+            $('#Progress_bar').css('width', pci + "%" );
+
+        }
+        else if(pci > 55)
+        {
+            $('#Progress_bar').css('background-color', "#ffff00" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Fair");
+//            $('#pci_status').html(  pci + "% " + "Fair");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 40)
+        {
+            $('#Progress_bar').css('background-color', "#ff7777" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Poor");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 25)
+        {
+            $('#Progress_bar').css('background-color', "#ff5454" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#pci_status').html(  pci + "% " + "Very Poor");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 10)
+        {
+            $('#Progress_bar').css('background-color', "#ff0000" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#pci_status').html(  pci + "% " + "Serious");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else
+        {
+            $('#Progress_bar').css('background-color', "#666666" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "failed");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+
 
     });
 </script>
