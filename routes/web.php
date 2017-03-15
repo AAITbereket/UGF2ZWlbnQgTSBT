@@ -58,6 +58,10 @@ Route::post('/open_distress_pictures', 'Section_controller@open_distress_picture
 
 Route::post('/add_distress_pictures', 'Section_controller@add_distress_pictures');
 
+Route::post('/Open_inspection', 'Section_controller@Open_inspection');
+
+    Route::post('/Delete_inspection', 'Section_controller@Delete_inspection');
+
 Route::get('/density_deduct_values', 'Section_controller@density_deduct_values');
 
 // ### --- Section Controller -- end

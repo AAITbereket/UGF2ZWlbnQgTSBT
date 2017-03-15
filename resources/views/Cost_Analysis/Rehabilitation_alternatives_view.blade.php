@@ -356,13 +356,13 @@
                                 </div>
 
                                 <div id="test-swipe-2" class="col s12 red">
-                                    Test 2
+                                    <h1>Alternative 2</h1>
                                 </div>
                                 <div id="test-swipe-3" class="col s12 green">
-                                    Test 3
+                                    <h1>Alternative 3</h1>
                                 </div>
                                 <div id="test-swipe-4" class="col s12 green">
-                                    Test 4
+                                    <h1>Alternative 4</h1>
                                 </div>
 
                             </div>

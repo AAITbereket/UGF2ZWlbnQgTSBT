@@ -21,7 +21,6 @@ class Section_controller extends Controller
             return redirect('/');
         }
 
-
         if(! Session::has('Section_Id') )
         {
             return redirect('/dashboard');
@@ -29,12 +28,16 @@ class Section_controller extends Controller
 
         $Session_Section_Id = Session::get('Section_Id');
 
+        $Inspections_id = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->pluck('Inspection_date');
+
+        $Inspections = array_unique($Inspections_id->toArray() ); // by the way here i am passing DATE DATE DATE
+
         $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
 
         if($Pavement_section->count() )
         {
             $Pavement_section_ = $Pavement_section[0];
-            return view('Dashboard.Section_Dashboard_view', compact('Pavement_section_'));
+            return view('Dashboard.Section_Dashboard_view', compact('Pavement_section_','Inspections'));
         }
         else{
             return redirect('/start_project_');
@@ -1093,4 +1096,37 @@ class Section_controller extends Controller
         }
 
     }
+
+    public function Open_inspection(Request $request)
+    {
+
+//        return $request;
+
+        $Inspection_date_open = $request->Inspection_date_open;
+
+        $Inspections_id = DB::table('section_condition_indices')->where('Inspection_date', "$Inspection_date_open")->pluck('Inspection_Id');
+
+        $Inspection_id = $Inspections_id[0];
+
+        Session::forget('Session_Inspection_Id') ;
+
+        Session::forget('Session_Inspection_Date') ;
+
+        Session::set('Session_Inspection_Id',$Inspection_id ) ;
+
+        Session::set('Session_Inspection_Date', $Inspection_date_open);
+
+        return redirect('/distress_Identification');
+
+    }
+
+    public function Delete_inspection(Request $request)
+    {
+
+        $Inspection_date_delete = $request->Inspection_date_delete;
+        $Inspections_id = DB::table('section_condition_indices')->where('Inspection_date', "$Inspection_date_delete")->delete();
+
+        return redirect('/Section_dashboard');
+    }
+
 }

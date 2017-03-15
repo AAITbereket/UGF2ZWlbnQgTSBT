@@ -236,7 +236,6 @@
 										</tr>
 									@endforeach
 								@endif
-
 							</table>
 						</div>
 					</div>

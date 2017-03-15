@@ -351,6 +351,69 @@
 
                     <div class="row">
 
+                        <div id="recent projects">
+                            <div class="row">
+                                <h4 class="col-md-4">
+                                    Previous Inspections
+                                </h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <table class="table" border="4">
+                                        <thead class="thead-default">
+                                        <tr class="row">
+                                            @if(! empty($Inspections))
+                                                <td> <h4> {{ count($Inspections) }} inspections </h4> </td>
+                                            @else
+                                                <td> <h4> 0 inspections </h4> </td>
+                                            @endif
+                                        </tr>
+                                        </thead>
+                                        @if(! empty($Inspections))
+                                            @foreach( $Inspections as $Inspection )
+                                                <tr class="row">
+                                                    <td class="col-md-8"> {{ $Inspection }} </td>
+                                                    <td class="col-md-3">
+                                                        <li class="dropdown dropdown-user" style="list-style: none;">
+                                                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-default">
+                                                                <li>
+                                                                    <a href="{{ url('/Open_inspection') }}"
+                                                                       onclick="event.preventDefault();document.getElementById('{{"open".$Inspection}}').submit();">
+                                                                        <i class="fa fa-key"></i> Open </a>
+
+                                                                    <form id="{{"open".$Inspection}}" action="{{ url('/Open_inspection') }}" method="POST" style="display: none;">
+                                                                        {{ csrf_field() }}
+                                                                        <input type="hidden" name="Inspection_date_open" value="{{$Inspection}}">
+                                                                    </form>
+
+                                                                </li>
+
+                                                                <li>
+                                                                    <a href="{{ url('/Delete_inspection') }}"
+                                                                       onclick="event.preventDefault();document.getElementById('{{"delete".$Inspection}}').submit();">
+                                                                        <i class="fa fa-trash"></i> Delete </a>
+
+                                                                    <form id="{{"delete".$Inspection}}" action="{{ url('/Delete_inspection') }}" method="POST" style="display: none;">
+                                                                        {{ csrf_field() }}
+                                                                        <input type="hidden" name="Inspection_date_delete" value="{{$Inspection}}">
+                                                                    </form>
+
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
