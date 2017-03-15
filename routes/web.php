@@ -73,6 +73,13 @@ Route::post('/new_rehabplan_mantaince_type', 'Cost_Analysis_Controller@new_rehab
 Route::post('/new_rehabplan_treatment_type', 'Cost_Analysis_Controller@new_rehabplan_treatment_type');
 
 Route::post('/reset_maintain_and_rehab_plan', 'Cost_Analysis_Controller@reset_maintain_and_rehab_plan');
+
+Route::get('/Treatment_Recommendation', 'Cost_Analysis_Controller@show_Treatment_Recommendation');
+
+Route::get('/Cost_Analysis_input_view', 'Cost_Analysis_Controller@Cost_Analysis_input_view');
+
+Route::get('/rehablitation_alternatives', 'Cost_Analysis_Controller@show_rehab_alternatives');
+
 // ## --- end of cost and rehab controller
 
 

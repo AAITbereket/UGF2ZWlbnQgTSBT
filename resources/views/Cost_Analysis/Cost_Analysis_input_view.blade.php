@@ -1,3 +1,22 @@
+<?php
+
+    $Section_Id = $Pavement_section_->Section_Id;
+    $Section_Name = $Pavement_section_->Section_Name;
+    $From = $Pavement_section_->From;
+    $To = $Pavement_section_->To;
+    $length = $Pavement_section_->Length;
+    $Surface = $Pavement_section_->Surface;
+    $Carriage_width = $Pavement_section_->Carriage_width;
+    $Number_of_lane = $Pavement_section_->Number_of_lane;
+    $Area = $Pavement_section_->Area;
+    $Street_type = $Pavement_section_->Street_type;
+    $Direction = $Pavement_section_->Direction;
+    $Carriage_way_type = $Pavement_section_->Carriage_way_type;
+
+    $condition_indices = $condition_indices_;
+
+    $Sum = $Quantities_sum;
+?>
 
 <!DOCTYPE html>
 
@@ -21,7 +40,7 @@
     <link href="homepage__/css/material.min.css" rel="stylesheet" type="text/css"/>
     <link href="homepage__/materialize/css/dataTables.material.min.css" rel="stylesheet" type="text/css"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+
     <link href="homepage__/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -48,6 +67,8 @@
          .modal-content input {
              font-size: 14px;
          }
+
+         .modal { width: 40% !important ; height: 35% !important ; }
 
     </style>
 
@@ -157,7 +178,7 @@
                     </li>
 
                     <li class="start ">
-                        <a href="/add_condition_index">
+                        <a href="index.html">
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
@@ -190,97 +211,69 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    Maintenace and Rehabilitation Plan
+                    {{ $Section_Name }}- Density and Deduct values
                 </h3>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
 
                 <div id="Main-Content">
                     <div class="row">
-
-                        <div class="col-md-5">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Pavement Work </u>  <div class="right"> <u>Unit</u> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete pothole Maintenance <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete Cold mix <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete Overlay <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Roadbed - Preparation <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Tack Coat Application <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Prime Coat Application  <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Gravel Resurfacing(Natural Aggregate) <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt mul for 2 <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Compact the milled area <div class="right">  M<sup>2</sup> </div> </li>
-
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "Pavement_work")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_pavement_work' )}}"> {{csrf_field()}}
-                                    <input style="width: 50%; font-size: 14px;" class="inline" type="text" name="pavement_work_new"> <input style="width: 15%; font-size: 14px;" class="inline" type="text" name="pavement_work_new_unit" placeholder="unit">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
+                        <div class="col-md-12 portlet" style="background-color:#c0c6c21a;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4><b > From: </b> {{ $From }}
+                                        <b> To: </b> {{$To}} </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Surface :</b> {{ $Surface  }}  </h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <h4><b> Area : </b> {{ $Area  }} <small>m2</small>  </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Total Quantity :</b> {{ $Sum  }} <small>m2</small>  </h4>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="col-md-4">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Maintenance type </u> </li>
-                                <li class="collection-item"> Slurry Seal coat </li>
-                                <li class="collection-item"> Micro Surfacing </li>
-                                <li class="collection-item"> Crack Sealing </li>
-                                <li class="collection-item"> Patching </li>
-                                <li class="collection-item"> Thin Overlay </li>
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "maintain_type")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_mantaince_type' )}}"> {{csrf_field()}}
-                                        <input style="width: 55%; font-size: 14px;" class="inline" type="text" name="maintance_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="col-md-3">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Rehablitation Tretments </u> </li>
-                                <li class="collection-item"> Thick Overlay </li>
-                                <li class="collection-item"> Mill and Overlay </li>
-                                <li class="collection-item"> Remove and Replace </li>
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "treatment_type")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_treatment_type' )}}"> {{csrf_field()}}
-                                        <input style="width: 35%; font-size: 14px;" class="inline" type="text" name="treatment_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-
                     </div>
 
                     <div class="row">
-                        <div class="content right">
-                            <form method="POST" action="{{url( '/reset_maintain_and_rehab_plan' )}}"> {{csrf_field()}}
-                                    <input type="submit" class="secondary-content btn btn-sm red lighten-1" value="Reset to defaults">
-                            </form>
+
+                            <div class="portlet light bordered col-md-5 col-md-offset-4">
+                                <div class="portlet-title" style="">
+
+                                    <form class="col-md-12">
+
+                                        <div class="row">
+                                            <div class="col-md-6">  <br/> Initial Construction Cost  : </div>
+                                            <div class="col-md-6">  <input type="number" name="Intial_constru_cost" > </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">  <br/> Salvage value  : </div>
+                                            <div class="col-md-6">  <input class="form-control" type="number" name="salvage_value" > </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">  <br/> Discount rate  : </div>
+                                            <div class="col-md-6">  <input type="number" name="discount_rate" > </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">  <br/> Analysis period  : </div>
+                                            <div class="col-md-6">  <input type="number" name="analysis_period" max="20" min="1" placeholder="0 - 20"> </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-md-offset-3">  <input type="submit" class="btn green" value="submit" name="analysis_period" > </div>
+                                            {{--<div class="col-md-6">   </div>--}}
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
@@ -299,7 +292,7 @@
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
         <div class="page-footer-inner">
-            2017 &copy; pavement Management system 
+            2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
         </div>
         <div class="scroll-to-top">
             <i class="fa fa-arrow-up"></i>
@@ -342,7 +335,7 @@
         Demo.init(); // init demo features
 
         $('#example').DataTable( {
-            "pageLength": 3,
+            "pageLength": 60,
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],
@@ -353,42 +346,167 @@
 
         $('#example_length').hide();
         $('.mdl-grid').first().hide();
-        $('#example_filter').appendTo('#append');
 
-        $('.modal').modal();
+
+        $('.modal').modal({
+            size: 'small'
+        });
 
 
         $('form.ajax').submit(function(e){
             e.preventDefault();
+            var formData = new FormData($(this)[0]);
+
+//            if( ! $('#Condition_Index_id').val() )
+//            {
+//                $('#modal1').modal('close');
+//                alert('First Select a Distress type')
+//                return false;
+//            }
 
             $('#modal1').modal('close');
 
-            var registerForm = $("#edit_section");
-            var formData = registerForm.serialize();
-
+            var registerForm = $("#add_picture");
+//            var formData = new FormData(registerForm);
             $.ajax({
                 type     : "POST",
-                url      : '/edit_section',
+                url      : '/add_distress_pictures',
                 data     : formData,
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
                 success  : function(data) {
                     console.log(data);
-                    Materialize.toast('Successfully Added', 4000, 'blue darken-4');
-                    window.location.reload(true);
+                    Materialize.toast('Image Added', 4000, 'blue darken-2');
+
                 }
             });
         });
 
-        $('#length').change(function() {
+        $('#example_filter').appendTo('#append');
 
-            $('#Area').val( $('#length').val() * $('#C_width').val() );
+        var valuesArray = new Array();
 
+        $('.Deduct_values').each(function () {
+            valuesArray.push( Number ($(this)[0].innerText ));
         });
 
-        $('#C_width').change(function() {
+        console.log( valuesArray );
+        var max_Dv = Math.max.apply(Math, valuesArray);
+        m = 1 + ( (9/98) * (100 - max_Dv ) );
+        console.log(m);
+        $('#m').html(Math.round(m * 1000) / 1000);
 
-            $('#Area').val( $('#length').val() * $('#C_width').val());
+        var sum = 0;
+        $.each(valuesArray,function(){sum+=parseFloat(this) || 0;});
+        console.log(sum);
+        $('#tdv').html(Math.round(sum * 1000) / 1000);
 
-        });
+        // Cdv is to be calculated here
+
+        m = Math.round(m);
+        console.log(m);
+//        m=2;
+
+        if (m == 0)
+        {
+            var Cdv =  95;
+        }
+        else if (m == 1)
+        {
+            var Cdv =  sum;
+        }
+        else if (m == 2)
+        {
+            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,1)) + (-0.0006 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
+            console.log(Cdv);
+        }
+        else if (m == 3)
+        {
+            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,1)) + (-0.0009 * Math.pow(sum,2)) + (-0.000002 * Math.pow(sum,3)) ;
+        }
+        else if (m == 4)
+        {
+            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,1)) + (0.0002 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
+            console.log(Cdv);
+        }
+        else if (m == 5)
+        {
+            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,1)) + (0.0003 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
+        }
+        else if (m == 6)
+        {
+            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,1)) + (0.0009 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
+        }
+        else
+        {
+            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,1)) + (0.0012 * Math.pow(sum,2)) + (-0.000008 * Math.pow(sum,3)) ;
+        }
+
+
+        $('#cdv').html(Math.round(Cdv * 100) / 100);
+
+        var pci = 100 - Cdv;
+
+        pci = Math.round(pci * 100) / 100;
+
+        if (85 < pci && pci < 100)
+        {
+            // Good Dark green
+            $('#Progress_bar').css('background-color', "#006400" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#Progress_bar').html(  pci + "% " + "Good");
+            $('#pci_status').html(  pci + "% " + "Good");
+            $('#Progress_bar').css('width', pci + "%" );
+
+        }
+        else if( pci > 70)
+        {
+
+            $('#Progress_bar').css('background-color', "#90EE90" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Satisfactory");
+//            $('#pci_status').html(  pci + "% " + "Satisfactory");
+            $('#Progress_bar').css('width', pci + "%" );
+
+        }
+        else if(pci > 55)
+        {
+            $('#Progress_bar').css('background-color', "#ffff00" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Fair");
+//            $('#pci_status').html(  pci + "% " + "Fair");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 40)
+        {
+            $('#Progress_bar').css('background-color', "#ff7777" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "Poor");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 25)
+        {
+            $('#Progress_bar').css('background-color', "#ff5454" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#pci_status').html(  pci + "% " + "Very Poor");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else if(pci > 10)
+        {
+            $('#Progress_bar').css('background-color', "#ff0000" );
+            $('#Progress_bar').css('color', "#fff" );
+            $('#pci_status').html(  pci + "% " + "Serious");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
+        else
+        {
+            $('#Progress_bar').css('background-color', "#666666" );
+            $('#Progress_bar').css('color', "#000" );
+            $('#pci_status').html(  pci + "% " + "failed");
+            $('#Progress_bar').css('width', pci + "%" );
+        }
 
 
     });

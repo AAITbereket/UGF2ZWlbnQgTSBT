@@ -94,4 +94,152 @@ class Cost_Analysis_Controller extends Controller
         return redirect('/Maintainance_and_Rehablitation_plan');
 
     }
+
+    public function show_Treatment_Recommendation()
+    {
+
+
+        if (! Auth::check()) {return redirect('/');}
+
+        if(! Session::has('Section_Id') )
+        {
+            return redirect('/dashboard');
+        }
+
+        if(! Session::has('Session_Inspection_Id') )
+        {
+            return redirect('/add_condition_index');
+        }
+
+        $Session_Section_Id = Session::get('Section_Id');
+
+        $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
+
+        $Session_Inspection_Id = Session::get('Session_Inspection_Id');
+
+        $Session_Inspection_Date = Session::get('Session_Inspection_Date');
+
+        $condition_indices = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->get();
+
+        $Quantities = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->pluck('Quantity');
+
+        $Quantities_sum = array_sum($Quantities->toArray());
+
+        if($condition_indices->count() )
+        {
+            $condition_indices_ = $condition_indices;
+        }
+        else{
+            return redirect('/add_condition_index');
+        }
+
+        if($Pavement_section->count() )
+        {
+            $Pavement_section_ = $Pavement_section[0];
+//            echo $condition_indices_;
+            return view('Cost_Analysis.Treatment_Recommendation_view', compact('Quantities_sum' ,'Pavement_section_','condition_indices_','Session_Inspection_Date'));
+        }
+        else{
+            return redirect('/add_section');
+        }
+
+    }
+
+    public function Cost_Analysis_input_view()
+    {
+
+        if (! Auth::check()) {return redirect('/');}
+
+        if(! Session::has('Section_Id') )
+        {
+            return redirect('/dashboard');
+        }
+
+        if(! Session::has('Session_Inspection_Id') )
+        {
+            return redirect('/add_condition_index');
+        }
+
+        $Session_Section_Id = Session::get('Section_Id');
+
+        $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
+
+        $Session_Inspection_Id = Session::get('Session_Inspection_Id');
+
+        $Session_Inspection_Date = Session::get('Session_Inspection_Date');
+
+        $condition_indices = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->get();
+
+        $Quantities = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->pluck('Quantity');
+
+        $Quantities_sum = array_sum($Quantities->toArray());
+
+        if($condition_indices->count() )
+        {
+            $condition_indices_ = $condition_indices;
+        }
+        else{
+            return redirect('/add_condition_index');
+        }
+
+        if($Pavement_section->count() )
+        {
+            $Pavement_section_ = $Pavement_section[0];
+            return view('Cost_Analysis.Cost_Analysis_input_view', compact('Quantities_sum' ,'Pavement_section_','condition_indices_','Session_Inspection_Date'));
+        }
+        else{
+            return redirect('/add_section');
+        }
+
+    }
+
+    public function show_rehab_alternatives()
+    {
+
+        if (! Auth::check()) {return redirect('/');}
+
+        if(! Session::has('Section_Id') )
+        {
+            return redirect('/dashboard');
+        }
+
+        if(! Session::has('Session_Inspection_Id') )
+        {
+            return redirect('/add_condition_index');
+        }
+
+        $Session_Section_Id = Session::get('Section_Id');
+
+        $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
+
+        $Session_Inspection_Id = Session::get('Session_Inspection_Id');
+
+        $Session_Inspection_Date = Session::get('Session_Inspection_Date');
+
+        $condition_indices = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->get();
+
+        $Quantities = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->where('Inspection_Id', "$Session_Inspection_Id")->pluck('Quantity');
+
+        $Quantities_sum = array_sum($Quantities->toArray());
+
+        if($condition_indices->count() )
+        {
+            $condition_indices_ = $condition_indices;
+        }
+        else{
+            return redirect('/add_condition_index');
+        }
+
+        if($Pavement_section->count() )
+        {
+            $Pavement_section_ = $Pavement_section[0];
+            return view('Cost_Analysis.Rehabilitation_alternatives_view', compact('Quantities_sum' ,'Pavement_section_','Session_Inspection_Date'));
+        }
+        else{
+            return redirect('/add_section');
+        }
+
+    }
+
+
 }

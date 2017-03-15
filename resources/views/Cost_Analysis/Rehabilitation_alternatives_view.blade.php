@@ -1,3 +1,20 @@
+<?php
+
+    $Section_Id = $Pavement_section_->Section_Id;
+    $Section_Name = $Pavement_section_->Section_Name;
+    $From = $Pavement_section_->From;
+    $To = $Pavement_section_->To;
+    $length = $Pavement_section_->Length;
+    $Surface = $Pavement_section_->Surface;
+    $Carriage_width = $Pavement_section_->Carriage_width;
+    $Number_of_lane = $Pavement_section_->Number_of_lane;
+    $Area = $Pavement_section_->Area;
+    $Street_type = $Pavement_section_->Street_type;
+    $Direction = $Pavement_section_->Direction;
+    $Carriage_way_type = $Pavement_section_->Carriage_way_type;
+
+    $Sum = $Quantities_sum;
+?>
 
 <!DOCTYPE html>
 
@@ -21,7 +38,7 @@
     <link href="homepage__/css/material.min.css" rel="stylesheet" type="text/css"/>
     <link href="homepage__/materialize/css/dataTables.material.min.css" rel="stylesheet" type="text/css"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css">
+
     <link href="homepage__/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="homepage__/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -48,6 +65,16 @@
          .modal-content input {
              font-size: 14px;
          }
+
+         .modal { width: 40% !important ; height: 35% !important ; }
+
+        .tabs .tab a {
+            color: #c3c3c3;
+        }
+
+        .tabs .tab a:hover , .tabs .tab a.active {
+            color:#14B9D6;
+        }
 
     </style>
 
@@ -157,7 +184,7 @@
                     </li>
 
                     <li class="start ">
-                        <a href="/add_condition_index">
+                        <a href="index.html">
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
@@ -189,98 +216,146 @@
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <h3 class="page-title">
-                    Maintenace and Rehabilitation Plan
-                </h3>
+                <h5 class="page-title">
+                    {{ $From }} -  {{$To}}- Rehabilitation Alternatives
+                </h5>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
 
                 <div id="Main-Content">
                     <div class="row">
-
-                        <div class="col-md-5">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Pavement Work </u>  <div class="right"> <u>Unit</u> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete pothole Maintenance <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete Cold mix <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt Concrete Overlay <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Roadbed - Preparation <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Tack Coat Application <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Prime Coat Application  <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Gravel Resurfacing(Natural Aggregate) <div class="right">  M<sup>3</sup> </div> </li>
-                                <li class="collection-item"> Asphalt mul for 2 <div class="right">  M<sup>2</sup> </div> </li>
-                                <li class="collection-item"> Compact the milled area <div class="right">  M<sup>2</sup> </div> </li>
-
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "Pavement_work")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_pavement_work' )}}"> {{csrf_field()}}
-                                    <input style="width: 50%; font-size: 14px;" class="inline" type="text" name="pavement_work_new"> <input style="width: 15%; font-size: 14px;" class="inline" type="text" name="pavement_work_new_unit" placeholder="unit">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
+                        <div class="col-md-12 portlet" style="background-color:#c0c6c21a;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4><b> Surface :</b> {{ $Surface  }}  </h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <h4><b> Area : </b> {{ $Area  }} <small>m2</small>  </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h4><b> Total Quantity :</b> {{ $Sum  }} <small>m2</small>  </h4>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="col-md-4">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Maintenance type </u> </li>
-                                <li class="collection-item"> Slurry Seal coat </li>
-                                <li class="collection-item"> Micro Surfacing </li>
-                                <li class="collection-item"> Crack Sealing </li>
-                                <li class="collection-item"> Patching </li>
-                                <li class="collection-item"> Thin Overlay </li>
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "maintain_type")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_mantaince_type' )}}"> {{csrf_field()}}
-                                        <input style="width: 55%; font-size: 14px;" class="inline" type="text" name="maintance_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <div class="col-md-3">
-                            <ul class="collection">
-                                <li class="collection-item"><u> Rehablitation Tretments </u> </li>
-                                <li class="collection-item"> Thick Overlay </li>
-                                <li class="collection-item"> Mill and Overlay </li>
-                                <li class="collection-item"> Remove and Replace </li>
-                                @if(! empty($maintan_rehab_plan))
-                                    @foreach($maintan_rehab_plan as $list_item)
-                                        @if($list_item->Type == "treatment_type")
-                                            <li class="collection-item"> {{$list_item->Name}} <div class="right">  {{$list_item->unit}} </div> </li>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                <li class="collection-item">
-                                    <form method="POST" action="{{url( '/new_rehabplan_treatment_type' )}}"> {{csrf_field()}}
-                                        <input style="width: 35%; font-size: 14px;" class="inline" type="text" name="treatment_type_new">  <input type="submit" class="secondary-content btn btn-sm" value="Add new">
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-
                     </div>
 
                     <div class="row">
-                        <div class="content right">
-                            <form method="POST" action="{{url( '/reset_maintain_and_rehab_plan' )}}"> {{csrf_field()}}
-                                    <input type="submit" class="secondary-content btn btn-sm red lighten-1" value="Reset to defaults">
-                            </form>
+                        <div class="portlet bordered col-md-12">
+                            <div class="portlet-body">
+                                <ul id="tabs-swipe-demo" class="tabs">
+                                    <li class="tab col s3" class="active"><a href="#test-swipe-1">Alternative 1</a></li>
+                                    <li class="tab col s3"><a  href="#test-swipe-2">Alternative 2</a></li>
+                                    <li class="tab col s3"><a href="#test-swipe-3">Alternative 3</a></li>
+                                    <li class="tab col s3"><a href="#test-swipe-4">Alternative 4</a></li>
+                                </ul>
+                                <div id="test-swipe-1" class="col s12">
+
+                                    <br/><br/>
+
+                                    <h3 class="page-title"> Mill and AC overlay overall the road section </h3>
+
+                                    <br/>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th data-field="id">Item</th>
+                                            <th data-field="name">Rehabilitation work</th>
+                                            <th data-field="price"> Quantity </th>
+                                            <th data-field="name"> Unit Rate </th>
+                                            <th data-field="price"> Total Cost </th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Asphalt mill for 2" 50.8 mm </td>
+                                            <td> {{$Sum}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td id="Tcost1">  0  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td> Compact the milled area </td>
+                                            <td> {{$Sum}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td id="Tcost2">  0  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td> Tack Coat application above the compacted area </td>
+                                            <td> {{$Sum}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                            <td id="Tcost3">  0  </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td> Asphalt Concrete overlay </td>
+                                            <td> {{$Sum_ = $Sum * 0.10744 }} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{$Sum_}}' * this.value;" > </td>
+                                            <td id="Tcost4">  0  </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b> Total Rehabilitation Cost </b></td>
+                                            <td id="Totalcost">  1111  </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <h3 class="page-title"> Mill and AC overlay overall the road section </h3>
+                                    <br/>
+
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th data-field="id">Item</th>
+                                            <th data-field="name">Maintenance work</th>
+                                            <th data-field="price"> Quantity </th>
+                                            <th data-field="name"> Unit Rate </th>
+                                            <th data-field="price"> Total Cost </th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td> Slurry seal </td>
+                                                <td> {{$Sum}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                                <td id="Tcost9">  0  </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><b> Total Maintenance Cost </b></td>
+                                                <td id="Totalcost">  1111  </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div id="test-swipe-2" class="col s12 red">
+                                    Test 2
+                                </div>
+                                <div id="test-swipe-3" class="col s12 green">
+                                    Test 3
+                                </div>
+                                <div id="test-swipe-4" class="col s12 green">
+                                    Test 4
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -299,7 +374,7 @@
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
         <div class="page-footer-inner">
-            2017 &copy; pavement Management system 
+            2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
         </div>
         <div class="scroll-to-top">
             <i class="fa fa-arrow-up"></i>
@@ -342,7 +417,7 @@
         Demo.init(); // init demo features
 
         $('#example').DataTable( {
-            "pageLength": 3,
+            "pageLength": 60,
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],
@@ -353,42 +428,39 @@
 
         $('#example_length').hide();
         $('.mdl-grid').first().hide();
-        $('#example_filter').appendTo('#append');
 
-        $('.modal').modal();
+
+        $('.modal').modal({
+            size: 'small'
+        });
 
 
         $('form.ajax').submit(function(e){
             e.preventDefault();
+            var formData = new FormData($(this)[0]);
+
 
             $('#modal1').modal('close');
 
-            var registerForm = $("#edit_section");
-            var formData = registerForm.serialize();
-
+            var registerForm = $("#add_picture");
+//            var formData = new FormData(registerForm);
             $.ajax({
                 type     : "POST",
-                url      : '/edit_section',
+                url      : '/add_distress_pictures',
                 data     : formData,
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
                 success  : function(data) {
                     console.log(data);
-                    Materialize.toast('Successfully Added', 4000, 'blue darken-4');
-                    window.location.reload(true);
+                    Materialize.toast('Image Added', 4000, 'blue darken-2');
+
                 }
             });
         });
 
-        $('#length').change(function() {
-
-            $('#Area').val( $('#length').val() * $('#C_width').val() );
-
-        });
-
-        $('#C_width').change(function() {
-
-            $('#Area').val( $('#length').val() * $('#C_width').val());
-
-        });
+        $('#example_filter').appendTo('#append');
 
 
     });
