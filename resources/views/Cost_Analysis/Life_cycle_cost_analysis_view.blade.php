@@ -13,12 +13,26 @@
     $Direction = $Pavement_section_->Direction;
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 
+        if($Alternative == 'Alternative2')
+            {
+                $Maintenance_yrs = 3;
+                $Rehabilitation_yr = 6;
+            }
+        else
+            {
+                $Maintenance_yrs = 2;
+                $Rehabilitation_yr = 6;
+            }
+
     $Sum = $Quantities_sum;
+    $Analysis_period = $Section_Cost_Analysis->Analysis_Period;
+    $Start_year = $Section_Cost_Analysis->Worked_date;
+    $Sum1 = $Totalcostrehab;
+    $Sum2 = $TotalMaintCost;
+    $discount_rate = $Section_Cost_Analysis->Discount_Rate;
+    $initial_cost = $Section_Cost_Analysis->Initial_Construction_Cost;
+    $Salvage_value = $Section_Cost_Analysis->Salvage_value;
 
-    $Start_year = 2014;
-
-    $Maintenance_yrs = 2;
-    $Rehabilitation_yr = 6;
 ?>
 
 <!DOCTYPE html>
@@ -174,20 +188,37 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="index.html">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -198,6 +229,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -224,14 +277,7 @@
                         <div class="col-md-12 portlet" style="background-color:#c0c6c21a;">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h4><b > From: </b> {{ $From }}
-                                        <b> To: </b> {{$To}} </h4>
-                                </div>
-                                <div class="col-md-3">
                                     <h4><b> Surface :</b> {{ $Surface  }}  </h4>
-                                </div>
-                                <div class="col-md-2">
-                                    <h4><b> Area : </b> {{ $Area  }} <small>m2</small>  </h4>
                                 </div>
                                 <div class="col-md-3">
                                     <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
@@ -255,7 +301,7 @@
                                 <div class="">
                                     <h4> Net Prest Value </h4>
 
-                                    <table>
+                                    <table class="table">
                                         <thead>
                                         <tr>
                                             <th>Analysis year</th>
@@ -269,44 +315,89 @@
 
                                         <tbody>
                                         <tr>
-                                            <td> {{ $Start_year }} </td>
+                                            <td class="analysis_year"> {{ $Start_year }} </td>
                                             <td> - </td>
-                                            <td> Initial Cost </td>
-                                            <td>  </td>
-                                            <td>  </td>
                                             <td> Initial cost </td>
+                                            <td>  </td>
+                                            <td>  </td>
+                                            <td class="total_cost"> {{$initial_cost}} </td>
                                         </tr>
-                                        <tr>
-                                            <td> {{ $Start_year + $Maintenance_yrs }} </td>
-                                            <td> 0 </td>
-                                            <td> Asphalt Concrete Overlay(m3) </td>
-                                            <td> sum1 </td>
-                                            <td> 1 / (1 + discount_rate) </td>
-                                            <td> 1 * 2 </td>
-                                        </tr>
-                                        <tr>
-                                            <td> {{ $Start_year + ($Maintenance_yrs * 2) }} </td>
-                                            <td> 0 + matenance year </td>
-                                            <td> Slurry Seal (m2) </td>
-                                            <td> sum2 </td>
-                                            <td> 1 / (1 + discount_rate) </td>
-                                            <td> 1 * 2 </td>
-                                        </tr>
-                                        <tr>
-                                            <td> {{ $Start_year + ($Maintenance_yrs * 3) }} </td>
-                                            <td> 0 + (2 * matenance year) </td>
-                                            <td> Slurry Seal (m2) </td>
-                                            <td> sum2 </td>
-                                            <td> 1 / (1 + discount_rate) </td>
-                                            <td> 1 * 2 </td>
-                                        </tr>
+                                        <?php $Start_year = $Start_year + 1 + $Maintenance_yrs; ?>
+                                        <?php $yr_long = 0; ?>
+                                        @while( $yr_long < ceil($Analysis_period / 2 ) )
+                                            @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
+                                                <tr style="background: #28c388;">
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Asphalt Concrete Overlay(m3) </td>
+                                                    <td> {{$Sum1}} </td>
+                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                    <td class="total_cost maintain"> {{  $Sum1 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Asphalt Concrete Overlay(m3) </td>
+                                                    <td> {{$Sum1}} </td>
+                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                    <td class="total_cost"> {{  $Sum1 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                </tr>
+                                            @endif
+
+                                                @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
+                                                    <tr style="background: #28c388;">
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Slurry Seal (m2) </td>
+                                                    <td> {{$Sum2}} </td>
+                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                    <td class="total_cost maintain"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                    </tr>
+                                                 @else
+                                                     <tr>
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Slurry Seal (m2) </td>
+                                                    <td> {{$Sum2}} </td>
+                                                     <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                     <td class="total_cost"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                     </tr>
+                                                 @endif
+
+                                                @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
+                                                    <tr style="background: #28c388;">
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Slurry Seal (m2) </td>
+                                                    <td> {{$Sum2}} </td>
+                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                    <td class="total_cost maintain"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
+                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
+                                                    <td> Slurry Seal (m2) </td>
+                                                    <td> {{$Sum2}} </td>
+                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
+                                                    <td class="total_cost"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <?php $yr_long++; ?>
+                                                    </tr>
+                                                @endif
+                                        @endwhile
                                         <tr>
                                             <td>  </td>
                                             <td>  </td>
                                             <td>  </td>
                                             <td>  </td>
                                             <td> Salvage value </td>
-                                            <td> 0 </td>
+                                            <td> {{ $Salvage_value }} </td>
                                         </tr>
                                         <tr>
                                             <td>  </td>
@@ -314,7 +405,7 @@
                                             <td>  </td>
                                             <td>  </td>
                                             <td> Total present Worth Cost </td>
-                                            <td> Sum of total </td>
+                                            <td id = "total_of_total"> 0  </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -326,11 +417,11 @@
 
                     </div>
                     <div class="row">
-                        <div class="portlet bordered col-md-12">
-                            <div class="portlet-body">
+                        <div class=" col-md-12">
+                            <div class="">
                                 <div class="col-md-6">
                                     <h4> Equivalent uniform annual cost </h4>
-                                    <table>
+                                    <table class="table">
                                         <thead>
                                         <tr>
                                             <th> PWC </th>
@@ -341,29 +432,37 @@
 
                                         <tbody>
                                             <tr>
-                                                <td> total present worth cost </td>
-                                                <td>  </td>
-                                                <td> 1 * 2 </td>
+                                                <td id="pwc"> </td>
+                                                <td id="capital_recover_factor"> {{ (pow((1+$discount_rate),$Analysis_period)) /  (-1 + pow((1+$discount_rate),$Analysis_period)) }}  </td>
+                                                <td id="EUAC">  </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <!--End of databale i pasted-->
                                 </div>
 
-                                <div class="col-md-6">
-                                    <br/><br/><br/>
-                                    <div class="col-md-6">
-                                        <h3> <b> NPV :</b> sum3 birr </h3>
-                                    </div>
-                                    <div col-md-6>
-                                        <h3> <b> EUAC :</b> 1 * 2 birr </h3>
-                                    </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br/>
+                                        <div class="col-md-6">
+                                            <h3 class="left"> <b> NPV :</b></h3> <h3 id="sum3">  </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3 class="left"> <b> EUAC :</b> </h3> <h3 id="euac_total">  </h3>
+                                        </div>
 
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
 
+                    </div>
+
+                    <div id="chart">
+
+                        <canvas id="canvas1">
+                        </canvas>
                     </div>
 
                 </div>
@@ -411,6 +510,7 @@
 <script src="homepage__/materialize/js/materialize.js"></script>
 <script src="homepage__/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="homepage__/js/dataTables.material.min.js" type="text/javascript"></script>
+<script src="homepage__/js/Chart.js" type="text/javascript"></script>
 
 <script>
 //    $(document).ready(function(){
@@ -474,128 +574,57 @@
 
         $('#example_filter').appendTo('#append');
 
-        var valuesArray = new Array();
 
-        $('.Deduct_values').each(function () {
-            valuesArray.push( Number ($(this)[0].innerText ));
+        var years = new Array();
+        $('.analysis_year').each(function () {
+            years.push( Number ($(this)[0].innerText ));
         });
 
-        console.log( valuesArray );
-        var max_Dv = Math.max.apply(Math, valuesArray);
-        m = 1 + ( (9/98) * (100 - max_Dv ) );
-        console.log(m);
-        $('#m').html(Math.round(m * 1000) / 1000);
+        var Totals = new Array();
+        $('.total_cost').each(function () {
+            Totals.push( Number ($(this)[0].innerText ));
+        });
 
-        var sum = 0;
-        $.each(valuesArray,function(){sum+=parseFloat(this) || 0;});
+        var Total_maintain = new Array();
+        $('.maintain').each(function () {
+            Total_maintain.push( Number ($(this)[0].innerText ));
+        });
+
+
+
+        console.log(Totals);
+
+        var sum = Totals.reduce(function(a, b) { return a + b; }, 0);
+
         console.log(sum);
-        $('#tdv').html(Math.round(sum * 1000) / 1000);
+        console.log(sum = sum - '{{$Salvage_value}}');
 
-        // Cdv is to be calculated here
+        $('#total_of_total').text(Math.round(sum * 100) / 100);
+        $('#pwc').text(Math.round(sum * 100) / 100);
+        $('#sum3').text((Math.round(sum * 100) / 100) +" birr" );
 
-        m = Math.round(m);
-        console.log(m);
-//        m=2;
+        console.log( Number($('#capital_recover_factor')[0].innerHTML));
 
-        if (m == 0)
-        {
-            var Cdv =  95;
-        }
-        else if (m == 1)
-        {
-            var Cdv =  sum;
-        }
-        else if (m == 2)
-        {
-            var Cdv =  -1.907 +  (0.819 * Math.pow(sum,1)) + (-0.0006 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
-            console.log(Cdv);
-        }
-        else if (m == 3)
-        {
-            var Cdv =  -6.1516 +  (0.8016 * Math.pow(sum,1)) + (-0.0009 * Math.pow(sum,2)) + (-0.000002 * Math.pow(sum,3)) ;
-        }
-        else if (m == 4)
-        {
-            var Cdv =  -7.9770 +  (0.6844 * Math.pow(sum,1)) + (0.0002 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
-            console.log(Cdv);
-        }
-        else if (m == 5)
-        {
-            var Cdv =  -7.8998 +  (0.6105 * Math.pow(sum,1)) + (0.0003 * Math.pow(sum,2)) + (-0.000004 * Math.pow(sum,3)) ;
-        }
-        else if (m == 6)
-        {
-            var Cdv =  -6.6359 +  (0.5140 * Math.pow(sum,1)) + (0.0009 * Math.pow(sum,2)) + (-0.000005 * Math.pow(sum,3)) ;
-        }
-        else
-        {
-            var Cdv =  -7.2983 +  (0.5192 * Math.pow(sum,1)) + (0.0012 * Math.pow(sum,2)) + (-0.000008 * Math.pow(sum,3)) ;
-        }
+        $('#EUAC').text(
+                (Math.round( ( sum *  Number($('#capital_recover_factor')[0].innerHTML) ) * 100) / 100)
+        );
 
+        $('#euac_total').text(
+                (Math.round( ( sum *  Number($('#capital_recover_factor')[0].innerHTML) ) * 100) / 100) +" birr"
+        );
 
-        $('#cdv').html(Math.round(Cdv * 100) / 100);
-
-        var pci = 100 - Cdv;
-
-        pci = Math.round(pci * 100) / 100;
-
-        if (85 < pci && pci < 100)
-        {
-            // Good Dark green
-            $('#Progress_bar').css('background-color', "#006400" );
-            $('#Progress_bar').css('color', "#fff" );
-            $('#Progress_bar').html(  pci + "% " + "Good");
-            $('#pci_status').html(  pci + "% " + "Good");
-            $('#Progress_bar').css('width', pci + "%" );
-
-        }
-        else if( pci > 70)
-        {
-
-            $('#Progress_bar').css('background-color', "#90EE90" );
-            $('#Progress_bar').css('color', "#000" );
-            $('#pci_status').html(  pci + "% " + "Satisfactory");
-//            $('#pci_status').html(  pci + "% " + "Satisfactory");
-            $('#Progress_bar').css('width', pci + "%" );
-
-        }
-        else if(pci > 55)
-        {
-            $('#Progress_bar').css('background-color', "#ffff00" );
-            $('#Progress_bar').css('color', "#000" );
-            $('#pci_status').html(  pci + "% " + "Fair");
-//            $('#pci_status').html(  pci + "% " + "Fair");
-            $('#Progress_bar').css('width', pci + "%" );
-        }
-        else if(pci > 40)
-        {
-            $('#Progress_bar').css('background-color', "#ff7777" );
-            $('#Progress_bar').css('color', "#000" );
-            $('#pci_status').html(  pci + "% " + "Poor");
-            $('#Progress_bar').css('width', pci + "%" );
-        }
-        else if(pci > 25)
-        {
-            $('#Progress_bar').css('background-color', "#ff5454" );
-            $('#Progress_bar').css('color', "#fff" );
-            $('#pci_status').html(  pci + "% " + "Very Poor");
-            $('#Progress_bar').css('width', pci + "%" );
-        }
-        else if(pci > 10)
-        {
-            $('#Progress_bar').css('background-color', "#ff0000" );
-            $('#Progress_bar').css('color', "#fff" );
-            $('#pci_status').html(  pci + "% " + "Serious");
-            $('#Progress_bar').css('width', pci + "%" );
-        }
-        else
-        {
-            $('#Progress_bar').css('background-color', "#666666" );
-            $('#Progress_bar').css('color', "#000" );
-            $('#pci_status').html(  pci + "% " + "failed");
-            $('#Progress_bar').css('width', pci + "%" );
-        }
-
+        var ctx = document.getElementById("canvas1").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'birr',
+                    data: Totals,
+                    backgroundColor: "rgba(153,255,51,1)"
+                }]
+            }
+        });
 
     });
 </script>

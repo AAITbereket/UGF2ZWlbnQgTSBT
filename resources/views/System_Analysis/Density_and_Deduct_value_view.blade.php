@@ -171,20 +171,37 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="index.html">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -195,6 +212,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -333,7 +372,7 @@
                                                             @endif
 
                                                             {{--Patching --}}
-                                                        @elseif($condition_index->Distress_type == "patch_cut")
+                                                        @elseif($condition_index->Distress_type == "patching")
                                                             @if($condition_index->Severity == "low")
                                                                 {{  2.1419 + ( 5.324 * pow($Density, 1) ) + ( 6.6383 * pow($Density, 2) ) + ( 5.2832 * pow($Density, 3) ) + ( -4.5093 * pow($Density, 4) ) + ( 1.0189 * pow($Density, 5) ) }}
                                                             @elseif($condition_index->Severity == "medium")
@@ -413,15 +452,16 @@
                                     </div>
 
                                 </div>
-
+                                <br/>
                                 <div class="row ">
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <h4><b>PCI:</b></h4>
                                     </div>
+
                                     <div class="inline col-md-3">
                                         <h4 id="pci_status"> </h4>
                                     </div>
-                                    <div class="progress col-md-5" id="progress_bar_container">
+                                    <div class="progress col-md-4" id="progress_bar_container">
 
                                         <div id="Progress_bar" class="inline determinate" role="progressbar" aria-valuenow="40"
                                              aria-valuemin="0" aria-valuemax="100" style="width:40%">
@@ -429,7 +469,23 @@
                                         </div>
 
                                     </div>
+                                    <div class="col-md-4">
+                                        <h4 id="Pci_recommendation">  </h4>
+                                    </div>
 
+                                </div>
+                                <div class="col-md-11">
+                                    @if(! empty($condition_indices[0]))
+                                        <?php  $my_array = $condition_indices->toArray(); ?>
+
+                                        <form id="save_inspeciton" class="ajax" action="{{  url( '/Save_Inspection' ) }}" method="POST" >
+                                            {{csrf_field()}}
+                                            <input type="hidden" value="{{$my_array[0]->Inspection_Id}}" name="Inspection_Id">
+                                            <input type="hidden" id="pci_input" name="Pci">
+                                            <input type="submit" class="btn right" value="Save Inspection">
+                                        </form>
+
+                                    @endif
                                 </div>
 
                             </div>
@@ -511,38 +567,6 @@
             size: 'small'
         });
 
-
-        $('form.ajax').submit(function(e){
-            e.preventDefault();
-            var formData = new FormData($(this)[0]);
-
-//            if( ! $('#Condition_Index_id').val() )
-//            {
-//                $('#modal1').modal('close');
-//                alert('First Select a Distress type')
-//                return false;
-//            }
-
-            $('#modal1').modal('close');
-
-            var registerForm = $("#add_picture");
-//            var formData = new FormData(registerForm);
-            $.ajax({
-                type     : "POST",
-                url      : '/add_distress_pictures',
-                data     : formData,
-                mimeType: "multipart/form-data",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success  : function(data) {
-                    console.log(data);
-                    Materialize.toast('Image Added', 4000, 'blue darken-2');
-
-                }
-            });
-        });
-
         $('#example_filter').appendTo('#append');
 
         var valuesArray = new Array();
@@ -618,6 +642,7 @@
             $('#Progress_bar').html(  pci + "% " + "Good");
             $('#pci_status').html(  pci + "% " + "Good");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html('Routine Maintenanace');
 
         }
         else if( pci > 70)
@@ -628,6 +653,7 @@
             $('#pci_status').html(  pci + "% " + "Satisfactory");
 //            $('#pci_status').html(  pci + "% " + "Satisfactory");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html('Preventive Maintenanace');
 
         }
         else if(pci > 55)
@@ -637,6 +663,7 @@
             $('#pci_status').html(  pci + "% " + "Fair");
 //            $('#pci_status').html(  pci + "% " + "Fair");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html(' Minor Rehabilitation ');
         }
         else if(pci > 40)
         {
@@ -644,6 +671,7 @@
             $('#Progress_bar').css('color', "#000" );
             $('#pci_status').html(  pci + "% " + "Poor");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html(' Minor Rehabilitation ');
         }
         else if(pci > 25)
         {
@@ -651,6 +679,7 @@
             $('#Progress_bar').css('color', "#fff" );
             $('#pci_status').html(  pci + "% " + "Very Poor");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html('Major Rehabilitation ');
         }
         else if(pci > 10)
         {
@@ -658,6 +687,7 @@
             $('#Progress_bar').css('color', "#fff" );
             $('#pci_status').html(  pci + "% " + "Serious");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html('Reconstruction');
         }
         else
         {
@@ -665,8 +695,31 @@
             $('#Progress_bar').css('color', "#000" );
             $('#pci_status').html(  pci + "% " + "failed");
             $('#Progress_bar').css('width', pci + "%" );
+            $('#Pci_recommendation').html('Reconstruction');
         }
 
+
+
+        $('form.ajax').submit(function(e){
+            e.preventDefault();
+            $('#pci_input').val(pci);
+//            var formData = new FormData($(this)[0]);
+//
+//            var formData = formData.serialize();
+
+            var registerForm = $("#save_inspeciton");
+            var formData = registerForm.serialize();
+            $.ajax({
+                type     : "POST",
+                url      : '/Save_inspection',
+                data     : formData,
+                success  : function(data) {
+                    console.log(data);
+                    Materialize.toast('Inspection Saved', 4000, 'red darken-2');
+
+                }
+            });
+        });
 
     });
 </script>

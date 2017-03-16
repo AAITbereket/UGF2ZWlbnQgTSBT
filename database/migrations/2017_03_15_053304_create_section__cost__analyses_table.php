@@ -22,6 +22,8 @@ class CreateSectionCostAnalysesTable extends Migration
             $table->string('Discount_Rate');
             $table->string('Analysis_Period');
             $table->string('Alternative')->nullable();
+            $table->string('input_TotalMaintCost')->nullable();
+            $table->string('input_Totalcostrehab')->nullable();
             $table->timestamps();
         });
     }

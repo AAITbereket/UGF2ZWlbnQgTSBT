@@ -170,14 +170,31 @@
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="index.html">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -188,6 +205,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -473,22 +512,22 @@
                             </div>
 
                             <div class="col-md-3">
-                                <h5>11. Patch/UT cut </h5>
+                                <h5>11. Patching </h5>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_low" type="number" min="0" step="0.001" class="">
+                                        <input name="patching_low" type="number" min="0" step="0.001" class="">
                                         <label style="font-size: 12px;">Low</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_medium" type="number" min="0" step="0.001" class="">
+                                        <input name="patching_medium" type="number" min="0" step="0.001" class="">
                                         <label style="font-size: 12px;">medium</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class=" input-field">
-                                        <input name="patch_cut_high" type="number" min="0" step="0.001" class="">
+                                        <input name="patching_high" type="number" min="0" step="0.001" class="">
                                         <label style="font-size: 12px;">high</label>
                                     </div>
                                 </div>

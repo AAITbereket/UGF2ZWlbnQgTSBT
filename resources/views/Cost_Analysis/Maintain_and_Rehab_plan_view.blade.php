@@ -150,20 +150,37 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="/add_condition_index">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -174,6 +191,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">

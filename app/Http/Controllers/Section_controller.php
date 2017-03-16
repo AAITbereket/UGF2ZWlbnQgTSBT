@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\section_condition_index;
 use App\distress_pictures;
+use App\inspection_result;
 
 class Section_controller extends Controller
 {
@@ -32,6 +33,10 @@ class Section_controller extends Controller
 
         $Inspections = array_unique($Inspections_id->toArray() ); // by the way here i am passing DATE DATE DATE
 
+//        $Inspections = DB::table('inspection_results')->where('Section_Id', "$Session_Section_Id")->get();
+//
+////        $Inspections = array_unique($Inspections->toArray() ); // by the way here i am passing DATE DATE DATE
+        
         $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
 
         if($Pavement_section->count() )
@@ -80,7 +85,7 @@ class Section_controller extends Controller
             return redirect('/start_project_');
         }
     }
-    
+
     public function add_condition_index_post(Request $request)
     {
 
@@ -509,44 +514,44 @@ class Section_controller extends Controller
 
         }
 
-        // patch_cut_low
-        if(! empty($request->patch_cut_low))
+        // patching_low
+        if(! empty($request->patching_low))
         {
             $New_section_condition = new section_condition_index();
             $New_section_condition->Section_Id = $request->Section_Id;
             $New_section_condition->Inspection_date = $request->Inspection_date;
             $New_section_condition->Inspection_Id = $request->Inspection_Id;
-            $New_section_condition->Distress_type = 'patch_cut';
+            $New_section_condition->Distress_type = 'patching';
             $New_section_condition->Severity = 'low';
-            $New_section_condition->Quantity = $request->patch_cut_low;
+            $New_section_condition->Quantity = $request->patching_low;
             $New_section_condition->save();
 
         }
 
-//        patch_cut_medium
-        if(! empty($request->patch_cut_medium))
+//        patching_medium
+        if(! empty($request->patching_medium))
         {
             $New_section_condition = new section_condition_index();
             $New_section_condition->Section_Id = $request->Section_Id;
             $New_section_condition->Inspection_date = $request->Inspection_date;
             $New_section_condition->Inspection_Id = $request->Inspection_Id;
-            $New_section_condition->Distress_type = 'patch_cut';
+            $New_section_condition->Distress_type = 'patching';
             $New_section_condition->Severity = 'medium';
-            $New_section_condition->Quantity = $request->patch_cut_medium;
+            $New_section_condition->Quantity = $request->patching_medium;
             $New_section_condition->save();
 
         }
 
-//        patch_cut_high
-        if(! empty($request->patch_cut_high))
+//        patching_high
+        if(! empty($request->patching_high))
         {
             $New_section_condition = new section_condition_index();
             $New_section_condition->Section_Id = $request->Section_Id;
             $New_section_condition->Inspection_date = $request->Inspection_date;
             $New_section_condition->Inspection_Id = $request->Inspection_Id;
-            $New_section_condition->Distress_type = 'patch_cut';
+            $New_section_condition->Distress_type = 'patching';
             $New_section_condition->Severity = 'high';
-            $New_section_condition->Quantity = $request->patch_cut_high;
+            $New_section_condition->Quantity = $request->patching_high;
             $New_section_condition->save();
 
         }
@@ -936,6 +941,7 @@ class Section_controller extends Controller
             $New_section_condition->save();
 
         }
+        
 
         $Session_Inspection_Id =  $request->Inspection_Id;
 
@@ -1128,5 +1134,23 @@ class Section_controller extends Controller
 
         return redirect('/Section_dashboard');
     }
+
+
+    public function Save_inspection(Request $request)
+    {
+
+        $Inspection_Id = $request->Inspection_Id;
+        $Pci = $request->Pci;
+
+        $Inspections_id = DB::table('inspection_results')->where('Inspection_Id', "$Inspection_Id")->delete();
+
+        $new_inspection =  new inspection_result();
+        $new_inspection->PCI = $Pci;
+        $new_inspection->Inspection_Id = $Inspection_Id;
+        $new_inspection->Section_Id = Session::get('Section_Id');
+        $new_inspection->save();
+
+    }
+
 
 }

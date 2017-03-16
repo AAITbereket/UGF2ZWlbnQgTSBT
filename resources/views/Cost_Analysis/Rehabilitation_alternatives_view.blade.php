@@ -14,6 +14,7 @@
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 
     $Sum = $Quantities_sum;
+
 ?>
 
 <!DOCTYPE html>
@@ -177,20 +178,37 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="index.html">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -201,6 +219,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -255,7 +295,7 @@
 
                                     <br/><br/>
 
-                                    <h3 class="page-title"> Mill and AC overlay overall the road section </h3>
+                                    <h2 class="page-title"> Mill and AC overlay overall the road section and slurry seal future maintenance </h2>
 
                                     <br/>
                                     <table>
@@ -306,6 +346,9 @@
                                                         Number( $('#Tcost3').text() ) +
                                                         Number( $('#Tcost4').text())
                                                 );
+                                                console.log(Number( $('#Totalcostrehab').text() ));
+
+                                                $('#input_Totalcostrehab').val( $('#Totalcostrehab').text() );
                                             }
                                         </script>
                                         <tr>
@@ -338,7 +381,7 @@
                                                 <td>1</td>
                                                 <td> Slurry seal </td>
                                                 <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value;" > </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value; $('#input_TotalMaintCost')[0].value = '{{$Sum}}' * this.value;" > </td>
                                                 <td id="Tcost9">  0  </td>
                                             </tr>
 
@@ -353,10 +396,136 @@
                                         </tbody>
                                     </table>
 
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <br/><br/>
+                                            <form method="POST" action="{{url('/Save_Cost') }}">
+                                                {{csrf_field()}}
+                                                <input type="hidden" id="input_TotalMaintCost" name="input_TotalMaintCost">
+                                                <input type="hidden" id="input_Totalcostrehab" name="input_Totalcostrehab">
+                                                <input type="hidden" name="Alternative" value="Alternative1">
+                                                <input type="submit" value="Submit" class="btn right">
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div id="test-swipe-2" class="col s12 red">
-                                    <h1>Alternative 2</h1>
+                                <div id="test-swipe-2" class="col s12">
+                                        <br/><br/>
+                                        <h2 class="page-title"> Mill and AC overlay overall the road and micro-surfacing future maintenance </h2>
+
+                                        <br/>
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th data-field="id">Item</th>
+                                                <th data-field="name">Rehabilitation work</th>
+                                                <th data-field="price"> Quantity </th>
+                                                <th data-field="name"> Unit Rate </th>
+                                                <th data-field="price"> Total Cost </th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Asphalt mill for 2" 50.8 mm </td>
+                                                <td> {{$Sum}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab(); " > </td>
+                                                <td id="A2_Tcost1">  0  </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td> Compact the milled area </td>
+                                                <td> {{$Sum}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                                <td id="A2_Tcost2">  0  </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td> Tack Coat application above the compacted area </td>
+                                                <td> {{$Sum}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                                <td id="A2_Tcost3">  0  </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td> Asphalt Concrete overlay </td>
+                                                <td> {{ round($Sum_ = $Sum * 0.10744,2 ) }} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab();" > </td>
+                                                <td id="A2_Tcost4">  0  </td>
+                                            </tr>
+                                            <script>
+                                                function Calculate_total_Cost_rehab() {
+                                                    $('#Totalcostrehab2').text(
+                                                            Number( $('#A2_Tcost1').text() ) +
+                                                            Number( $('#A2_Tcost2').text() ) +
+                                                            Number( $('#A2_Tcost3').text() ) +
+                                                            Number( $('#A2_Tcost4').text())
+                                                    );
+                                                    console.log(Number( $('#Totalcostrehab').text() ));
+
+                                                    $('#input_Totalcostrehab2').val( $('#Totalcostrehab2').text() );
+                                                }
+                                            </script>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><b> Total Rehabilitation Cost </b></td>
+                                                <td id="Totalcostrehab2">    </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <hr/>
+                                        <br/>
+
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th data-field="id">Item</th>
+                                                <th data-field="name">Maintenance work</th>
+                                                <th data-field="price"> Quantity </th>
+                                                <th data-field="name"> Unit Rate </th>
+                                                <th data-field="price"> Total Cost </th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td> Slurry seal </td>
+                                                <td> {{$Sum}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#A2_Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#A2_TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value; $('#input_TotalMaintCost2')[0].value = '{{$Sum}}' * this.value;" > </td>
+                                                <td id="A2_Tcost9">  0  </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><b> Total Maintenance Cost </b></td>
+                                                <td id="A2_TotalMaintCost">  0  </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <br/><br/>
+                                                <form method="POST" action="{{url('/Save_Cost') }}">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" id="input_TotalMaintCost2" name="input_TotalMaintCost">
+                                                    <input type="hidden" id="input_Totalcostrehab2" name="input_Totalcostrehab">
+                                                    <input type="hidden" name="Alternative" value="Alternative2">
+                                                    <input type="submit" value="Submit" class="btn right">
+                                                </form>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div id="test-swipe-3" class="col s12 green">
                                     <h1>Alternative 3</h1>
@@ -442,32 +611,6 @@
 
         $('.modal').modal({
             size: 'small'
-        });
-
-
-        $('form.ajax').submit(function(e){
-            e.preventDefault();
-            var formData = new FormData($(this)[0]);
-
-
-            $('#modal1').modal('close');
-
-            var registerForm = $("#add_picture");
-//            var formData = new FormData(registerForm);
-            $.ajax({
-                type     : "POST",
-                url      : '/add_distress_pictures',
-                data     : formData,
-                mimeType: "multipart/form-data",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success  : function(data) {
-                    console.log(data);
-                    Materialize.toast('Image Added', 4000, 'blue darken-2');
-
-                }
-            });
         });
 
         $('#example_filter').appendTo('#append');

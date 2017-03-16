@@ -56,9 +56,6 @@
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
     <style>
-         .modal-content input {
-            font-size: 14px;
-        }
 
           .dataTables_filter label {
               line-height: 0px;
@@ -171,20 +168,37 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="/dashboard">
+                        <a href="index.html">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="index.html">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -195,6 +209,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -245,23 +281,23 @@
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-6">  <br/> Initial Construction Cost  : </div>
-                                            <div class="col-md-6">  <input type="number" name="Intial_constru_cost" value="0" autofocus> </div>
+                                            <div class="col-md-6">  <input type="number" style="font-size: 14px;" name="Intial_constru_cost" value="0"  step="0.0001" autofocus> </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">  <br/> Salvage value  : </div>
-                                            <div class="col-md-6">  <input class="form-control" type="number" name="salvage_value" value="0"> </div>
+                                            <div class="col-md-6">  <input class="form-control" style="font-size: 14px;" type="number" name="salvage_value" step="0.0001" value="0"> </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">  <br/> Discount rate  : </div>
-                                            <div class="col-md-6">  <input type="number" name="discount_rate" required> </div>
+                                            <div class="col-md-6">  <input type="number" style="font-size: 14px;" name="discount_rate" step="0.0001" required> </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">  <br/> Analysis period  : </div>
-                                            <div class="col-md-6">  <input type="number" name="analysis_period" max="20" min="1" placeholder="0 - 20" required> </div>
+                                            <div class="col-md-6">  <input type="number" style="font-size: 14px;" name="analysis_period" step="1" max="20" min="1" placeholder="0 - 20" required> </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">  <br/> Worked date  : </div>
-                                            <div class="col-md-6">  <input type="date" class="datepicker" name="worked_date"> </div>
+                                            <div class="col-md-6">  <br/> Worked Year  : </div>
+                                            <div class="col-md-6">  <select class="browser-default" name="worked_date" id="inputYearId"> </select></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6 col-md-offset-3">  <input type="submit" class="btn green" value="submit" > </div>
@@ -351,42 +387,17 @@
         });
 
 
-        $('form.ajax').submit(function(e){
-            e.preventDefault();
-            var formData = new FormData($(this)[0]);
+        var min = new Date().getFullYear()-6,
+                max =  new Date().getFullYear()+5,
+                select = document.getElementById('inputYearId');
 
-//            if( ! $('#Condition_Index_id').val() )
-//            {
-//                $('#modal1').modal('close');
-//                alert('First Select a Distress type')
-//                return false;
-//            }
+        for (var i = min; i<=max; i++){
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+        }
 
-            $('#modal1').modal('close');
-
-            var registerForm = $("#add_picture");
-//            var formData = new FormData(registerForm);
-            $.ajax({
-                type     : "POST",
-                url      : '/add_distress_pictures',
-                data     : formData,
-                mimeType: "multipart/form-data",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success  : function(data) {
-                    console.log(data);
-                    Materialize.toast('Image Added', 4000, 'blue darken-2');
-
-                }
-            });
-        });
-
-
-        $('.datepicker').pickadate({
-            changeYear: true,
-            selectYears: 25 // Creates a dropdown of 15 years to control year
-        });
 
     });
 </script>

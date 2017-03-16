@@ -63,6 +63,10 @@
              font-size: 14px;
          }
 
+        .sub-menu{
+            background-color: #0d1217;
+        }
+
     </style>
 
 </head>
@@ -170,14 +174,31 @@
                         </a>
                     </li>
 
-                    <li class="start ">
-                        <a href="/add_condition_index">
+                    <li class="start">
+                        <a>
                             <i class="fa fa-cogs"></i>
                             <span class="title">System Analysis</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/add_condition_index">
+                                    <i class="fa fa-add"></i>
+                                    Add new Inspeciton </a>
+                            </li>
+                            <li>
+                                <a href="/density_deduct_values">
+                                    <i class=""></i>
+                                    Density and Deduct value</a>
+                            </li>
+                            <li>
+                                <a href="/distress_Identification">
+                                    <i class=""></i>
+                                    Distress identification view</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Cost_Analysis_input_view">
                             <i class="fa fa-money"></i>
                             <span class="title">Cost</span>
                         </a>
@@ -188,6 +209,28 @@
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/Treatment_Recommendation">
+                                    <i class="fa fa-add"></i>
+                                    Treament Recommendation </a>
+                            </li>
+                            <li>
+                                <a href="/Maintainance_and_Rehablitation_plan">
+                                    <i class=""></i>
+                                    Maintenace and rehab plan </a>
+                            </li>
+                            <li>
+                                <a href="/rehablitation_alternatives">
+                                    <i class=""></i>
+                                    Rehabilitation Alternatives</a>
+                            </li>
+                            <li>
+                                <a href="/Life_Cycle_Cost_Analysis">
+                                    <i class=""></i>
+                                    Life Cycle Cost Analysis</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="start ">
                         <a href="/project_info">
@@ -212,7 +255,7 @@
                 <div id="Main-Content">
                     <div class="row">
                         <h4>Basic Informations </h4>
-                        <div class="col-md-12 light portlet" style="padding: 10px;">
+                        <div class="col-md-12" style="padding: 10px;">
                             <div class="row">
                                 <div class="col-md-2">
                                     <h5><b > From: </b> {{ $From }} <br/>
@@ -358,12 +401,12 @@
                                 </h4>
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <table class="table" border="4">
                                         <thead class="thead-default">
-                                        <tr class="row">
+                                        <tr class="row left">
                                             @if(! empty($Inspections))
-                                                <td> <h4> {{ count($Inspections) }} inspections </h4> </td>
+                                                <td> <h4> {{count($Inspections)}} inspections </h4> </td>
                                             @else
                                                 <td> <h4> 0 inspections </h4> </td>
                                             @endif
@@ -371,9 +414,9 @@
                                         </thead>
                                         @if(! empty($Inspections))
                                             @foreach( $Inspections as $Inspection )
-                                                <tr class="row">
-                                                    <td class="col-md-8"> {{ $Inspection }} </td>
-                                                    <td class="col-md-3">
+                                                <tr class="row ">
+                                                    <td class="col-md-3 left"> {{$Inspection}} </td>
+                                                    <td class="col-md-3 right">
                                                         <li class="dropdown dropdown-user" style="list-style: none;">
                                                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                                                 <i class="fa fa-angle-down"></i>

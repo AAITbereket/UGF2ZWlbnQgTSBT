@@ -231,6 +231,13 @@ class Cost_Analysis_Controller extends Controller
             return redirect('/add_condition_index');
         }
 
+        $Section_Cost_Analysis = Section_Cost_Analysis::where('Section_Id',$Session_Section_Id)->get();
+
+        if(! $Section_Cost_Analysis->count())
+        {
+            return redirect('/Cost_Analysis_input_view');
+        }
+        
         if($Pavement_section->count() )
         {
             $Pavement_section_ = $Pavement_section[0];
@@ -271,6 +278,18 @@ class Cost_Analysis_Controller extends Controller
 
         $Quantities_sum = array_sum($Quantities->toArray());
 
+        $Section_Cost_Analysis = Section_Cost_Analysis::where('Section_Id',$Session_Section_Id)->get();
+
+        if(! $Section_Cost_Analysis->count())
+        {
+            return redirect('/Cost_Analysis_input_view');
+        }
+
+        $Section_Cost_Analysis = $Section_Cost_Analysis[0];
+        $TotalMaintCost = $Section_Cost_Analysis->input_TotalMaintCost ;
+        $Totalcostrehab = $Section_Cost_Analysis->input_Totalcostrehab ;
+        $Alternative = $Section_Cost_Analysis->Alternative;
+
         if($condition_indices->count() )
         {
             $condition_indices_ = $condition_indices;
@@ -282,12 +301,11 @@ class Cost_Analysis_Controller extends Controller
         if($Pavement_section->count() )
         {
             $Pavement_section_ = $Pavement_section[0];
-            return view('Cost_Analysis.Life_cycle_cost_analysis_view', compact('Quantities_sum' ,'Pavement_section_','Session_Inspection_Date'));
+            return view('Cost_Analysis.Life_cycle_cost_analysis_view', compact( 'Alternative' , 'Totalcostrehab' ,'TotalMaintCost' ,'Section_Cost_Analysis' , 'Quantities_sum' ,'Pavement_section_','Session_Inspection_Date'));
         }
         else{
             return redirect('/add_section');
         }
-
     }
     
     public function input_cost_analysis(Request $request)
@@ -317,5 +335,30 @@ class Cost_Analysis_Controller extends Controller
             $New_Section_Cost_Analysis->Analysis_Period = $request->analysis_period;
             $New_Section_Cost_Analysis->save();
         }
+
+        return redirect('/rehablitation_alternatives');
+
+    }
+
+    public function Save_Cost(Request $request)
+    {
+       $Session_Section_Id = Session::get('Section_Id');
+
+        $Section_Cost_Analysis = Section_Cost_Analysis::where('Section_Id',$Session_Section_Id)->get();
+
+        if(! $Section_Cost_Analysis->count())
+        {
+            return redirect('/Cost_Analysis_input_view');
+        }
+
+        $Section_Cost_Analysis = $Section_Cost_Analysis[0];
+
+        $Section_Cost_Analysis->input_TotalMaintCost = $request->input_TotalMaintCost;
+        $Section_Cost_Analysis->input_Totalcostrehab = $request->input_Totalcostrehab;
+        $Section_Cost_Analysis->Alternative = $request->Alternative;
+        $Section_Cost_Analysis->save();
+
+        return redirect('/Life_Cycle_Cost_Analysis');
+        
     }
 }
