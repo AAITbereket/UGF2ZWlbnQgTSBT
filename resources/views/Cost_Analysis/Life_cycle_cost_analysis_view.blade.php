@@ -178,7 +178,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse" style="position: fixed;">
+            <div class="page-sidebar navbar-collapse collapse" style="position: fixed;">
                 <!-- BEGIN SIDEBAR MENU -->
                 <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
                 <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
@@ -186,9 +186,9 @@
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <ul class="page-sidebar-menu page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Section_dashboard">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
@@ -224,6 +224,8 @@
                         </a>
                     </li>
 
+
+
                     <li class="start ">
                         <a href="index.html">
                             <i class="fa fa-bar-chart"></i>
@@ -233,7 +235,7 @@
                             <li>
                                 <a href="/Treatment_Recommendation">
                                     <i class="fa fa-add"></i>
-                                    Treament Recommendation </a>
+                                    Treatment Recommend. </a>
                             </li>
                             <li>
                                 <a href="/Maintainance_and_Rehablitation_plan">
@@ -250,6 +252,7 @@
                                     <i class=""></i>
                                     Life Cycle Cost Analysis</a>
                             </li>
+
                         </ul>
                     </li>
                     <li class="start ">
@@ -280,7 +283,7 @@
                                     <h4><b> Surface :</b> {{ $Surface  }}  </h4>
                                 </div>
                                 <div class="col-md-3">
-                                    <h4><b> Inspection Date :</b> {{ $Session_Inspection_Date  }}   </h4>
+                                    <h4><b> Worked year :</b> {{ $Start_year }}   </h4>
                                 </div>
                                 <div class="col-md-3">
                                     <h4><b> Total Quantity :</b> {{ $Sum  }} <small>m2</small>  </h4>
@@ -291,6 +294,10 @@
                                 <div class="col-md-3">
                                     <h4><b> Rehabilitation :</b>  {{ $Rehabilitation_yr }} </h4>
                                 </div>
+                                <div class="col-md-3">
+                                    <h4><b> Alternative :</b>  {{ $Alternative }} </h4>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -326,7 +333,7 @@
                                         <?php $yr_long = 0; ?>
                                         @while( $yr_long < ceil($Analysis_period / 2 ) )
                                             @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
-                                                <tr style="background: #28c388;">
+                                                <tr style="background: #14B9D6;">
                                                     <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
                                                     <td> {{ $yr_long * $Maintenance_yrs }} </td>
                                                     <td> Asphalt Concrete Overlay(m3) </td>
@@ -339,57 +346,20 @@
                                                 <tr>
                                                     <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
                                                     <td> {{ $yr_long * $Maintenance_yrs }} </td>
-                                                    <td> Asphalt Concrete Overlay(m3) </td>
-                                                    <td> {{$Sum1}} </td>
-                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                    <td class="total_cost"> {{  $Sum1 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
-                                                    <?php $yr_long++; ?>
-                                                </tr>
-                                            @endif
 
-                                                @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
-                                                    <tr style="background: #28c388;">
-                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
-                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
-                                                    <td> Slurry Seal (m2) </td>
-                                                    <td> {{$Sum2}} </td>
-                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                    <td class="total_cost maintain"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
-                                                    <?php $yr_long++; ?>
-                                                    </tr>
-                                                 @else
-                                                     <tr>
-                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
-                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
-                                                    <td> Slurry Seal (m2) </td>
-                                                    <td> {{$Sum2}} </td>
-                                                     <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                     <td class="total_cost"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
-                                                    <?php $yr_long++; ?>
-                                                     </tr>
-                                                 @endif
+                                                    @if( $Alternative == 'Alternative2' )
+                                                        <td> Micro surfacing (m3) </td>
+                                                    @else
+                                                        <td> Slurry Seal (m2) </td>
+                                                    @endif
 
-                                                @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
-                                                    <tr style="background: #28c388;">
-                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
-                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
-                                                    <td> Slurry Seal (m2) </td>
-                                                    <td> {{$Sum2}} </td>
-                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                    <td class="total_cost maintain"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
-                                                    <?php $yr_long++; ?>
-                                                    </tr>
-                                                @else
-                                                    <tr>
-                                                    <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>
-                                                    <td> {{ $yr_long * $Maintenance_yrs }} </td>
-                                                    <td> Slurry Seal (m2) </td>
+
                                                     <td> {{$Sum2}} </td>
                                                     <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
                                                     <td class="total_cost"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
                                                     <?php $yr_long++; ?>
-                                                    </tr>
-                                                @endif
+                                                </tr>
+                                            @endif
                                         @endwhile
                                         <tr>
                                             <td>  </td>
@@ -410,7 +380,6 @@
                                         </tbody>
                                     </table>
                                     <!--End of databale i pasted-->
-
                                 </div>
                             </div>
                         </div>
@@ -468,6 +437,7 @@
                 </div>
 
                 <!-- END PAGE CONTENT-->
+
             </div>
         </div>
         <!-- END CONTENT -->
@@ -511,6 +481,7 @@
 <script src="homepage__/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="homepage__/js/dataTables.material.min.js" type="text/javascript"></script>
 <script src="homepage__/js/Chart.js" type="text/javascript"></script>
+<script src="homepage__/js/quick-sidebar.js" type="text/javascript"></script>
 
 <script>
 //    $(document).ready(function(){
@@ -532,6 +503,8 @@
             ]
         } );
 
+//        $('#side_bar_accordion').val('accordion');
+
         $('#example_length').hide();
         $('.mdl-grid').first().hide();
 
@@ -540,37 +513,6 @@
             size: 'small'
         });
 
-
-        $('form.ajax').submit(function(e){
-            e.preventDefault();
-            var formData = new FormData($(this)[0]);
-
-//            if( ! $('#Condition_Index_id').val() )
-//            {
-//                $('#modal1').modal('close');
-//                alert('First Select a Distress type')
-//                return false;
-//            }
-
-            $('#modal1').modal('close');
-
-            var registerForm = $("#add_picture");
-//            var formData = new FormData(registerForm);
-            $.ajax({
-                type     : "POST",
-                url      : '/add_distress_pictures',
-                data     : formData,
-                mimeType: "multipart/form-data",
-                contentType: false,
-                cache: false,
-                processData: false,
-                success  : function(data) {
-                    console.log(data);
-                    Materialize.toast('Image Added', 4000, 'blue darken-2');
-
-                }
-            });
-        });
 
         $('#example_filter').appendTo('#append');
 
@@ -621,7 +563,7 @@
                 datasets: [{
                     label: 'birr',
                     data: Totals,
-                    backgroundColor: "rgba(153,255,51,1)"
+                    backgroundColor: "rgba(20,185,214,1)"
                 }]
             }
         });

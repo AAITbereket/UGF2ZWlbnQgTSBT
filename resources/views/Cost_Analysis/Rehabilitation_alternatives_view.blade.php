@@ -13,7 +13,9 @@
     $Direction = $Pavement_section_->Direction;
     $Carriage_way_type = $Pavement_section_->Carriage_way_type;
 
-    $Sum = $Quantities_sum;
+//    $Sum = $Quantities_sum;
+
+$Sum = 7203.75;
 
 ?>
 
@@ -176,9 +178,9 @@
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Section_dashboard">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
@@ -286,10 +288,10 @@
                         <div class="portlet bordered col-md-12">
                             <div class="portlet-body">
                                 <ul id="tabs-swipe-demo" class="tabs">
-                                    <li class="tab col s3" class="active"><a href="#test-swipe-1">Alternative 1</a></li>
-                                    <li class="tab col s3"><a  href="#test-swipe-2">Alternative 2</a></li>
-                                    <li class="tab col s3"><a href="#test-swipe-3">Alternative 3</a></li>
-                                    <li class="tab col s3"><a href="#test-swipe-4">Alternative 4</a></li>
+                                    <li class="tab col s4" class="active"><a href="#test-swipe-1">Alternative 1</a></li>
+                                    <li class="tab col s4"><a  href="#test-swipe-2">Alternative 2</a></li>
+                                    {{--<li class="tab col s3"><a href="#test-swipe-3">Alternative 3</a></li>--}}
+                                    {{--<li class="tab col s3"><a href="#test-swipe-4">Alternative 4</a></li>--}}
                                 </ul>
                                 <div id="test-swipe-1" class="col s12">
 
@@ -314,40 +316,40 @@
                                             <td>1</td>
                                             <td>Asphalt mill for 2" 50.8 mm </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab(); " > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1(); " > </td>
                                             <td id="Tcost1">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td> Compact the milled area </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost2">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td> Tack Coat application above the compacted area </td>
                                             <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost3">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td> Asphalt Concrete overlay </td>
-                                            <td> {{ round($Sum_ = $Sum * 0.10744,2 ) }} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab();" > </td>
+                                            <td> {{ round($Sum_ = $Sum * 0.107442 ) }} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost4">  0  </td>
                                         </tr>
                                         <script>
-                                            function Calculate_total_Cost_rehab() {
+                                            function Calculate_total_Cost_rehab1() {
                                                 $('#Totalcostrehab').text(
+                                                        (Math.round((
                                                         Number( $('#Tcost1').text() ) +
                                                         Number( $('#Tcost2').text() ) +
                                                         Number( $('#Tcost3').text() ) +
-                                                        Number( $('#Tcost4').text())
+                                                        Number( $('#Tcost4').text())) * 100 ))/100
                                                 );
-                                                console.log(Number( $('#Totalcostrehab').text() ));
-
+                                                console.log(  (Math.round(Number( $('#Totalcostrehab').text()) * 100)) / 100 );
                                                 $('#input_Totalcostrehab').val( $('#Totalcostrehab').text() );
                                             }
                                         </script>
@@ -356,7 +358,7 @@
                                             <td></td>
                                             <td></td>
                                             <td><b> Total Rehabilitation Cost </b></td>
-                                            <td id="Totalcostrehab">    </td>
+                                            <td id="Totalcostrehab">  0   </td>
                                         </tr>
 
                                         </tbody>
@@ -381,7 +383,7 @@
                                                 <td>1</td>
                                                 <td> Slurry seal </td>
                                                 <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value; $('#input_TotalMaintCost')[0].value = '{{$Sum}}' * this.value;" > </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = (Math.round(('{{$Sum}}' * this.value)*100)) / 100; $('#TotalMaintCost')[0].innerHTML = (Math.round(('{{$Sum}}' * this.value)*100)) / 100 ; $('#input_TotalMaintCost')[0].value = '{{$Sum}}' * this.value;" > </td>
                                                 <td id="Tcost9">  0  </td>
                                             </tr>
 
@@ -464,7 +466,7 @@
                                                             Number( $('#A2_Tcost3').text() ) +
                                                             Number( $('#A2_Tcost4').text())
                                                     );
-                                                    console.log(Number( $('#Totalcostrehab').text() ));
+                                                    console.log(Number( $('#Totalcostrehab2').text() ));
 
                                                     $('#input_Totalcostrehab2').val( $('#Totalcostrehab2').text() );
                                                 }
@@ -497,7 +499,7 @@
                                             <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td> Slurry seal </td>
+                                                <td> Mico-surfacing cost </td>
                                                 <td> {{$Sum}} </td>
                                                 <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#A2_Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#A2_TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value; $('#input_TotalMaintCost2')[0].value = '{{$Sum}}' * this.value;" > </td>
                                                 <td id="A2_Tcost9">  0  </td>
@@ -527,12 +529,12 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div id="test-swipe-3" class="col s12 green">
-                                    <h1>Alternative 3</h1>
-                                </div>
-                                <div id="test-swipe-4" class="col s12 green">
-                                    <h1>Alternative 4</h1>
-                                </div>
+                                {{--<div id="test-swipe-3" class="col s12 green">--}}
+                                    {{--<h1>Alternative 3</h1>--}}
+                                {{--</div>--}}
+                                {{--<div id="test-swipe-4" class="col s12 green">--}}
+                                    {{--<h1>Alternative 4</h1>--}}
+                                {{--</div>--}}
 
                             </div>
                         </div>
