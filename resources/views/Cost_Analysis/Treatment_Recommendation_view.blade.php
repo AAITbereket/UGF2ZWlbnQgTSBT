@@ -216,7 +216,7 @@
                             <li>
                                 <a href="/Treatment_Recommendation">
                                     <i class="fa fa-add"></i>
-                                    Treament Recommendation </a>
+                                    Treatment Recommend. </a>
                             </li>
                             <li>
                                 <a href="/Maintainance_and_Rehablitation_plan">

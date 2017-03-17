@@ -173,7 +173,6 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-
                     <li class="start">
                         <a>
                             <i class="fa fa-cogs"></i>

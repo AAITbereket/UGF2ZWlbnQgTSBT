@@ -331,7 +331,7 @@
                                         </tr>
                                         <?php $Start_year = $Start_year + 1 + $Maintenance_yrs; ?>
                                         <?php $yr_long = 0; ?>
-                                        @while( $yr_long < ceil($Analysis_period / 2 ) )
+                                        @while( $yr_long <= ($Analysis_period / $Maintenance_yrs ) )
                                             @if (! fmod(($Maintenance_yrs * $yr_long) , $Rehabilitation_yr) )
                                                 <tr style="background: #14B9D6;">
                                                     <td class="analysis_year"> {{ $Start_year + ($Maintenance_yrs * $yr_long) }} </td>

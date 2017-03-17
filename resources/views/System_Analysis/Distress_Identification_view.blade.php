@@ -66,7 +66,7 @@
              font-size: 14px;
          }
 
-         #modal1 { width: 40% !important ; height: 35% !important ; }
+         #modal_1 { width: 40% !important ; height: 35% !important ; }
 
     </style>
 
@@ -167,7 +167,7 @@
                 <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <ul class="page-sidebar-menu page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
                         <a href="index.html">
                             <i class="fa fa-home"></i>
@@ -421,9 +421,9 @@
                                 <div class="right">
 
                                     <div>
-                                        <button id="Add_image_pop_up" class="waves-effect waves-light btn modal-trigger" disabled data-target="modal1" href="#modal1"> Add Image </button>
+                                        <button id="Add_image_pop_up" class="waves-effect waves-light btn modal-trigger" disabled data-target="modal_1" href="#modal_1"> Add Image </button>
                                         <!-- Modal Structure -->
-                                        <div id="modal1" class="modal">
+                                        <div id="modal_1" class="modal">
                                             <div class="modal-content">
                                                 <div class="row">
                                                     <form class="col s12 ajax" id="add_picture" enctype="multipart/form-data" type="POST" action="{{ url('/add_distress_pictures') }}">
@@ -541,7 +541,7 @@
 //                return false;
 //            }
 
-            $('#modal1').modal('close');
+            $('#modal_1').modal('close');
 
             var registerForm = $("#add_picture");
 //            var formData = new FormData(registerForm);
