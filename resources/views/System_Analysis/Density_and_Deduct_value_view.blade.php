@@ -70,6 +70,10 @@
 
          .modal { width: 40% !important ; height: 35% !important ; }
 
+         .sub-menu{
+             background-color: #0d1217;
+         }
+
     </style>
 
 </head>
@@ -171,7 +175,7 @@
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Section_dashboard">
                             <i class="fa fa-home"></i>
                             <span class="title">Dashboard</span>
                         </a>
@@ -216,7 +220,7 @@
                             <li>
                                 <a href="/Treatment_Recommendation">
                                     <i class="fa fa-add"></i>
-                                    Treament Recommendation </a>
+                                    Treatment Recommen. </a>
                             </li>
                             <li>
                                 <a href="/Maintainance_and_Rehablitation_plan">

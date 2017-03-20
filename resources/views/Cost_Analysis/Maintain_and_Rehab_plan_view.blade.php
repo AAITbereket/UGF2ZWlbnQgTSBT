@@ -48,6 +48,9 @@
          .modal-content input {
              font-size: 14px;
          }
+         .sub-menu{
+             background-color: #0d1217;
+         }
 
     </style>
 
@@ -187,7 +190,7 @@
                     </li>
 
                     <li class="start ">
-                        <a href="index.html">
+                        <a href="/Section_dashboard">
                             <i class="fa fa-bar-chart"></i>
                             <span class="title">Reports</span>
                         </a>
