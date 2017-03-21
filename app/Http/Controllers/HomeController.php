@@ -73,8 +73,9 @@ class HomeController extends Controller
         Session::forget('Project_Id');
 
         $project_ = project::find($Project_Id);
-
         $project_->delete();
+
+//        $sections = Pavement_section::find
 
         return redirect('/home');
     }

@@ -16,6 +16,7 @@ class CreateInspectionResultsTable extends Migration
         Schema::create('inspection_results', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Section_Id');
+            $table->string('Project_Id');
             $table->string('Inspection_Id');
             $table->string('Inspection_date');
             $table->string('PCI');

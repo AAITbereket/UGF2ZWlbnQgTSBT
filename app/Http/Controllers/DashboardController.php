@@ -30,6 +30,8 @@ class DashboardController extends Controller
 
         $Pavement_section = DB::table('pavement_sections')->where('Project_Id', "$Session_Project_Id")->get();
 
+        // full join pavement_section with inspection result
+
         if($selected_project->count() )
         {
             if (! $Pavement_section->count())

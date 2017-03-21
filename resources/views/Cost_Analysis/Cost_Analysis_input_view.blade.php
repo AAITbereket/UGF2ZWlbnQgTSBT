@@ -249,7 +249,7 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h3 class="page-title">
-                    {{ $Section_Name }}- Density and Deduct values
+                    {{ $Section_Name }}
                 </h3>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->

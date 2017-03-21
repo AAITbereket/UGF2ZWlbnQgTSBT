@@ -396,12 +396,13 @@
 
                         <div id="recent projects">
                             <div class="row">
-                                <h4 class="col-md-4">
+                                <h4 class="col-md-12">
                                     Previous Inspections
                                 </h4>
                             </div>
+
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <table class="table" border="4">
                                         <thead class="thead-default">
                                         <tr class="row left">
@@ -414,9 +415,10 @@
                                         </thead>
                                         @if(! empty($Inspections))
                                             @foreach( $Inspections as $Inspection )
-                                                <tr class="row ">
-                                                    <td class="col-md-3 left"> {{$Inspection}} </td>
-                                                    <td class="col-md-3 right">
+                                                <tr class="row">
+                                                    <td class="col-md-8 left inspection_year"> {{$Inspection->Inspection_date}} </td>
+                                                    <td class="hide pci_result">{{$Inspection->PCI}}</td>
+                                                    <td class="col-md-1 right">
                                                         <li class="dropdown dropdown-user" style="list-style: none;">
                                                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                                                 <i class="fa fa-angle-down"></i>
@@ -424,24 +426,24 @@
                                                             <ul class="dropdown-menu dropdown-menu-default">
                                                                 <li>
                                                                     <a href="{{ url('/Open_inspection') }}"
-                                                                       onclick="event.preventDefault();document.getElementById('{{"open".$Inspection}}').submit();">
+                                                                       onclick="event.preventDefault();document.getElementById('{{"open".$Inspection->Inspection_date}}').submit();">
                                                                         <i class="fa fa-key"></i> Open </a>
 
-                                                                    <form id="{{"open".$Inspection}}" action="{{ url('/Open_inspection') }}" method="POST" style="display: none;">
+                                                                    <form id="{{"open".$Inspection->Inspection_date}}" action="{{ url('/Open_inspection') }}" method="POST" style="display: none;">
                                                                         {{ csrf_field() }}
-                                                                        <input type="hidden" name="Inspection_date_open" value="{{$Inspection}}">
+                                                                        <input type="hidden" name="Inspection_date_open" value="{{$Inspection->Inspection_date}}">
                                                                     </form>
 
                                                                 </li>
 
                                                                 <li>
                                                                     <a href="{{ url('/Delete_inspection') }}"
-                                                                       onclick="event.preventDefault();document.getElementById('{{"delete".$Inspection}}').submit();">
+                                                                       onclick="event.preventDefault();document.getElementById('{{"delete".$Inspection->Inspection_date}}').submit();">
                                                                         <i class="fa fa-trash"></i> Delete </a>
 
-                                                                    <form id="{{"delete".$Inspection}}" action="{{ url('/Delete_inspection') }}" method="POST" style="display: none;">
+                                                                    <form id="{{"delete".$Inspection->Inspection_date}}" action="{{ url('/Delete_inspection') }}" method="POST" style="display: none;">
                                                                         {{ csrf_field() }}
-                                                                        <input type="hidden" name="Inspection_date_delete" value="{{$Inspection}}">
+                                                                        <input type="hidden" name="Inspection_date_delete" value="{{$Inspection->Inspection_date}}">
                                                                     </form>
 
                                                                 </li>
@@ -453,6 +455,13 @@
                                         @endif
                                     </table>
                                 </div>
+
+                                <div class="col-md-7">
+
+                                    <canvas id="pci_charts_of_section">   </canvas>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -504,6 +513,7 @@
 <script src="homepage__/materialize/js/materialize.js"></script>
 <script src="homepage__/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="homepage__/js/dataTables.material.min.js" type="text/javascript"></script>
+<script src="homepage__/js/Chart.js" type="text/javascript"></script>
 
 <script>
 //    $(document).ready(function(){
@@ -564,8 +574,35 @@
 
         });
 
+        var years = new Array();
+        $('.inspection_year').each(function () {
+            years.push(($(this)[0].innerText ));
+        });
+
+        console.log(years);
+        var PCIS = new Array();
+        $('.pci_result').each(function () {
+            PCIS.push( Number ($(this)[0].innerText ));
+        });
+        console.log(PCIS);
+
+        var ctx = document.getElementById("pci_charts_of_section").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'pci',
+                    data: PCIS,
+                    backgroundColor: "rgba(20,185,214,1)"
+                }]
+            }
+        });
 
     });
+
+
+
 </script>
 <!-- END JAVASCRIPTS -->
 </body>

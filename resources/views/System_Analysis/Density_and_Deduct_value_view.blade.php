@@ -488,7 +488,6 @@
                                             <input type="hidden" id="pci_input" name="Pci">
                                             <input type="submit" class="btn right" value="Save Inspection">
                                         </form>
-
                                     @endif
                                 </div>
 
@@ -643,7 +642,7 @@
             // Good Dark green
             $('#Progress_bar').css('background-color', "#006400" );
             $('#Progress_bar').css('color', "#fff" );
-            $('#Progress_bar').html(  pci + "% " + "Good");
+//            $('#Progress_bar').html(  pci + "% " + "Good");
             $('#pci_status').html(  pci + "% " + "Good");
             $('#Progress_bar').css('width', pci + "%" );
             $('#Pci_recommendation').html('Routine Maintenanace');
@@ -720,7 +719,6 @@
                 success  : function(data) {
                     console.log(data);
                     Materialize.toast('Inspection Saved', 4000, 'red darken-2');
-
                 }
             });
         });

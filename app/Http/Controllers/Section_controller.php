@@ -29,13 +29,13 @@ class Section_controller extends Controller
 
         $Session_Section_Id = Session::get('Section_Id');
 
-        $Inspections_id = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->pluck('Inspection_date');
-
-        $Inspections = array_unique($Inspections_id->toArray() ); // by the way here i am passing DATE DATE DATE
-
-//        $Inspections = DB::table('inspection_results')->where('Section_Id', "$Session_Section_Id")->get();
+//        $Inspections_id = DB::table('section_condition_indices')->where('Section_Id', "$Session_Section_Id")->pluck('Inspection_date');
 //
-////        $Inspections = array_unique($Inspections->toArray() ); // by the way here i am passing DATE DATE DATE
+//        $Inspections = array_unique($Inspections_id->toArray() ); // by the way here i am passing DATE DATE DATE
+
+        $Inspections = DB::table('inspection_results')->where('Section_Id', "$Session_Section_Id")->get();
+
+//        $Inspections = array_unique($Inspections->toArray() ); 
         
         $Pavement_section = DB::table('pavement_sections')->where('Section_Id', "$Session_Section_Id")->get();
 
@@ -1132,13 +1132,15 @@ class Section_controller extends Controller
         $Inspection_date_delete = $request->Inspection_date_delete;
         $Inspections_id = DB::table('section_condition_indices')->where('Inspection_date', "$Inspection_date_delete")->delete();
 
+        $Inspections_id = DB::table('inspection_results')->where('Inspection_date', "$Inspection_date_delete")->delete();
         return redirect('/Section_dashboard');
     }
-
 
     public function Save_inspection(Request $request)
     {
 
+        $Session_Inspection_Date = Session::get('Session_Inspection_Date');
+        $Session_project_Id = Session::get('Project_Id');
         $Inspection_Id = $request->Inspection_Id;
         $Pci = $request->Pci;
 
@@ -1147,10 +1149,11 @@ class Section_controller extends Controller
         $new_inspection =  new inspection_result();
         $new_inspection->PCI = $Pci;
         $new_inspection->Inspection_Id = $Inspection_Id;
+        $new_inspection->Project_Id = $Session_project_Id;
+        $new_inspection->Inspection_date = $Session_Inspection_Date;
         $new_inspection->Section_Id = Session::get('Section_Id');
         $new_inspection->save();
 
     }
-
 
 }

@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="portlet light bordered col-md-8">
+                        <div class="portlet light bordered col-md-7">
                             <div class="portlet-title">
                                 <div class="caption">
                                     Sections
@@ -245,8 +245,8 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Section Name</th>
-                                            <th>From</th>
-                                            <th>To</th>
+                                            {{--<th>From</th>--}}
+                                            {{--<th>To</th>--}}
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -256,8 +256,8 @@
                                                 <tr>
                                                     <td>AARR-00{{$section->Section_Id}}</td>
                                                     <td>{{$section->Section_Name}}</td>
-                                                    <td>{{$section->From}}</td>
-                                                    <td>{{$section->To}}</td>
+                                                    {{--<td>{{$section->From}}</td>--}}
+                                                    {{--<td>{{$section->To}}</td>--}}
                                                     <td>
                                                         <button class="btn green" onclick="event.preventDefault();
                                                      document.getElementById('{{"open".$section->Section_Id}}').submit();"> Open  </button>
@@ -381,6 +381,10 @@
                                 </div>
 
                             </div>
+                        </div>
+
+                        <div>
+                            {{--<h1> prioritization </h1>--}}
                         </div>
                     </div>
 
