@@ -316,7 +316,7 @@
                                                     <td>{{$condition_index->Severity}}</td>
                                                     <td>{{$condition_index->Quantity}}</td>
                                                     {{--<td>{{  $Sum }}</td>--}}
-                                                    <td> @if($condition_index->Distress_type == "raveling")
+                                                    <td> @if($condition_index->Distress_type == "edge_cracking"  || $condition_index->Distress_type == "longtd_crack")
                                                             {{ round($Density = ($condition_index->Quantity * 100) / $length,3) }}
                                                          @else
                                                             {{ round($Density = ($condition_index->Quantity * 100) / $Area,3) }}

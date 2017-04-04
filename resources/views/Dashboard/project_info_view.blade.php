@@ -1,3 +1,18 @@
+<?php
+
+$Project_No = $selected_project->Project_Id;
+$Client_Name = $selected_project->Client_Name;
+$Project_Name = $selected_project->Project_Name;
+$Company_Name = $selected_project->Company_Name;
+$Inspect_By = $selected_project->Inspect_By;
+$Checker = $selected_project->Checker;
+$Company_Logo_URL = $selected_project->Company_Logo_URL;
+$Supervisior = $selected_project->Supervisior;
+$Date = $selected_project->Date;
+$Issue_Number = $selected_project->Issue_Number;
+
+?>
+
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -174,26 +189,27 @@
                         <blockquote>
                             Project Info
                         </blockquote>
-                        <h4> <b>Client Name :</b> <span>Lorem ipsum </span></h4>
-                        <h4> <b>Project Name :</b> <span> ProjectName </span></h4>
-                        <h4> <b>Project Number :</b> <span> 123456 </span></h4>
+                        <h4> <b>Client Name :</b> <span>{{$Client_Name }} </span></h4>
+                        <h4> <b>Project Name :</b> <span> {{$Project_Name }} </span></h4>
+                        <h4> <b>Project Number :</b> <span> {{$Project_No }} </span></h4>
                     </div>
                     <div class=" col-md-7" >
                         <blockquote>
                             Company Info
                         </blockquote>
                         <div class="col-md-6">
-                            <img class="img-circle" src="homepage__/img/avatar3_small.jpg">
-                            <form method="post" enctype="multipart/form-data" id="image_submit">
-                                <input class="" type="file"/>
+                            <img class="img-circle" style="max-width: 278px" src="{{$Company_Logo_URL}}">
+                            <form method="post" action="{{url('/change_logo')}}" enctype="multipart/form-data" id="image_submit">
+                                {{csrf_field()}}
+                                <input class="" name="logo" type="file" required />
                                 <button type="submit" class="btn"> Change Logo </button>
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <h4> <b>Company Name :</b> <span>Lorem ipsum </span></h4>
-                            <h4> <b>Inspect By :</b> <span> ProjectName </span></h4>
-                            <h4> <b>Checker :</b> <span> 123456 </span></h4>
-                            <h4> <b>Supervisor :</b> <span> 123456 </span></h4>
+                            <h4> <b>Company Name :</b> <span>{{$Company_Name}}  </span></h4>
+                            <h4> <b>Inspect By :</b> <span> {{$Inspect_By }} </span></h4>
+                            <h4> <b>Checker :</b> <span> {{$Checker }} </span></h4>
+                            <h4> <b>Supervisor :</b> <span> {{$Supervisior }} </span></h4>
 
                         </div>
                     </div>
@@ -206,10 +222,10 @@
                             Model Information
                         </blockquote>
                         <div class="col-md-3">
-                            <h4> <b>Date : </b> <span> 2/2/2017 </span></h4>
+                            <h4> <b>Date : </b> <span> {{$Date }} </span></h4>
                         </div>
                         <div class=" col-md-4" >
-                            <h4> <b> Issue number : </b> <span> 1332345676 </span></h4>
+                            <h4> <b> Issue number : </b> <span> {{$Issue_Number}} </span></h4>
                         </div>
 
                         <div class="col-md-offset-3 col-md-2" >
@@ -220,50 +236,47 @@
                             <div id="modal1" class="modal">
                                 <div class="modal-content">
                                     <div class="row">
-                                        <form class="col s12">
+                                        <form class="col s12" action="{{url('/change_project_info')}}" method="POST" >
+                                            {{csrf_field()}}
                                             <div class="row modal-form-row">
                                                 <div class="col s4">
                                                     <label for="image_url">Client Name</label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Client_name" type="text" class="validate">
                                                 </div>
                                                 <div class="col s2"> </div>
                                                 <div class="col s4">
                                                     <label for="image_url">Project Name</label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Project_name" type="text" class="validate" required>
                                                 </div>
-                                                {{--<div class="col s4">--}}
-                                                    {{--<label for="image_url">Project Number</label>--}}
-                                                    {{--<input id="image_url" type="text" class="validate">--}}
-                                                {{--</div>--}}
                                             </div>
                                             <hr/>
                                             <div class="row">
                                                 <div class="col s3">
                                                     <label for="image_url">Company Name</label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Company_Name" type="text" class="validate" required>
                                                 </div>
                                                 <div class="col s3">
                                                     <label for="image_url">Inspect By</label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Inspect_by" type="text" class="validate" required>
                                                 </div>
                                                 <div class="col s3">
                                                     <label for="image_url">Checker </label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Checker" type="text" class="validate" required>
                                                 </div>
                                                 <div class="col s3">
                                                     <label for="image_url">Superviser </label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <input id="image_url" name="Superviser" type="text" class="validate" required>
                                                 </div>
                                             </div>
                                             <hr/>
                                             <div class="row">
                                                 <div class="col s6">
                                                     <label for="image_url">Date</label>
-                                                    <input id="image_url" type="date" class="datepicker">
+                                                    <input id="image_url" name="date" type="date" class="datepicker" required>
                                                 </div>
                                                 <div class="col s6">
-                                                    <label for="image_url">Inspect By</label>
-                                                    <input id="image_url" type="text" class="validate">
+                                                    <label for="image_url">issue number</label>
+                                                    <input id="image_url" name="issue_no" type="number" class="validate" required>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn right"> Submit </button>
@@ -333,7 +346,8 @@
 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 40 // Creates a dropdown of 15 years to control year
+        selectYears: 40, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd'
     });
 
 </script>

@@ -14,16 +14,17 @@ class project_info_seeder extends Seeder
         // Default values 
 
         DB::table('project_infos')->insert([
-        'Created_By' => 'Bereket',
-        'Client_Name'=> 'Lorem',
-        'Project_Name' => 'project_name',
-        'Company_Name' => 'Accra',
-        'Company_Logo_URL' => 'uploads/images/logo.png',
-        'Inspect_By' => 'Alex Lorem',
-        'Checker' => 'someone',
-        'Supervisior' =>'Lorem xdn',
-        'Date' => '2/12/2017',
-        'Issue_Number' => '13245648'
+         'Project_Id' => '0',    
+        'Created_By' => '',
+        'Client_Name'=> '',
+        'Project_Name' => '',
+        'Company_Name' => '',
+        'Company_Logo_URL' => 'homepage__/img/ur_logo.png',
+        'Inspect_By' => '',
+        'Checker' => '',
+        'Supervisior' =>'',
+        'Date' => '',
+        'Issue_Number' => ''
         ]);
         
     }

@@ -146,12 +146,7 @@
 							<span class="title">Dashboard</span>
 						</a>
 					</li>
-					<li class="start ">
-						<a href="/project_info">
-							<i class="fa fa-info-circle"></i>
-							<span class="title">Project info</span>
-						</a>
-					</li>
+
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

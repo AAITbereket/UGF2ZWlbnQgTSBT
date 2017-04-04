@@ -260,7 +260,7 @@
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h5 class="page-title">
-                    {{ $From }} -  {{$To}}- Rehabilitation Alternatives
+                    {{ $From }} --  {{$To}}- Rehabilitation Alternatives
                 </h5>
                 <!-- END PAGE HEADER-->
                 <!-- BEGIN PAGE CONTENT-->
@@ -316,29 +316,29 @@
                                         <tr>
                                             <td>1</td>
                                             <td>Asphalt mill for 2" 50.8 mm </td>
-                                            <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1(); " > </td>
+                                            <td> {{$Area}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost1')[0].innerHTML = Math.round('{{$Area}}' * this.value * 100)/100 ; Calculate_total_Cost_rehab1(); " > </td>
                                             <td id="Tcost1">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td> Compact the milled area </td>
-                                            <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1();" > </td>
+                                            <td> {{$Area}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost2')[0].innerHTML = Math.round('{{$Area}}' * this.value * 100)/100; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost2">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td> Tack Coat application above the compacted area </td>
-                                            <td> {{$Sum}} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab1();" > </td>
+                                            <td> {{$Area}} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost3')[0].innerHTML = Math.round('{{$Area}}' * this.value * 100)/100; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost3">  0  </td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td> Asphalt Concrete overlay </td>
-                                            <td> {{ round($Sum_ = $Sum * 0.107442 ) }} </td>
-                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab1();" > </td>
+                                            <td> {{ round($Area_ = $Area * 0.107442 ) }} </td>
+                                            <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#Tcost4')[0].innerHTML = '{{round($Area_ , 2)}}' * this.value ; Calculate_total_Cost_rehab1();" > </td>
                                             <td id="Tcost4">  0  </td>
                                         </tr>
                                         <script>
@@ -383,8 +383,8 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td> Slurry seal </td>
-                                                <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = (Math.round(('{{$Sum}}' * this.value)*100)) / 100; $('#TotalMaintCost')[0].innerHTML = (Math.round(('{{$Sum}}' * this.value)*100)) / 100 ; $('#input_TotalMaintCost')[0].value = '{{$Sum}}' * this.value;" > </td>
+                                                <td> {{$Area}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#Tcost9')[0].innerHTML = (Math.round(('{{$Area}}' * this.value)*100)) / 100; $('#TotalMaintCost')[0].innerHTML = (Math.round(('{{$Area}}' * this.value)*100)) / 100 ; $('#input_TotalMaintCost')[0].value = '{{$Area}}' * this.value;" > </td>
                                                 <td id="Tcost9">  0  </td>
                                             </tr>
 
@@ -434,29 +434,29 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>Asphalt mill for 2" 50.8 mm </td>
-                                                <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost1')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab(); " > </td>
+                                                <td> {{$Area}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost1')[0].innerHTML = '{{$Area}}' * this.value; Calculate_total_Cost_rehab(); " > </td>
                                                 <td id="A2_Tcost1">  0  </td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td> Compact the milled area </td>
-                                                <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost2')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                                <td> {{$Area}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost2')[0].innerHTML = '{{$Area}}' * this.value; Calculate_total_Cost_rehab();" > </td>
                                                 <td id="A2_Tcost2">  0  </td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
                                                 <td> Tack Coat application above the compacted area </td>
-                                                <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost3')[0].innerHTML = '{{$Sum}}' * this.value; Calculate_total_Cost_rehab();" > </td>
+                                                <td> {{$Area}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost3')[0].innerHTML = '{{$Area}}' * this.value; Calculate_total_Cost_rehab();" > </td>
                                                 <td id="A2_Tcost3">  0  </td>
                                             </tr>
                                             <tr>
                                                 <td>4</td>
                                                 <td> Asphalt Concrete overlay </td>
-                                                <td> {{ round($Sum_ = $Sum * 0.10744,2 ) }} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost4')[0].innerHTML = '{{round($Sum_ , 2)}}' * this.value ; Calculate_total_Cost_rehab();" > </td>
+                                                <td> {{ round($Area_ = $Area * 0.10744,2 ) }} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup="$('#A2_Tcost4')[0].innerHTML = '{{round($Area_ , 2)}}' * this.value ; Calculate_total_Cost_rehab();" > </td>
                                                 <td id="A2_Tcost4">  0  </td>
                                             </tr>
                                             <script>
@@ -501,8 +501,8 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td> Mico-surfacing cost </td>
-                                                <td> {{$Sum}} </td>
-                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#A2_Tcost9')[0].innerHTML = '{{$Sum}}' * this.value; $('#A2_TotalMaintCost')[0].innerHTML = '{{$Sum}}' * this.value; $('#input_TotalMaintCost2')[0].value = '{{$Sum}}' * this.value;" > </td>
+                                                <td> {{$Area}} </td>
+                                                <td> <input id="unitRate1" type="number" style="max-width: 200px; font-size: 14px" onkeyup=" $('#A2_Tcost9')[0].innerHTML = '{{$Area}}' * this.value; $('#A2_TotalMaintCost')[0].innerHTML = '{{$Area}}' * this.value; $('#input_TotalMaintCost2')[0].value = '{{$Area}}' * this.value;" > </td>
                                                 <td id="A2_Tcost9">  0  </td>
                                             </tr>
 

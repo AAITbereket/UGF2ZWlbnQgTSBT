@@ -341,8 +341,8 @@
                                                     <td> {{ $yr_long * $Maintenance_yrs }} </td>
                                                     <td> Asphalt Concrete Overlay(m3) </td>
                                                     <td> {{$Sum1}} </td>
-                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                    <td class="total_cost maintain"> {{  $Sum1 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <td> {{ round((1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) ),2)}} </td>
+                                                    <td class="total_cost maintain"> {{ round (($Sum1 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ))),2) }} </td>
                                                     <?php $yr_long++; ?>
                                                 </tr>
                                             @else
@@ -358,8 +358,8 @@
 
 
                                                     <td> {{$Sum2}} </td>
-                                                    <td> {{ 1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) }} </td>
-                                                    <td class="total_cost"> {{  $Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) )) }} </td>
+                                                    <td> {{ round((1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ) ),2)}} </td>
+                                                    <td class="total_cost"> {{  round(($Sum2 * (1 / pow((1 + $discount_rate),( $yr_long * $Maintenance_yrs ) ))),2) }} </td>
                                                     <?php $yr_long++; ?>
                                                 </tr>
                                             @endif
@@ -405,7 +405,7 @@
                                         <tbody>
                                             <tr>
                                                 <td id="pwc"> </td>
-                                                <td id="capital_recover_factor"> {{ (pow((1+$discount_rate),$Analysis_period)) /  (-1 + pow((1+$discount_rate),$Analysis_period)) }}  </td>
+                                                <td id="capital_recover_factor"> {{ round(((pow((1+$discount_rate),$Analysis_period)) /  (-1 + pow((1+$discount_rate),$Analysis_period))),2) }}  </td>
                                                 <td id="EUAC">  </td>
                                             </tr>
                                         </tbody>
@@ -432,7 +432,6 @@
                     </div>
 
                     <div id="chart">
-
                         <canvas id="canvas1">
                         </canvas>
                     </div>

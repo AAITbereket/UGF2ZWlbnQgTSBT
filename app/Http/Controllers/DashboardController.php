@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\project;
 use App\Pavement_section;
+use App\project_info;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -38,7 +39,6 @@ class DashboardController extends Controller
             {
                 $Pavement_section_ = null;
             }
-
                 $Pavement_section_ = $Pavement_section;
                 $selected_project_ = $selected_project[0];
                 return view('Dashboard.Dashboard_view', compact('selected_project_','Pavement_section_'));
@@ -66,6 +66,15 @@ class DashboardController extends Controller
         $Project_Id = DB::table('projects')->where('Project_Name', "$request->Project_name")->orderBy('Project_Id','desc')->pluck('Project_Id');
     
         $Session_project_Id =  $Project_Id[0];
+
+
+        $new_project_info = new project_info();
+        $new_project_info->Project_Id = $Session_project_Id;
+        $new_project_info->Created_By = $name;
+        $new_project_info->Project_Name = $request->Project_name;
+        $new_project_info->Company_Logo_URL = "homepage__/img/ur_logo.png";
+        $new_project_info->save();
+
 
         Session::forget('Project_Id');
 

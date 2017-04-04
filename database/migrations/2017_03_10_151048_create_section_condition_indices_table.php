@@ -16,7 +16,7 @@ class CreateSectionConditionIndicesTable extends Migration
         Schema::create('section_condition_indices', function (Blueprint $table) {
             $table->increments('Condition_Index_id');
             $table->string('Section_Id'); // user who created the project
-            $table->string('Inspection_date');
+            $table->date('Inspection_date');
             $table->string('Inspection_Id');
             $table->string('Distress_type');
             $table->string('Severity');

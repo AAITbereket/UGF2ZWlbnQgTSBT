@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="portlet light bordered col-md-7">
+                        <div class="portlet light bordered col-md-8">
                             <div class="portlet-title">
                                 <div class="caption">
                                     Sections
@@ -254,7 +254,7 @@
                                          @if(! empty($Sections[0]))
                                             @foreach( $Sections as $section )
                                                 <tr>
-                                                    <td>AARR-00{{$section->Section_Id}}</td>
+                                                    <td>AA-{{$section->Street_type}}-00{{$section->Section_Id}}</td>
                                                     <td>{{$section->Section_Name}}</td>
                                                     {{--<td>{{$section->From}}</td>--}}
                                                     {{--<td>{{$section->To}}</td>--}}
@@ -314,21 +314,21 @@
                                                             <div class="col s3">
                                                                 <label for="image_url">Surface </label>
                                                                 <select class="browser-default" name="Surface" required>
-                                                                    <option value="Asphalt_Concrete" selected>Asphalt Concrete</option>
+                                                                    <option value="Asphalt Concrete" selected>Asphalt Concrete</option>
                                                                     <option value="Port_land_cement">Port land cement</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col s3">
                                                                 <label>Length (m) </label>
-                                                                <input id="length" value="{{0}}" name="Length" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
+                                                                <input id="length" value="{{0}}" name="Length" min="1" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url">Carriadge Width (m)</label>
-                                                                <input id="C_width" value="{{0}}" name="Carriadge_Width" class="validate valid" required="" aria-required="true" aria-invalid="false" type="number">
+                                                                <input id="C_width" value="{{0}}" name="Carriadge_Width" class="validate valid" required="" min="1" aria-required="true" aria-invalid="false" type="number">
                                                             </div>
                                                             <div class="col s3">
                                                                 <label for="image_url"> Area </label>
-                                                                <input id="Area" name="Area" value="{{0}}" class="validate valid" required aria-required="true" aria-invalid="false" type="text" readonly>
+                                                                <input id="Area" name="Area" value="{{0}}" class="validate valid" required aria-required="true" aria-invalid="false" type="number" min="1" readonly>
                                                             </div>
                                                         </div>
                                                         <hr/>
@@ -336,8 +336,7 @@
                                                             <div class="col s3">
                                                                 <label for="image_url"> Street Type </label>
                                                                 <select class="browser-default" name="street_type" required>
-                                                                    <option value="" disabled selected></option>
-                                                                    <option value="RR">RR</option>
+                                                                    <option value="RR" selected>RR</option>
                                                                     <option value="PAS">PAS</option>
                                                                     <option value="SAS">SAS</option>
                                                                     <option value="C">C</option>
@@ -383,8 +382,9 @@
                             </div>
                         </div>
 
-                        <div>
-                            {{--<h1> prioritization </h1>--}}
+                        <div class="col-md-4">
+                            <h1> prioritization </h1>
+
                         </div>
                     </div>
 
@@ -402,7 +402,7 @@
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
         <div class="page-footer-inner">
-            2014 &copy; Metronic by keenthemes. <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            2017 &copy; PMA-AACR
         </div>
         <div class="scroll-to-top">
             <i class="fa fa-arrow-up"></i>
@@ -445,7 +445,7 @@
         Demo.init(); // init demo features
 
         $('#example').DataTable( {
-            "pageLength": 3,
+            "pageLength": 8,
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],

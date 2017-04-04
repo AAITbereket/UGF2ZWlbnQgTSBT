@@ -23,6 +23,12 @@ Route::post('/Delete_project', 'HomeController@Delete_project');
 
 Route::get('/', 'HomeController@start_project');
 
+Route::get('/project_info', 'HomeController@project_info');
+
+Route::post('/change_project_info', 'HomeController@change_project_info');
+
+Route::post('/change_logo', 'HomeController@change_logo');
+
 // ## -- HomeController end
 
 //## ---- Dashboard Controller routes begin
@@ -106,9 +112,6 @@ Route::get('/check_home', function() {
 });
 
 
-Route::get('/project_info', function() {
-    return view('Dashboard.project_info_view');
-});
 
 Route::get('/login____', function() {
     return view('login.login');

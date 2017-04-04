@@ -18,7 +18,7 @@ class CreateInspectionResultsTable extends Migration
             $table->string('Section_Id');
             $table->string('Project_Id');
             $table->string('Inspection_Id');
-            $table->string('Inspection_date');
+            $table->date('Inspection_date');
             $table->string('PCI');
             $table->timestamps();
         });
